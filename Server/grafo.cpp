@@ -382,8 +382,10 @@ vector<vector<int>> Grafo::getConnections(){
 
 //----------------------Dijkstra-----------------------//
 
-void Grafo::dijkstra(int pStart, int pFinal, vector<int> vTemp, vector<int> vFinal){
+void Grafo::dijkstra(string pDataS, string pDataF, vector<int> vTemp, vector<int> vFinal){
 
+    int pStart = getPosLetra(pDataS);
+    int pFinal =  getPosLetra (pDataF);
     setAcumulado(0);//ACUMULADO EN 0
     setPost(pStart);// POSICION INICAL
     vTemp[pStart] = -1;// CAMBIO DE VALOR DE 0 A -1 PARA EVITAR SOBRE ESCRITURA
@@ -670,3 +672,22 @@ void Grafo::getAdyacenteInverso(){
         }
     }
 }
+
+
+
+
+// OBTIENE EL NUMERO DE NODO SEGUN SU LETRA
+
+int Grafo::getPosLetra(string pData){
+    for(int j=0; j < cities.size(); j++){
+        if(pData ==  cities[j]->getName().toStdString()){
+            return  cities[j]->getNumMatrix();
+        }
+    }
+}
+
+
+
+
+
+

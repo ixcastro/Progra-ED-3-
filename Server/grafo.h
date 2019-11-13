@@ -57,7 +57,7 @@ public:
     // PUNTO DE INICIO, PUNTO FINAL,
     //VECTORES LLENOS DE 0 DEL MISMO LARGO QUE LA CANTIDAD DE VERTICES
     //-----------------------------------------//
-    void dijkstra(int pStart, int pFinal, vector<int> vTemp, vector<int> vFinal);
+    void dijkstra(string pDataS, string pDataF, vector<int> vTemp, vector<int> vFinal);
 
     //---------------GET---------------//
 
@@ -108,6 +108,8 @@ public:
     void showFinalTable();
     // MUESTRA EL CAMINO DE RESPUESTA
     void showPath();
+    // OBTIENE EL NUMERO DE NODO SEGUN SU LETRA
+    int getPosLetra(string pData);
 
 private:
     int PostInv;
@@ -116,10 +118,6 @@ private:
     vector<int> Temp;
     vector<int> Final;
     vector<string> Path;
-
-
-
-
 
 
 };

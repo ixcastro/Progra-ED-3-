@@ -88,7 +88,7 @@ int main(){
     Grafo *gr = new Grafo(7,cities,connections);
     gr->getConnections();
     //------------------------JM--------------------//
-    gr->dijkstra(0,6,vTemp,vFinal);
+    gr->dijkstra("A","G",vTemp,vFinal);
     //------------------------JM--------------------//
 
 
