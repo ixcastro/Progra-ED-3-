@@ -1,22 +1,41 @@
 #ifndef CITY_H
 #define CITY_H
-#include "library.h"
 
-class City
-{
-    int code;
-    QString name;
-public:
-    City();
-    City(int, QString);
-    string toString();
-    int getCode();
-    QString getName();
-    void setCode(int);
-    void setName(QString);
+#include <iostream>
+#include <QString>
+#include <QStringList>
+#include <fstream>
+
+//#include "libery.h"
+
+using namespace std;
+
+class City{
+    private:
+        QString cityName;
+        int code;
+        int numMatrix;
+        bool isVisited;
+
+    public:
+
+        City();
+        City(int pCode,int pNum, QString pName);
+
+        QString city();
+
+        int getCode();
+        int getNumMatrix();
+        QString getName();
+        bool getVisit();
+
+        void setCode(int);
+        void setVisited(bool);
+        void setName(QString);
+        void setNum(int);
+
+        string toString();
 };
-
-//---------------------------------------------------------------------------------------
 
 class CityNode{
     City *data;
@@ -45,7 +64,9 @@ public:
     string toString();
     void print();
     bool exists(int);
+    int numVertex(int);
 };
 
 
 #endif // CITY_H
+

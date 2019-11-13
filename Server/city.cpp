@@ -1,26 +1,32 @@
 #include "city.h"
 
-//****************************Ciudad********************************************************************
-City::City(){
+City::City() {
     code = 0;
-    name = "";
+    cityName = "";
+    numMatrix = 0;
 }
 
-City::City(int pCode, QString pName){
+City::City(int pCode,int pNum, QString pName){
     code = pCode;
-    name = pName;
+    cityName = pName;
+    numMatrix = pNum;
 }
 
 string City::toString(){
-    return "Codigo: " + to_string(code) + "\tNombre: " + name.toStdString();
+    return "Codigo: " + to_string(code) +
+        "\tNombre: " + cityName.toStdString();
 }
 
 int City::getCode(){
     return code;
 }
 
+bool City::getVisit(){
+    return isVisited;
+}
+
 QString City::getName(){
-    return name;
+    return cityName;
 }
 
 void City::setCode(int pCode){
@@ -28,8 +34,17 @@ void City::setCode(int pCode){
 }
 
 void City::setName(QString pName){
-    name = pName;
+    cityName = pName;
 }
+
+void City::setVisited(bool v){
+    isVisited = v;
+}
+
+int City::getNumMatrix(){
+    return numMatrix;
+}
+
 
 //*************************Nodo Ciudad******************************************************************
 CityNode::CityNode(){
@@ -92,13 +107,17 @@ void CityList::readFile(string fileName){
             exit(1);
     }
 
+    int i = 0;
     while(!file.eof()){
         getline(file,t);
         text = QString::fromStdString(t);
         QStringList data = text.split(";");
 
-        City *newCity = new City(data[0].split(" ")[0].toInt(), data[1]);
-        this->insert(newCity);
+        if(!this->exists(data[0].split(" ")[0].toInt())){
+            City *newCity = new City(data[0].split(" ")[0].toInt(),i, data[1]);
+            this->insert(newCity);
+            i++;
+        }
     }
 
     //this->print();
@@ -146,3 +165,20 @@ bool CityList::exists(int pCode){
         return aux->data->getCode() == pCode;
     }
 }
+
+int CityList::numVertex(int code){
+    if(isEmpty()){
+        return -1;
+    }else{
+        CityNode *aux = first;
+        while(aux->next != first){
+            if(aux->data->getCode() == code){
+                return aux->getCity()->getNumMatrix();
+            }
+            aux = aux->next;
+        }
+        return -1;
+    }
+}
+
+

@@ -21,6 +21,7 @@ SOURCES += \
     avlnode.cpp \
     avltree.cpp \
     brand.cpp \
+    grafo.cpp \
     json.cpp \
         main.cpp \
     abbtree.cpp \
@@ -65,6 +66,7 @@ HEADERS += \
     avlnode.h \
     avltree.h \
     brand.h \
+    grafo.h \
     json.h \
     managerest.h \
     myserver.h \

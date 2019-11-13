@@ -9,6 +9,10 @@ class RNTree {
 public:
     library ml;
     RNTree();
+    //------DELETE---------//
+    void deleteRNData(int pData);
+    RNNode* getMaxR(RNNode* pData);
+    void showGoback(RNNode* pData);
     //------ADD---------//
     void insert(Brand*);
     //--------GET-FAMILI-------------------//

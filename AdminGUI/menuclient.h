@@ -7,8 +7,9 @@ class menuClient
 public:
     menuClient();
     void salir();
-    int shareMenuCliente();
-    int shareMenuClienteNoRegistrado();
+    int menuModificacion();
+    int menuConsultas();
+    int menuReportes();
     void registerClient();
     void setFlag(bool pBool);
     bool getFlag();

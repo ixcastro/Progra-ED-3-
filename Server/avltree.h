@@ -9,7 +9,10 @@ class AVLTree
 public:
 
     AVLTree();
-
+    //------DELETE---------//
+    void deleteAVLData(int pData);
+    AVLNode* getMaxR( AVLNode* pData);
+    void showGoback(AVLNode* pData);
     //------ADD---------//
     void insert(Product*);
     //----------ROTACIONES-SIMPLES-------//

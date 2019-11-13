@@ -1,5 +1,6 @@
-#ifndef SOCKETCLIENT_H
-#define SOCKETCLIENT_H
+#ifndef SOCKETADMIN_H
+#define SOCKETADMIN_H
+
 #include <QObject>
 #include <QTcpSocket>
 #include <QtDebug>
@@ -15,14 +16,15 @@
 
 using namespace std;
 
-class SocketClient : public QObject{
+class socketAdmin : public QObject
+{
 private:
-    static SocketClient *instance;
+    static socketAdmin *instance;
     QTcpSocket *socket;
     int ced;
 
     void doConnect();
-    SocketClient();
+    socketAdmin();
 
 signals:
 
@@ -33,8 +35,9 @@ public slots:
     void bytesWritten(qint64);
 
 public:
-    static SocketClient* getInstance();
+    static socketAdmin* getInstance();
+
     QJsonDocument request(QJsonDocument doc);
 };
 
-#endif // SOCKETCLIENT_H
+#endif // SOCKETADMIN_H

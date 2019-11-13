@@ -60,15 +60,9 @@ void MyThread::readyRead()
         //VALIDA-LA-CEDULA----//
         Admin* aux = EST.getAdmin()->searchAdmin(json_map["CodAdmin"].toInt(), EST.getAdmin()->getRoot());
         if(aux != nullptr){
-            QJsonObject o;
-            o.insert("Respuesta","T");
-            QJsonDocument r(o);
-            socket->write(r.toJson());
+            socket->write("T");
         }else{
-            QJsonObject o;
-            o.insert("Respuesta","F");
-            QJsonDocument r(o);
-            socket->write(r.toJson());
+            socket->write("F");
         }
     }
 

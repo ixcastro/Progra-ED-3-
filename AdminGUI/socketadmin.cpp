@@ -1,24 +1,23 @@
-#include "socketclient.h"
+#include "socketadmin.h"
 
-SocketClient *SocketClient::instance = new SocketClient();
+socketAdmin *socketAdmin::instance = new socketAdmin();
 
-void SocketClient::readyRead(){
-
-}
-
-void SocketClient::connected(){
+void socketAdmin::readyRead(){
 
 }
 
-void SocketClient::bytesWritten(qint64 bytes){
+void socketAdmin::connected(){
 
 }
 
-void SocketClient::disconnected(){
+void socketAdmin::bytesWritten(qint64 bytes){
+
+}
+
+void socketAdmin::disconnected(){
     qDebug() << "Desconectado!";
 }
-
-void SocketClient::doConnect(){
+void socketAdmin::doConnect(){
 
     socket = new QTcpSocket(this);
 
@@ -33,15 +32,15 @@ void SocketClient::doConnect(){
     }
 }
 
-SocketClient::SocketClient(){
+socketAdmin::socketAdmin(){
     doConnect();
 }
 
-SocketClient *SocketClient::getInstance(){
+socketAdmin *socketAdmin::getInstance(){
     return instance;
 }
 
-QJsonDocument SocketClient::request(QJsonDocument doc){
+QJsonDocument socketAdmin::request(QJsonDocument doc){
     this->socket->write(doc.toJson());
     socket->waitForReadyRead();
     QByteArray data = socket->readAll();
