@@ -3,6 +3,7 @@ debug/admithread.o
 debug/avlnode.o
 debug/avltree.o
 debug/brand.o
+debug/grafo.o
 debug/json.o
 debug/main.o
 debug/abbtree.o

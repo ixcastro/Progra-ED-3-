@@ -224,6 +224,7 @@ Makefile: ../Server/Server.pro C:/QT/5.12.5/mingw73_64/mkspecs/win32-g++/qmake.c
 		C:/QT/5.12.5/mingw73_64/mkspecs/features/qt_config.prf \
 		C:/QT/5.12.5/mingw73_64/mkspecs/win32-g++/qmake.conf \
 		C:/QT/5.12.5/mingw73_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		C:/QT/5.12.5/mingw73_64/mkspecs/features/exclusive_builds.prf \
 		C:/QT/5.12.5/mingw73_64/mkspecs/features/toolchain.prf \
 		C:/QT/5.12.5/mingw73_64/mkspecs/features/default_pre.prf \
@@ -409,6 +410,7 @@ C:/QT/5.12.5/mingw73_64/mkspecs/features/qt_functions.prf:
 C:/QT/5.12.5/mingw73_64/mkspecs/features/qt_config.prf:
 C:/QT/5.12.5/mingw73_64/mkspecs/win32-g++/qmake.conf:
 C:/QT/5.12.5/mingw73_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 C:/QT/5.12.5/mingw73_64/mkspecs/features/exclusive_builds.prf:
 C:/QT/5.12.5/mingw73_64/mkspecs/features/toolchain.prf:
 C:/QT/5.12.5/mingw73_64/mkspecs/features/default_pre.prf:

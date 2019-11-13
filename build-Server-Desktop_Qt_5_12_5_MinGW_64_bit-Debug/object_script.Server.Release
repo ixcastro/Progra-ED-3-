@@ -3,6 +3,7 @@ release/admithread.o
 release/avlnode.o
 release/avltree.o
 release/brand.o
+release/grafo.o
 release/json.o
 release/main.o
 release/abbtree.o

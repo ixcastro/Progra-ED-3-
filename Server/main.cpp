@@ -1,31 +1,131 @@
-#include <QCoreApplication>
-#include "adminmenu.h"
-#include"myserver.h"
+//#include <QCoreApplication>
+//#include "adminmenu.h"
+//#include"myserver.h"
 
-//int main(){
+////int main(){
+
+////    MyServer Server;
+////    Server.StartServer();
+
+//////    adminMenu admM;
+//////    admM.shareFiles();
+//////    admM.shareLogin();
+
+////    return 0;
+////}
+
+//int main(int argc, char *argv[])
+//{
+//    QCoreApplication a(argc, argv);
+
 
 //    MyServer Server;
 //    Server.StartServer();
 
-////    adminMenu admM;
-////    admM.shareFiles();
-////    admM.shareLogin();
 
-//    return 0;
+
+//    return a.exec();
 //}
 
-int main(int argc, char *argv[])
-{
-    QCoreApplication a(argc, argv);
+//----------------------GRAFO-------------------//
 
 
-    MyServer Server;
-    Server.StartServer();
+#include <QCoreApplication>
+#include "grafo.h"
+
+
+int main(){
+    City *a = new City(11,0,"A");
+    City *b = new City(11,1,"B");
+    City *c = new City(11,2,"C");
+    City *d = new City(11,3,"D");
+    City *e = new City(11,4,"E");
+    City *f = new City(11,5,"F");
+    City *g = new City(11,6,"G");
+
+    vector<Connection*> connections;
+    connections.push_back(new Connection(a,b,1));
+    connections.push_back(new Connection(a,c,5));
+    connections.push_back(new Connection(c,d,2));
+    connections.push_back(new Connection(b,d,3));
+    connections.push_back(new Connection(d,f,1));
+    connections.push_back(new Connection(d,e,7));
+    connections.push_back(new Connection(e,g,1));
+    connections.push_back(new Connection(f,g,2));
+    connections.push_back(new Connection(f,c,4));
 
 
 
-    return a.exec();
+    vector<City*> cities;
+    cities.push_back(a);
+    cities.push_back(b);
+    cities.push_back(c);
+    cities.push_back(d);
+    cities.push_back(e);
+    cities.push_back(f);
+    cities.push_back(g);
+
+
+
+    //------------------------JM--------------------//
+    vector<int> vTemp;
+    vector<int> vFinal;
+
+    for(int i=0; i < cities.size(); i++){
+        vFinal.push_back(0);
+        vTemp.push_back(0);
+    }
+    //------------------------JM--------------------//
+
+
+
+
+
+
+
+
+
+    Grafo *gr = new Grafo(7,cities,connections);
+    gr->getConnections();
+    //------------------------JM--------------------//
+    gr->dijkstra(0,6,vTemp,vFinal);
+    //------------------------JM--------------------//
+
+
+    //    vector<vector<int>> v = gr->kruskal();
+    //    gr->printKruskal(v);
+
+
+    //    //gr->primAlgorithm();
+    //    gr->prim();
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //-------------JM---------------//
 //#include <QCoreApplication>
