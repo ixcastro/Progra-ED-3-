@@ -57,7 +57,7 @@ public:
     // PUNTO DE INICIO, PUNTO FINAL,
     //VECTORES LLENOS DE 0 DEL MISMO LARGO QUE LA CANTIDAD DE VERTICES
     //-----------------------------------------//
-    void dijkstra(string pDataS, string pDataF, vector<int> vTemp, vector<int> vFinal);
+    void dijkstra(string pDataS, string pDataF);
 
     //---------------GET---------------//
 
@@ -118,6 +118,8 @@ private:
     vector<int> Temp;
     vector<int> Final;
     vector<string> Path;
+    vector<int> vTemp;
+    vector<int> vFinal;
 
 
 };

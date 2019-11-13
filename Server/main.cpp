@@ -66,29 +66,10 @@ int main(){
     cities.push_back(g);
 
 
-
-    //------------------------JM--------------------//
-    vector<int> vTemp;
-    vector<int> vFinal;
-
-    for(int i=0; i < cities.size(); i++){
-        vFinal.push_back(0);
-        vTemp.push_back(0);
-    }
-    //------------------------JM--------------------//
-
-
-
-
-
-
-
-
-
     Grafo *gr = new Grafo(7,cities,connections);
     gr->getConnections();
     //------------------------JM--------------------//
-    gr->dijkstra("A","G",vTemp,vFinal);
+    gr->dijkstra("A","G");
     //------------------------JM--------------------//
 
 

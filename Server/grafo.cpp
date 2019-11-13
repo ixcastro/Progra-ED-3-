@@ -27,6 +27,14 @@ Grafo::Grafo(int numCities, vector<City*> nCities, vector<Connection*> nConnecti
         }
         cout<<endl;
     }
+    //------------------------JM--------------------//
+
+    for(int i=0; i < cities.size(); i++){
+        vFinal.push_back(0);
+        vTemp.push_back(0);
+    }
+    //------------------------JM--------------------//
+
 }
 
 vector<vector<int>> Grafo::kruskal(){
@@ -382,7 +390,8 @@ vector<vector<int>> Grafo::getConnections(){
 
 //----------------------Dijkstra-----------------------//
 
-void Grafo::dijkstra(string pDataS, string pDataF, vector<int> vTemp, vector<int> vFinal){
+void Grafo::dijkstra(string pDataS, string pDataF){
+
 
     int pStart = getPosLetra(pDataS);
     int pFinal =  getPosLetra (pDataF);
@@ -396,8 +405,6 @@ void Grafo::dijkstra(string pDataS, string pDataF, vector<int> vTemp, vector<int
     setPostInv(pFinal);// SET DE LA POS FINAL
     Path.push_back(cities[pFinal]->getName().toStdString());// SET DEL PRIMER DATO DEL PATH
 
-
-
     while(checkAll()){// MIENTRAS QUE AUN EXISTAN NODOS SIN VISITAR
         cout << "--------------------------------------"<<endl;
         cout<<"ANALIZANDO: "<<cities[getPost()]->getName().toStdString()<<endl;
@@ -407,6 +414,7 @@ void Grafo::dijkstra(string pDataS, string pDataF, vector<int> vTemp, vector<int
         getMin();// MUESTRA EL DATO ELEGIDO COMO CAMINO DE MENO PESO
         showTable();// MUESTRA LOS CAMBIOS EN LA TABLA
     }
+
     showFinalTable();// MUESTRA LA TABLA FINAL
     cout << "--------------------------------------"<<endl;
     cout << " EL PESO DEL CAMINO MAS CORTO ES : " << getFinal()[pFinal]<<endl;
@@ -421,7 +429,6 @@ void Grafo::dijkstra(string pDataS, string pDataF, vector<int> vTemp, vector<int
     cout << "EL RECORRDIO DE VERTICES ES :"<<endl;
     showPath();// MUESTRA EL PATH
     cout << "--------------------------------------"<<endl;
-
 
 }
 
