@@ -34,6 +34,7 @@ void W_LOGIN::on_pushButton_clicked()
     QJsonObject ob = D.object();
     if(ob.take("Respuesta") == "T"){
         W_MENU *a = new   W_MENU();
+        a->ced(msg.c_str());
         a->show();
         this->close();
     }else{

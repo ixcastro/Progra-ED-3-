@@ -68,6 +68,11 @@ void W_MENU::on_pushButton_3_clicked()
 
 }
 
+void W_MENU::ced(string ced){
+     CED = ced;
+}
+
+
 void W_MENU::on_pushButton_4_clicked()
 {
     //------SE-ESCRIBE-EL-JSON-PARA-EL-DATO-DEL-PASILLO------//
@@ -80,6 +85,8 @@ void W_MENU::on_pushButton_4_clicked()
     QJsonArray ob = D.array();
 
     W_PASILLOS *a = new  W_PASILLOS();
+
+    a->ced(CED);
     a->shareButton(ob,4);
     a->show();
 

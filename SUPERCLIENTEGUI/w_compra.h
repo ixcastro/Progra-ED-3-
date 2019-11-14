@@ -15,13 +15,16 @@ public:
     explicit W_COMPRA(QWidget *parent = nullptr);
     ~W_COMPRA();
      void shareButton(QJsonArray pData,string path);
+     void ced(string ced);
 
 public slots:
     void commonSlot();
 
+
 private:
     Ui::W_COMPRA *ui;
      string PATH;
+     string CED;
 };
 
 #endif // W_COMPRA_H

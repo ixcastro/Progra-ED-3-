@@ -22,9 +22,13 @@ W_Productos::~W_Productos()
     delete ui;
 }
 
+void W_Productos::ced(string ced){
+    CED = ced;
+}
+
 void  W_Productos::shareButton(QJsonArray pData,int pNum,string path){
 
-    PATH = "-" + path;
+    PATH = path;
     NUM =pNum;
     int contador = 0;
     int posX = 100;
@@ -62,7 +66,6 @@ void  W_Productos::shareButton(QJsonArray pData,int pNum,string path){
     }
 
 }
-
 
 
 void W_Productos::commonSlot(){
@@ -109,8 +112,11 @@ void W_Productos::commonSlot(){
 
     //COMPRA
     if(NUM==4){
+        cout<<"==>"<<CED<<endl;
+        cout<<"==>"<<CED<<endl;
         PATH = PATH +"-"+ lista.first().toStdString();
         W_COMPRA *a = new   W_COMPRA();
+        a->ced(CED);
         a->shareButton(ob,PATH);
         a->show();
 

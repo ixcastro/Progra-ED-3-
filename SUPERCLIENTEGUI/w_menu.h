@@ -1,6 +1,6 @@
 #ifndef W_MENU_H
 #define W_MENU_H
-
+#include "library.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -15,6 +15,8 @@ public:
     explicit W_MENU(QWidget *parent = nullptr);
     ~W_MENU();
 
+    void ced(string ced);
+
 private slots:
     void on_pushButton_clicked();
 
@@ -28,6 +30,7 @@ private slots:
 
 private:
     Ui::W_MENU *ui;
+    string CED;
 };
 
 #endif // W_MENU_H

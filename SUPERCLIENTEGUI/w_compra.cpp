@@ -60,6 +60,10 @@ void  W_COMPRA::shareButton(QJsonArray pData, string path){
 
 }
 
+void  W_COMPRA::ced(string ced){
+     CED = ced;
+}
+
 void W_COMPRA::commonSlot(){
 
     QPushButton *b = (QPushButton*)sender();
@@ -76,6 +80,7 @@ void W_COMPRA::commonSlot(){
     PATH =  PATH +"-"+lista[2].toStdString();
     W_CANTIDAD *a = new   W_CANTIDAD();
     cout<<"   "<<lista.first().toStdString()<<endl;
+    a->ced(CED);
     a->PATH(PATH);
     a->show();
 

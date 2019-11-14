@@ -16,7 +16,7 @@ public:
     explicit W_Productos(QWidget *parent = nullptr);
     ~W_Productos();
     void shareButton(QJsonArray pData,int pNum,string path);
-
+    void ced(string ced);
 public slots:
     void commonSlot();
 
@@ -24,6 +24,7 @@ private:
     Ui::W_Productos *ui;
     int NUM;
     string PATH;
+    string CED;
 };
 
 #endif // W_PRODUCTOS_H

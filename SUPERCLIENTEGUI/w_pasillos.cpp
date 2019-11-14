@@ -59,6 +59,9 @@ void  W_PASILLOS::shareButton(QJsonArray pData,int pNum){
 
 }
 
+void  W_PASILLOS::ced(string ced){
+     CED = ced;
+}
 
 void W_PASILLOS::commonSlot(){
 
@@ -84,8 +87,10 @@ void W_PASILLOS::commonSlot(){
 //    cout<<"aja"<<endl;
 
     W_Productos *a = new  W_Productos();
+
     cout<<"   "<<lista.first().toStdString()<<endl;
     a->shareButton(ob,NUM,lista.first().toStdString());
+    a->ced(CED);
     a->show();
 
 

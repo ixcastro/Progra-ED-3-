@@ -15,6 +15,7 @@ public:
     explicit W_CANTIDAD(QWidget *parent = nullptr);
     ~W_CANTIDAD();
     void PATH(string Path);
+    void ced(string ced);
 
 private slots:
     void on_pushButton_clicked();
@@ -22,6 +23,7 @@ private slots:
 private:
     Ui::W_CANTIDAD *ui;
     string PATHC;
+    string CED;
 };
 
 #endif // W_CANTIDAD_H
