@@ -68,7 +68,7 @@ void W_Canasta::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         auto *_t = static_cast<W_Canasta *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        //case 0: _t->commonSlot(); break;
+        case 0: _t->commonSlot(); break;
         default: ;
         }
     }

@@ -6,6 +6,7 @@
 #include "QScrollArea"
 #include "socketclient.h"
 #include "w_marca.h"
+#include "w_canasta.h"
 
 W_Productos::W_Productos(QWidget *parent) :
     QMainWindow(parent),
@@ -80,16 +81,18 @@ void W_Productos::commonSlot(){
 
     //CONSULTAR UN PRECIO
     if(NUM==1){
-
         PATH = PATH +"-"+ lista.first().toStdString();
         W_MARCA *a = new  W_MARCA();
         a->shareButton(ob,PATH);
         a->show();
-
     }
 
     // CANASTA BASICA
     if(NUM==2){
+        PATH = PATH +"-"+ lista.first().toStdString();
+        W_Canasta *a = new   W_Canasta();
+        a->shareButton(ob,PATH);
+        a->show();
 
     }
 

@@ -78,20 +78,7 @@ void W_MARCA::commonSlot(){
 
     PATH =  PATH +"-"+lista[2].toStdString();
 
-
-//    QJsonObject recordObject;
-//    recordObject.insert("Marca",lista.first().toInt());
-//    QJsonDocument docIN(recordObject);
-//    QJsonDocument D = SocketClient::getInstance()->request(docIN);
-//    QJsonArray ob = D.array();
-
-//    QString s = "";
-//    for(int i=0; i< ob.size(); i++){
-
-//        s +=  ob[i].toString();
-//    }
-//    cout<<s.toStdString()<<endl;
-    cout<<"aja  "<<PATH<<endl;
+    cout<<"->"<<PATH<<endl;
 }
 
 
