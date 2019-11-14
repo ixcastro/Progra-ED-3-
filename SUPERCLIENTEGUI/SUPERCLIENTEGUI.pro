@@ -17,14 +17,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    library.cpp \
     main.cpp \
-    w_login.cpp
+    socketclient.cpp \
+    w_login.cpp \
+    w_menu.cpp \
+    w_pasillos.cpp
 
 HEADERS += \
-    w_login.h
+    library.h \
+    socketclient.h \
+    w_login.h \
+    w_menu.h \
+    w_pasillos.h
 
 FORMS += \
-    w_login.ui
+    w_login.ui \
+    w_menu.ui \
+    w_pasillos.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -15,6 +15,9 @@ public:
     W_LOGIN(QWidget *parent = nullptr);
     ~W_LOGIN();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::W_LOGIN *ui;
 };

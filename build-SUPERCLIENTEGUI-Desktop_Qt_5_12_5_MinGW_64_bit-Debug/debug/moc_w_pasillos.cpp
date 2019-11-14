@@ -1,16 +1,16 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'w_login.h'
+** Meta object code from reading C++ file 'w_pasillos.h'
 **
 ** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.5)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../SUPERCLIENTEGUI/w_login.h"
+#include "../../SUPERCLIENTEGUI/w_pasillos.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'w_login.h' doesn't include <QObject>."
+#error "The header file 'w_pasillos.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
 #error "This file was generated using the moc from 5.12.5. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -20,27 +20,27 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_W_LOGIN_t {
+struct qt_meta_stringdata_W_PASILLOS_t {
     QByteArrayData data[3];
-    char stringdata0[31];
+    char stringdata0[23];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
-    qptrdiff(offsetof(qt_meta_stringdata_W_LOGIN_t, stringdata0) + ofs \
+    qptrdiff(offsetof(qt_meta_stringdata_W_PASILLOS_t, stringdata0) + ofs \
         - idx * sizeof(QByteArrayData)) \
     )
-static const qt_meta_stringdata_W_LOGIN_t qt_meta_stringdata_W_LOGIN = {
+static const qt_meta_stringdata_W_PASILLOS_t qt_meta_stringdata_W_PASILLOS = {
     {
-QT_MOC_LITERAL(0, 0, 7), // "W_LOGIN"
-QT_MOC_LITERAL(1, 8, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(2, 30, 0) // ""
+QT_MOC_LITERAL(0, 0, 10), // "W_PASILLOS"
+QT_MOC_LITERAL(1, 11, 10), // "commonSlot"
+QT_MOC_LITERAL(2, 22, 0) // ""
 
     },
-    "W_LOGIN\0on_pushButton_clicked\0"
+    "W_PASILLOS\0commonSlot\0"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_W_LOGIN[] = {
+static const uint qt_meta_data_W_PASILLOS[] = {
 
  // content:
        8,       // revision
@@ -54,7 +54,7 @@ static const uint qt_meta_data_W_LOGIN[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   19,    2, 0x08 /* Private */,
+       1,    0,   19,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
@@ -62,43 +62,43 @@ static const uint qt_meta_data_W_LOGIN[] = {
        0        // eod
 };
 
-void W_LOGIN::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void W_PASILLOS::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<W_LOGIN *>(_o);
+        auto *_t = static_cast<W_PASILLOS *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->on_pushButton_clicked(); break;
+        case 0: _t->commonSlot(); break;
         default: ;
         }
     }
     Q_UNUSED(_a);
 }
 
-QT_INIT_METAOBJECT const QMetaObject W_LOGIN::staticMetaObject = { {
+QT_INIT_METAOBJECT const QMetaObject W_PASILLOS::staticMetaObject = { {
     &QMainWindow::staticMetaObject,
-    qt_meta_stringdata_W_LOGIN.data,
-    qt_meta_data_W_LOGIN,
+    qt_meta_stringdata_W_PASILLOS.data,
+    qt_meta_data_W_PASILLOS,
     qt_static_metacall,
     nullptr,
     nullptr
 } };
 
 
-const QMetaObject *W_LOGIN::metaObject() const
+const QMetaObject *W_PASILLOS::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *W_LOGIN::qt_metacast(const char *_clname)
+void *W_PASILLOS::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_W_LOGIN.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_W_PASILLOS.stringdata0))
         return static_cast<void*>(this);
     return QMainWindow::qt_metacast(_clname);
 }
 
-int W_LOGIN::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int W_PASILLOS::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QMainWindow::qt_metacall(_c, _id, _a);
     if (_id < 0)
