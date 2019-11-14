@@ -21,21 +21,22 @@ QT_BEGIN_NAMESPACE
 class Ui_W_PORCENTAJE
 {
 public:
-    QMenuBar *menubar;
     QWidget *centralwidget;
+    QMenuBar *menubar;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *W_PORCENTAJE)
     {
         if (W_PORCENTAJE->objectName().isEmpty())
             W_PORCENTAJE->setObjectName(QString::fromUtf8("W_PORCENTAJE"));
-        W_PORCENTAJE->resize(800, 600);
-        menubar = new QMenuBar(W_PORCENTAJE);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
-        W_PORCENTAJE->setMenuBar(menubar);
+        W_PORCENTAJE->resize(249, 303);
         centralwidget = new QWidget(W_PORCENTAJE);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         W_PORCENTAJE->setCentralWidget(centralwidget);
+        menubar = new QMenuBar(W_PORCENTAJE);
+        menubar->setObjectName(QString::fromUtf8("menubar"));
+        menubar->setGeometry(QRect(0, 0, 249, 21));
+        W_PORCENTAJE->setMenuBar(menubar);
         statusbar = new QStatusBar(W_PORCENTAJE);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         W_PORCENTAJE->setStatusBar(statusbar);

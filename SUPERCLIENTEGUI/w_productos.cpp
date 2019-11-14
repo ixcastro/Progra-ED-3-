@@ -7,6 +7,8 @@
 #include "socketclient.h"
 #include "w_marca.h"
 #include "w_canasta.h"
+#include "w_porcentaje.h"
+#include "w_compra.h"
 
 W_Productos::W_Productos(QWidget *parent) :
     QMainWindow(parent),
@@ -98,11 +100,19 @@ void W_Productos::commonSlot(){
 
     //IMPUESTO
     if(NUM==3){
+        PATH = PATH +"-"+ lista.first().toStdString();
+        W_PORCENTAJE *a = new  W_PORCENTAJE();
+        a->shareButton(ob,PATH);
+        a->show();
 
     }
 
     //COMPRA
     if(NUM==4){
+        PATH = PATH +"-"+ lista.first().toStdString();
+        W_COMPRA *a = new   W_COMPRA();
+        a->shareButton(ob,PATH);
+        a->show();
 
     }
 
