@@ -21,7 +21,7 @@ void Brand::print(){
 }
 
 string Brand::toString(){
-    return to_string(code) + "-Nombre: " + name.toStdString() + "\tCantidad: " + to_string(quantity) + "\tPrecio: " + to_string(price) + "\n";
+    return to_string(code) + "-" + name.toStdString() + "\n";
 }
 
 //Gets

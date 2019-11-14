@@ -578,7 +578,7 @@ void RNTree::getBrandCL(RNNode *r){
         getBrandCL(r->getLeftSon());
 
         //ojo aca con esto para la compra es diferente
-        string str = "Cod Marca: " +ml.int2str(r->getBrand()->getCode()) + "  Nombre : " +r->getBrand()->getName().toStdString()+"\n";
+        string str = ml.int2str(r->getBrand()->getCode()) + "-" +r->getBrand()->getName().toStdString()+"\n";
         QJsonValue qStr = QString::fromStdString(str);
         hallProdBrandList.append(qStr);
 
@@ -588,17 +588,13 @@ void RNTree::getBrandCL(RNNode *r){
 
 string RNTree::getBrandPriceCL(RNNode *r, int pData){
     if(r != nullptr){
-        getBrandCL(r->getLeftSon());
-        if(r->getBrand()->getCode()==pData){
-            //----float-to-str--//
-            string s = to_string(r->getBrand()->getPrice());
-//            std::ostringstream ss;
-//            ss <<  r->getBrand()->getPrice();
-//            std::string s(ss.str());
-            //----float-to-str--//
-            return s;
+        if(pData < r->getBrand()->getCode()){
+            return getBrandPriceCL(r->getLeftSon(),pData);
+        }else if(pData > r->getBrand()->getCode()){
+            return getBrandPriceCL(r->getRightSon(),pData);
+        }else{
+            return to_string(r->getBrand()->getPrice());
         }
-        getBrandCL(r->getRightSon());
     }
     return "0";
 }
@@ -606,17 +602,13 @@ string RNTree::getBrandPriceCL(RNNode *r, int pData){
 
 string RNTree::getBrandPorcentCL(RNNode *r, int pData){
     if(r != nullptr){
-        getBrandPorcentCL(r->getLeftSon(), pData);
-        if(r->getBrand()->getCode()==pData){
-            //----float-to-str--//
-            std::ostringstream ss;
-            ss <<  r->getBrand()->getPercentage();
-            std::string s(ss.str());
-            //cout<<"S-----"<<s<<endl;
-            //----float-to-str--//
-            return s;
+        if(pData < r->getBrand()->getCode()){
+            return getBrandPorcentCL(r->getLeftSon(), pData);
+        }else if(pData > r->getBrand()->getCode()){
+            return getBrandPorcentCL(r->getRightSon(), pData);
+        }else{
+            return to_string(r->getBrand()->getPercentage());
         }
-        getBrandPorcentCL(r->getRightSon(), pData);
     }
     return "0";
 }
