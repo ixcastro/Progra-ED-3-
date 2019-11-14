@@ -5,6 +5,7 @@
 #include "QVBoxLayout"
 #include "QScrollArea"
 #include "socketclient.h"
+#include "w_marca.h"
 
 W_Productos::W_Productos(QWidget *parent) :
     QMainWindow(parent),
@@ -65,13 +66,11 @@ void W_Productos::commonSlot(){
     QString name = b->text();
     QStringList lista = name.split("-");
 
-
-
-//    QJsonObject recordObject;
-//    recordObject.insert("Producto",lista.first().toInt());
-//    QJsonDocument docIN(recordObject);
-//    QJsonDocument D = SocketClient::getInstance()->request(docIN);
-//    QJsonArray ob = D.array();
+    QJsonObject recordObject;
+    recordObject.insert("Marca",lista.first().toInt());
+    QJsonDocument docIN(recordObject);
+    QJsonDocument D = SocketClient::getInstance()->request(docIN);
+    QJsonArray ob = D.array();
 
 //    QString s = "";
 //    for(int i=0; i< ob.size(); i++){
@@ -79,7 +78,10 @@ void W_Productos::commonSlot(){
 //        s +=  ob[i].toString();
 //    }
 //    cout<<s.toStdString()<<endl;
-    cout<<"aja"<<endl;
+//    cout<<"aja"<<endl;
+    W_MARCA *a = new  W_MARCA();
+    a->shareButton(ob);
+    a->show();
 }
 
 

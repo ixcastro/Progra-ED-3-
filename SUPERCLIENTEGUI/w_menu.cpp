@@ -29,10 +29,64 @@ void W_MENU::on_pushButton_clicked()
 
     W_PASILLOS *a = new  W_PASILLOS();
     a->shareButton(ob);
-    this->close();
     a->show();
 
 
+}
+
+void W_MENU::on_pushButton_2_clicked()
+{
+    //------SE-ESCRIBE-EL-JSON-PARA-EL-DATO-DEL-PASILLO------//
+    //-----------------INDICA-QUE-QUEREMOS-VER-LOS-PASILLOS--//
+
+    QJsonObject recordObject;
+    recordObject.insert("Pasillo","");
+    QJsonDocument docIN(recordObject);
+    QJsonDocument D = SocketClient::getInstance()->request(docIN);
+    QJsonArray ob = D.array();
+
+    W_PASILLOS *a = new  W_PASILLOS();
+    a->shareButton(ob);
+    a->show();
+
+}
+
+void W_MENU::on_pushButton_3_clicked()
+{
+    //------SE-ESCRIBE-EL-JSON-PARA-EL-DATO-DEL-PASILLO------//
+    //-----------------INDICA-QUE-QUEREMOS-VER-LOS-PASILLOS--//
+
+    QJsonObject recordObject;
+    recordObject.insert("Pasillo","");
+    QJsonDocument docIN(recordObject);
+    QJsonDocument D = SocketClient::getInstance()->request(docIN);
+    QJsonArray ob = D.array();
+
+    W_PASILLOS *a = new  W_PASILLOS();
+    a->shareButton(ob);
+    a->show();
+
+}
+
+void W_MENU::on_pushButton_4_clicked()
+{
+    //------SE-ESCRIBE-EL-JSON-PARA-EL-DATO-DEL-PASILLO------//
+    //-----------------INDICA-QUE-QUEREMOS-VER-LOS-PASILLOS--//
+
+    QJsonObject recordObject;
+    recordObject.insert("Pasillo","");
+    QJsonDocument docIN(recordObject);
+    QJsonDocument D = SocketClient::getInstance()->request(docIN);
+    QJsonArray ob = D.array();
+
+    W_PASILLOS *a = new  W_PASILLOS();
+    a->shareButton(ob);
+    a->show();
 
 
+}
+
+void W_MENU::on_pushButton_5_clicked()
+{
+    this->close();
 }

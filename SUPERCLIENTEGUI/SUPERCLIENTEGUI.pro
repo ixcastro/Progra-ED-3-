@@ -20,23 +20,35 @@ SOURCES += \
     library.cpp \
     main.cpp \
     socketclient.cpp \
+    w_canasta.cpp \
+    w_compra.cpp \
     w_login.cpp \
+    w_marca.cpp \
     w_menu.cpp \
     w_pasillos.cpp \
+    w_porcentaje.cpp \
     w_productos.cpp
 
 HEADERS += \
     library.h \
     socketclient.h \
+    w_canasta.h \
+    w_compra.h \
     w_login.h \
+    w_marca.h \
     w_menu.h \
     w_pasillos.h \
+    w_porcentaje.h \
     w_productos.h
 
 FORMS += \
+    w_canasta.ui \
+    w_compra.ui \
     w_login.ui \
+    w_marca.ui \
     w_menu.ui \
     w_pasillos.ui \
+    w_porcentaje.ui \
     w_productos.ui
 
 # Default rules for deployment.
