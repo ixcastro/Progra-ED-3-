@@ -21,8 +21,9 @@ W_MARCA::~W_MARCA()
     delete ui;
 }
 
-void  W_MARCA::shareButton(QJsonArray pData){
+void  W_MARCA::shareButton(QJsonArray pData, string path){
 
+    PATH = path ;
     int contador = 0;
     int posX = 100;
     int posY = 100;
@@ -64,9 +65,19 @@ void  W_MARCA::shareButton(QJsonArray pData){
 
 void W_MARCA::commonSlot(){
 
-//    QPushButton *b = (QPushButton*)sender();
-//    QString name = b->text();
-//    QStringList lista = name.split("-");
+    QPushButton *b = (QPushButton*)sender();
+    QString name = b->text();
+    QStringList lista = name.split(" ");
+
+    for(int i =0; i<lista.size();i++){
+       // if(lista[i]==":"){
+            cout<<lista[i].toStdString()<<endl;
+        //}
+    }
+
+
+    PATH =  PATH +"-"+lista[2].toStdString();
+
 
 //    QJsonObject recordObject;
 //    recordObject.insert("Marca",lista.first().toInt());
@@ -80,7 +91,7 @@ void W_MARCA::commonSlot(){
 //        s +=  ob[i].toString();
 //    }
 //    cout<<s.toStdString()<<endl;
-    cout<<"aja"<<endl;
+    cout<<"aja  "<<PATH<<endl;
 }
 
 

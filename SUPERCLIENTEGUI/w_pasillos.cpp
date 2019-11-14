@@ -68,6 +68,7 @@ void W_PASILLOS::commonSlot(){
 
 
 
+    //cout<<"//-------->"<<lista.first().toStdString()<<endl;
     QJsonObject recordObject;
     recordObject.insert("Producto",lista.first().toInt());
     QJsonDocument docIN(recordObject);
@@ -83,7 +84,8 @@ void W_PASILLOS::commonSlot(){
 //    cout<<"aja"<<endl;
 
     W_Productos *a = new  W_Productos();
-    a->shareButton(ob,NUM);
+    cout<<"   "<<lista.first().toStdString()<<endl;
+    a->shareButton(ob,NUM,lista.first().toStdString());
     a->show();
 
 

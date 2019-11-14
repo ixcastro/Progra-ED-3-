@@ -2,6 +2,7 @@
 #define W_PRODUCTOS_H
 
 #include <QMainWindow>
+#include "library.h"
 
 namespace Ui {
 class W_Productos;
@@ -14,7 +15,7 @@ class W_Productos : public QMainWindow
 public:
     explicit W_Productos(QWidget *parent = nullptr);
     ~W_Productos();
-    void shareButton(QJsonArray pData,int pNum);
+    void shareButton(QJsonArray pData,int pNum,string path);
 
 public slots:
     void commonSlot();
@@ -22,6 +23,7 @@ public slots:
 private:
     Ui::W_Productos *ui;
     int NUM;
+    string PATH;
 };
 
 #endif // W_PRODUCTOS_H

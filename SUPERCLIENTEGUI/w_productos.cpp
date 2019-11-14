@@ -19,8 +19,9 @@ W_Productos::~W_Productos()
     delete ui;
 }
 
-void  W_Productos::shareButton(QJsonArray pData,int pNum){
+void  W_Productos::shareButton(QJsonArray pData,int pNum,string path){
 
+    PATH = "-" + path;
     NUM =pNum;
     int contador = 0;
     int posX = 100;
@@ -79,8 +80,10 @@ void W_Productos::commonSlot(){
 
     //CONSULTAR UN PRECIO
     if(NUM==1){
+
+        PATH = PATH +"-"+ lista.first().toStdString();
         W_MARCA *a = new  W_MARCA();
-        a->shareButton(ob);
+        a->shareButton(ob,PATH);
         a->show();
 
     }
