@@ -39,7 +39,10 @@ SOURCES += \
     window_insert_client.cpp \
     window_modify.cpp \
     window_report.cpp \
-    socketadmin.cpp
+    socketadmin.cpp \
+    window_select_hall.cpp \
+    window_select_product.cpp \
+    window_insert_product.cpp
 
 HEADERS += \
         window_main.h \
@@ -54,7 +57,10 @@ HEADERS += \
     window_insert_client.h \
     window_modify.h \
     window_report.h \
-    socketadmin.h
+    socketadmin.h \
+    window_select_hall.h \
+    window_select_product.h \
+    window_insert_product.h
 
 FORMS += \
         window_main.ui \
@@ -65,7 +71,10 @@ FORMS += \
     window_delete.ui \
     window_insert_client.ui \
     window_modify.ui \
-    window_report.ui
+    window_report.ui \
+    window_select_hall.ui \
+    window_select_product.ui \
+    window_insert_product.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

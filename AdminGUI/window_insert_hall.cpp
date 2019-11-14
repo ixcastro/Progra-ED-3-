@@ -23,27 +23,31 @@ void window_insert_hall::on_back_clicked()
 
 void window_insert_hall::on_save_clicked()
 {
-    int pCod = 23;
-    string pName = "frutas";
-    //getText
-    QJsonObject recordObjects;
-    recordObjects.insert("CodPas",QJsonValue::fromVariant(pCod));
-    recordObjects.insert("Nombre",QString::fromStdString(pName));
-    QJsonObject record;
-    record.insert("RegistrarPasillo",recordObjects);
-    QJsonDocument docIN(record);
-
-    QJsonDocument D = socketAdmin::getInstance()->request(docIN);
-
-    QJsonObject ob = D.object();
-    if(ob.take("Respuesta") == "T"){
+    if (ui->codeLine->text() == "" || ui->nameLine->text() == ""){
         QMessageBox* q = new QMessageBox();
-        q->setText("Correcto");
+        q->setText("Inserte texto");
         q->show();
-    }else{
-        QMessageBox* q = new QMessageBox();
-        q->setText("Incorrecto");
-        q->show();
+    } else {
+        int pCod = ui->codeLine->text().toInt();
+        string pName = ui->nameLine->text().toStdString();
+
+        QJsonObject recordObjects;
+        recordObjects.insert("CodPas",QJsonValue::fromVariant(pCod));
+        recordObjects.insert("Nombre",QString::fromStdString(pName));
+        QJsonObject record;
+        record.insert("RegistrarPasillo",recordObjects);
+        QJsonDocument docIN(record);
+        QJsonDocument D = socketAdmin::getInstance()->request(docIN);
+
+        QJsonObject ob = D.object();
+        if(ob.take("Respuesta") == "T"){
+            QMessageBox* q = new QMessageBox();
+            q->setText("Se ha registrado el pasillo");
+            q->show();
+        }else{
+            QMessageBox* q = new QMessageBox();
+            q->setText("Error existe un pasillo con este codigo");
+            q->show();
+        }
     }
-
 }

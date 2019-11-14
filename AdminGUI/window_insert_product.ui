@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>window_insert_hall</class>
- <widget class="QMainWindow" name="window_insert_hall">
+ <class>window_insert_product</class>
+ <widget class="QMainWindow" name="window_insert_product">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>370</width>
-    <height>261</height>
+    <width>378</width>
+    <height>265</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="nameLine">
+   <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>20</x>
       <y>80</y>
-      <width>201</width>
+      <width>121</width>
       <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Producto</string>
     </property>
    </widget>
    <widget class="QPushButton" name="save">
@@ -35,16 +43,6 @@
     </property>
     <property name="text">
      <string>Guardar</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="codeLine">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>130</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -62,7 +60,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Código</string>
+     <string>Codigo</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
@@ -80,7 +78,17 @@
      </font>
     </property>
     <property name="text">
-     <string>Insertar pasillo</string>
+     <string>Insertar producto</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="nameLine">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>80</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
     </property>
    </widget>
    <widget class="QPushButton" name="back">
@@ -96,22 +104,14 @@
      <string>Atrás</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLineEdit" name="codeLine">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>80</y>
-      <width>121</width>
+      <x>140</x>
+      <y>130</y>
+      <width>201</width>
       <height>31</height>
      </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>12</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Nombre</string>
     </property>
    </widget>
   </widget>
@@ -120,7 +120,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>370</width>
+     <width>378</width>
      <height>17</height>
     </rect>
    </property>
