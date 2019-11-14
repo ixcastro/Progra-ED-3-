@@ -5,6 +5,8 @@
 #include "QVBoxLayout"
 #include "QScrollArea"
 #include "socketclient.h"
+#include "w_productos.h"
+
 
 W_PASILLOS::W_PASILLOS(QWidget *parent) :
     QMainWindow(parent),
@@ -25,7 +27,7 @@ void  W_PASILLOS::shareButton(QJsonArray pData){
 
     auto * layout = new QVBoxLayout(this);
     auto * scrollArea = new QScrollArea(this);
-    scrollArea->resize(200,400);
+    scrollArea->resize(200,350);
 
     scrollArea->setWidgetResizable( true );
     layout->addWidget( scrollArea );
@@ -61,16 +63,27 @@ void W_PASILLOS::commonSlot(){
 
     QPushButton *b = (QPushButton*)sender();
     QString name = b->text();
+    QStringList lista = name.split("-");
+
+
+
     QJsonObject recordObject;
-    recordObject.insert("Producto","");
+    recordObject.insert("Producto",lista.first().toInt());
     QJsonDocument docIN(recordObject);
     QJsonDocument D = SocketClient::getInstance()->request(docIN);
     QJsonArray ob = D.array();
 
-    QString s = "";
-    for(int i=0; i< ob.size(); i++){
-        s +=  ob[i].toString();
-    }
-    cout<<s.toStdString()<<endl;
-    cout<<"aja"<<endl;
+//    QString s = "";
+//    for(int i=0; i< ob.size(); i++){
+
+//        s +=  ob[i].toString();
+//    }
+//    cout<<s.toStdString()<<endl;
+//    cout<<"aja"<<endl;
+
+    W_Productos *a = new  W_Productos();
+    a->shareButton(ob);
+    a->show();
+
+
 }

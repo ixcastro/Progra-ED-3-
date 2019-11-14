@@ -1,0 +1,11 @@
+release/library.o
+release/main.o
+release/socketclient.o
+release/w_login.o
+release/w_menu.o
+release/w_pasillos.o
+release/w_productos.o
+release/moc_w_login.o
+release/moc_w_menu.o
+release/moc_w_pasillos.o
+release/moc_w_productos.o

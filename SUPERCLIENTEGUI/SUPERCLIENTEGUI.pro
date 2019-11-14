@@ -22,19 +22,22 @@ SOURCES += \
     socketclient.cpp \
     w_login.cpp \
     w_menu.cpp \
-    w_pasillos.cpp
+    w_pasillos.cpp \
+    w_productos.cpp
 
 HEADERS += \
     library.h \
     socketclient.h \
     w_login.h \
     w_menu.h \
-    w_pasillos.h
+    w_pasillos.h \
+    w_productos.h
 
 FORMS += \
     w_login.ui \
     w_menu.ui \
-    w_pasillos.ui
+    w_pasillos.ui \
+    w_productos.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

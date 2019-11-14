@@ -1,0 +1,11 @@
+debug/library.o
+debug/main.o
+debug/socketclient.o
+debug/w_login.o
+debug/w_menu.o
+debug/w_pasillos.o
+debug/w_productos.o
+debug/moc_w_login.o
+debug/moc_w_menu.o
+debug/moc_w_pasillos.o
+debug/moc_w_productos.o
