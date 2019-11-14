@@ -344,6 +344,29 @@ void MyThread::readyRead()
         }
     }
 
+    if(json_map.firstKey() == "InsertarCliente"){
+        QJsonObject ob = json_map["InsertarCliente"].toJsonObject();
+        int pId = ob.take("Cedula").toInt();
+        QString pName = ob.take("Nombre").toString();
+        int pCityCode = ob.take("CodigoCiudad").toInt();
+        QString pPhone = ob.take("Phone").toString();
+        QString pMail = ob.take("Correo").toString();
+
+        if(EST.getClients()->searchClient(pId,EST.getClients()->getRoot()) || EST.getCities()->exists(pCityCode)){
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+        }else{
+            Client *c = new Client(pId,pName,pCityCode,pPhone,pMail);
+            EST.getClients()->insert(c);
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+        }
+    }
+
     if(json_map.firstKey() == "ClientesCola"){
         EST.getCola()->getClientsQueue();
         QJsonDocument clientesCola(clientsQueue);
