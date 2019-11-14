@@ -59,13 +59,18 @@ void  W_PASILLOS::shareButton(QJsonArray pData){
 
 void W_PASILLOS::commonSlot(){
 
-    //QPushButton *b = (QPushButton*)sender();
-   // QString name = b->text();
-//    QJsonObject recordObject;
-//    recordObject.insert("Pasillo","");
-//    QJsonDocument docIN(recordObject);
-//    QJsonDocument D = SocketClient::getInstance()->request(docIN);
-//    QJsonArray ob = D.array();
+    QPushButton *b = (QPushButton*)sender();
+    QString name = b->text();
+    QJsonObject recordObject;
+    recordObject.insert("Producto","");
+    QJsonDocument docIN(recordObject);
+    QJsonDocument D = SocketClient::getInstance()->request(docIN);
+    QJsonArray ob = D.array();
 
+    QString s = "";
+    for(int i=0; i< ob.size(); i++){
+        s +=  ob[i].toString();
+    }
+    cout<<s.toStdString()<<endl;
     cout<<"aja"<<endl;
 }
