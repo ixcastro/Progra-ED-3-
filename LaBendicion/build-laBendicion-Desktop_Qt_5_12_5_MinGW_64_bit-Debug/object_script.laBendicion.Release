@@ -1,0 +1,15 @@
+release/arbolb.o
+release/arbolpaises.o
+release/arboltrenesnew.o
+release/listareserva.o
+release/main.o
+release/mythread.o
+release/pagina.o
+release/server.o
+release/sistematrenes.o
+release/ventana.o
+release/ventanamenu.o
+release/moc_mythread.o
+release/moc_server.o
+release/moc_ventana.o
+release/moc_ventanamenu.o

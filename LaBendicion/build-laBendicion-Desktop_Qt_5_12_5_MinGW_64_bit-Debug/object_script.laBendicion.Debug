@@ -1,0 +1,15 @@
+debug/arbolb.o
+debug/arbolpaises.o
+debug/arboltrenesnew.o
+debug/listareserva.o
+debug/main.o
+debug/mythread.o
+debug/pagina.o
+debug/server.o
+debug/sistematrenes.o
+debug/ventana.o
+debug/ventanamenu.o
+debug/moc_mythread.o
+debug/moc_server.o
+debug/moc_ventana.o
+debug/moc_ventanamenu.o

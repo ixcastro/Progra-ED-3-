@@ -1,0 +1,197 @@
+Reporte de Conexiones: 
+***************************************
+Paises: 
+PORTUGAL
+  Ciudades: 
+     LISBOA
+       Conexiones: 
+     ALBUFEIRA
+       La lista de conexiones esta vacia
+     SANTAREM
+       La lista de conexiones esta vacia
+     CASTELO BRANCO
+       La lista de conexiones esta vacia
+     OPORTO
+       La lista de conexiones esta vacia
+ESPANA
+  Ciudades: 
+     MADRID
+       La lista de conexiones esta vacia
+     
+       La lista de conexiones esta vacia
+     VALLADOLID
+       La lista de conexiones esta vacia
+     SANTIAGO
+       La lista de conexiones esta vacia
+     COMPOSTELA
+       La lista de conexiones esta vacia
+     SEVILLA
+       La lista de conexiones esta vacia
+     MALAGA
+       La lista de conexiones esta vacia
+     VALENCIA
+       La lista de conexiones esta vacia
+FRANCIA
+  Ciudades: 
+     TOULOUSE
+       La lista de conexiones esta vacia
+     MONTPELLIER
+       La lista de conexiones esta vacia
+     MARSELLA
+       La lista de conexiones esta vacia
+     LYON
+       La lista de conexiones esta vacia
+     MONACO
+       La lista de conexiones esta vacia
+     NANTES
+       La lista de conexiones esta vacia
+     PARIS
+       La lista de conexiones esta vacia
+SUIZA
+  Ciudades: 
+     ZURICH
+       La lista de conexiones esta vacia
+     BERNA
+       La lista de conexiones esta vacia
+     GINEBRA
+       La lista de conexiones esta vacia
+GRAN BRETANA
+  La lista de ciudades esta vacia
+HOLANDA
+  Ciudades: 
+     ROTERDAM
+       La lista de conexiones esta vacia
+     LA HAYA
+       La lista de conexiones esta vacia
+     AMSTERDAM
+       La lista de conexiones esta vacia
+TURQUIA
+  Ciudades: 
+     ANKARA
+       La lista de conexiones esta vacia
+     ESTAMBUL
+       La lista de conexiones esta vacia
+     ANKARA
+       La lista de conexiones esta vacia
+     BURSA
+       La lista de conexiones esta vacia
+     ANTALYA
+       La lista de conexiones esta vacia
+     ESMIRNA
+       La lista de conexiones esta vacia
+     ADANA
+       La lista de conexiones esta vacia
+BELGICA
+  Ciudades: 
+     GANTE
+       La lista de conexiones esta vacia
+     BRUJAS
+       La lista de conexiones esta vacia
+     AMBERES
+       La lista de conexiones esta vacia
+ITALIA
+  Ciudades: 
+     NAPOLES
+       La lista de conexiones esta vacia
+     FLORENCIA
+       La lista de conexiones esta vacia
+     GENOVA
+       La lista de conexiones esta vacia
+     SAN MARINO
+       La lista de conexiones esta vacia
+     VENECIA
+       La lista de conexiones esta vacia
+     ROMA
+       La lista de conexiones esta vacia
+     TURIN
+       La lista de conexiones esta vacia
+     BOLONIA
+       La lista de conexiones esta vacia
+     BARI
+       La lista de conexiones esta vacia
+     MILAN
+       La lista de conexiones esta vacia
+GRECIA
+  Ciudades: 
+     ATENAS
+       La lista de conexiones esta vacia
+     SALONICA
+       La lista de conexiones esta vacia
+REPUBLICA CHECA
+  Ciudades: 
+     OSTRAVA
+       La lista de conexiones esta vacia
+     PRAGA
+       La lista de conexiones esta vacia
+POLONIA
+  Ciudades: 
+     KATOWICE
+       La lista de conexiones esta vacia
+     VARSOVIA
+       La lista de conexiones esta vacia
+     LUBLIN
+       La lista de conexiones esta vacia
+     BRESLAVIA
+       La lista de conexiones esta vacia
+     BIALYSTOCK
+       La lista de conexiones esta vacia
+     CRACOVIA
+       La lista de conexiones esta vacia
+RUMANIA
+  Ciudades: 
+     TIMISOARA
+       La lista de conexiones esta vacia
+     BUCAREST
+       La lista de conexiones esta vacia
+     IASI
+       La lista de conexiones esta vacia
+UCRANIA
+  Ciudades: 
+     KIEV
+       La lista de conexiones esta vacia
+     LEOPOLIS
+       La lista de conexiones esta vacia
+     KRIVOU ROG
+       La lista de conexiones esta vacia
+     ODESA
+       La lista de conexiones esta vacia
+BULGARIA
+  Ciudades: 
+     SOFIA
+       La lista de conexiones esta vacia
+FINLANDIA
+  Ciudades: 
+     TAMPERE
+       La lista de conexiones esta vacia
+     TURKU
+       La lista de conexiones esta vacia
+     HELSINSKI
+       La lista de conexiones esta vacia
+SUECIA
+  Ciudades: 
+     ESTOCOLMO
+       La lista de conexiones esta vacia
+ALEMANIA
+  Ciudades: 
+     LICHTENSTEIN
+       La lista de conexiones esta vacia
+     MUNICH
+       La lista de conexiones esta vacia
+     HANNOVER
+       La lista de conexiones esta vacia
+     STTUGART
+       La lista de conexiones esta vacia
+     FRANKFORT
+       La lista de conexiones esta vacia
+     BREMEN
+       La lista de conexiones esta vacia
+     BERLIN
+       La lista de conexiones esta vacia
+     NUREMBERG
+       La lista de conexiones esta vacia
+COSTARICA
+  Ciudades: 
+     SANJOSE
+       Conexiones: 
+     CARTAGO
+       La lista de conexiones esta vacia

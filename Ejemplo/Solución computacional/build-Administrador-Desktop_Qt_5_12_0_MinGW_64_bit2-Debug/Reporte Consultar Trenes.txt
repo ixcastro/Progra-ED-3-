@@ -1,0 +1,27 @@
+Reporte de Trenes: 
+***************************************
+1
+  Nombre: TEC CodTren: 47 Pais: 23 Ciudad: 14
+  Nombre: MATADOR CodTren: 3 Pais: 23 Ciudad: 14
+  Nombre: TRENVIANCA CodTren: 2 Pais: 23 Ciudad: 14
+  Nombre: LUMINOSO CodTren: 4 Pais: 23 Ciudad: 14
+  Nombre: BALAZO CodTren: 1345 Pais: 23 Ciudad: 14
+  Nombre: HIROCHINA CodTren: 75 Pais: 23 Ciudad: 14
+  Nombre: EHECHADOR CodTren: 681 Pais: 23 Ciudad: 14
+  Nombre: ZAMZA CodTren: 4567 Pais: 23 Ciudad: 14
+2
+  Nombre: TUANIS CodTren: 345 Pais: 23 Ciudad: 14
+  Nombre: MARATONISTA CodTren: 123 Pais: 23 Ciudad: 14
+  Nombre: TRESPARADAS CodTren: 2341 Pais: 23 Ciudad: 14
+3
+  Nombre: GUERRERO CodTren: 52 Pais: 23 Ciudad: 14
+  Nombre: POSITIVO CodTren: 45 Pais: 23 Ciudad: 14
+  Nombre: LIMOSINA CodTren: 567 Pais: 23 Ciudad: 14
+4
+  Nombre: ESTRUCTURAS CodTren: 22 Pais: 23 Ciudad: 14
+  Nombre: SINLIMITES CodTren: 9 Pais: 23 Ciudad: 14
+  Nombre: JUANA CodTren: 8 Pais: 23 Ciudad: 14
+  Nombre: CONSENTIDO CodTren: 763 Pais: 23 Ciudad: 14
+  Nombre: NOPARA CodTren: 431 Pais: 23 Ciudad: 14
+5
+  Nombre: ELTESORPRESA CodTren: 1234 Pais: 0 Ciudad: 0

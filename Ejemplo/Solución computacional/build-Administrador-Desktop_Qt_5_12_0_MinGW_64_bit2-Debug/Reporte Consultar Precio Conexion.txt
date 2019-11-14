@@ -1,0 +1,3 @@
+Reporte del precio de una conexion: 
+***************************************
+Pais de salida: COSTARICA ciudad de salida: SANJOSE codigo de conexion: CONEXION. Pais de destino: CRC ciudad de destino: CA. Precio: 2000

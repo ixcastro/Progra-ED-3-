@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>MAPA.jpg</file>
+        <file>finlande19.gif</file>
+        <file>france68.gif</file>
+        <file>granBretana.gif</file>
+        <file>pologne20.gif</file>
+        <file>portugal90.gif</file>
+        <file>roumanie23.gif</file>
+        <file>tchequie72.gif</file>
+        <file>turquie39.gif</file>
+        <file>ukraine69.gif</file>
+        <file>alemania.png</file>
+        <file>belgica.png</file>
+        <file>bulgaria.png</file>
+        <file>espana.png</file>
+        <file>grecia.png</file>
+        <file>holanda.png</file>
+        <file>italia.png</file>
+        <file>suecia.png</file>
+        <file>suiza.png</file>
+    </qresource>
+</RCC>

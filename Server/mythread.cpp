@@ -60,9 +60,15 @@ void MyThread::readyRead()
         //VALIDA-LA-CEDULA----//
         Admin* aux = EST.getAdmin()->searchAdmin(json_map["CodAdmin"].toInt(), EST.getAdmin()->getRoot());
         if(aux != nullptr){
-            socket->write("T");
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
-            socket->write("F");
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
 
@@ -178,56 +184,56 @@ void MyThread::readyRead()
     }
 
     //---------------------------------------------------//
-        //--------PREGUNTA SI EL CLIENTE ESTA EN PROCESO-----//
-        //---------------------------------------------------//
-        if(json_map.firstKey() == "StopClient"){
-            if(EST.getEST()->getFlagProcess() == "T"){
-                socket->write("T");
-            }else{
-                socket->write("F");
-            }
+    //--------PREGUNTA SI EL CLIENTE ESTA EN PROCESO-----//
+    //---------------------------------------------------//
+    if(json_map.firstKey() == "StopClient"){
+        if(EST.getEST()->getFlagProcess() == "T"){
+            socket->write("T");
+        }else{
+            socket->write("F");
         }
-        //---------------------------------------------------//
-        //---------------------------------------------------//
+    }
+    //---------------------------------------------------//
+    //---------------------------------------------------//
 
 
 
 
-        //---------------------------------------------------//
-        //-------CAMBIA LA BANDERA DE PARAR CLIENTE -----//
-        //---------------------------------------------------//
-        if(json_map.firstKey() == "StopClienteNow"){
-            int AUX =json_map["StopClienteNow"].toInt();
-            if(AUX == 1){
-                EST.getEST()->setFlagStop("T");
-            }else{
-                EST.getEST()->setFlagStop("F");
-            }
+    //---------------------------------------------------//
+    //-------CAMBIA LA BANDERA DE PARAR CLIENTE -----//
+    //---------------------------------------------------//
+    if(json_map.firstKey() == "StopClienteNow"){
+        int AUX =json_map["StopClienteNow"].toInt();
+        if(AUX == 1){
+            EST.getEST()->setFlagStop("T");
+        }else{
+            EST.getEST()->setFlagStop("F");
         }
-        //---------------------------------------------------//
-        //---------------------------------------------------//
+    }
+    //---------------------------------------------------//
+    //---------------------------------------------------//
 
 
 
 
-        //---------------------------------------------------//
-        //--------SI EL CLIENTE ESTA EN UN PROCESO-----------//
-        //---------------------------------------------------//
-        if(json_map.firstKey() == "Proceso"){
-            int AUX =json_map["Proceso"].toInt();
-            if(AUX == 1 && EST.getEST()->getFlagStop() == "F" ){
-                EST.getEST()->setFlagProcess("T");
-                socket->write("F");
-            }
-            else if (AUX == 2 && EST.getEST()->getFlagStop()== "F" ){
-                EST.getEST()->setFlagProcess("F");
-                socket->write("F");
-            }else{
-                socket->write("T");
-            }
+    //---------------------------------------------------//
+    //--------SI EL CLIENTE ESTA EN UN PROCESO-----------//
+    //---------------------------------------------------//
+    if(json_map.firstKey() == "Proceso"){
+        int AUX =json_map["Proceso"].toInt();
+        if(AUX == 1 && EST.getEST()->getFlagStop() == "F" ){
+            EST.getEST()->setFlagProcess("T");
+            socket->write("F");
         }
-        //---------------------------------------------------//
-        //---------------------------------------------------//
+        else if (AUX == 2 && EST.getEST()->getFlagStop()== "F" ){
+            EST.getEST()->setFlagProcess("F");
+            socket->write("F");
+        }else{
+            socket->write("T");
+        }
+    }
+    //---------------------------------------------------//
+    //---------------------------------------------------//
 
     //---------------------------------------------------//
     //-----------------CLIENTE--------------------------//
@@ -237,10 +243,16 @@ void MyThread::readyRead()
     if(json_map.firstKey() == "Cedula"){
         //VALIDA-LA-CEDULA----//
         Client * AUX = this->EST.getClients()->searchClient(json_map["Cedula"].toInt(),EST.getClients()->getRoot());
-        if(AUX){
-            socket->write("T");
+        if(AUX != nullptr){
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
-            socket->write("F");
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
 

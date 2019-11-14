@@ -1,0 +1,114 @@
+Reporte de Ciudades: 
+***************************************
+Paises: 
+PORTUGAL
+  Ciudades: 
+     LISBOA
+     ALBUFEIRA
+     SANTAREM
+     CASTELO BRANCO
+     OPORTO
+ESPANA
+  Ciudades: 
+     MADRID
+     
+     VALLADOLID
+     SANTIAGO
+     COMPOSTELA
+     SEVILLA
+     MALAGA
+     VALENCIA
+FRANCIA
+  Ciudades: 
+     TOULOUSE
+     MONTPELLIER
+     MARSELLA
+     LYON
+     MONACO
+     NANTES
+     PARIS
+SUIZA
+  Ciudades: 
+     ZURICH
+     BERNA
+     GINEBRA
+GRAN BRETANA
+  La lista de ciudades esta vacia
+TURQUIA
+  Ciudades: 
+     ANKARA
+     ESTAMBUL
+     ANKARA
+     BURSA
+     ANTALYA
+     ESMIRNA
+     ADANA
+BELGICA
+  Ciudades: 
+     GANTE
+     BRUJAS
+     AMBERES
+ITALIA
+  Ciudades: 
+     NAPOLES
+     FLORENCIA
+     GENOVA
+     SAN MARINO
+     VENECIA
+     ROMA
+     TURIN
+     BOLONIA
+     BARI
+     MILAN
+GRECIA
+  Ciudades: 
+     ATENAS
+     SALONICA
+REPUBLICA CHECA
+  Ciudades: 
+     OSTRAVA
+     PRAGA
+POLONIA
+  Ciudades: 
+     KATOWICE
+     VARSOVIA
+     LUBLIN
+     BRESLAVIA
+     BIALYSTOCK
+     CRACOVIA
+RUMANIA
+  Ciudades: 
+     TIMISOARA
+     BUCAREST
+     IASI
+UCRANIA
+  Ciudades: 
+     KIEV
+     LEOPOLIS
+     KRIVOU ROG
+     ODESA
+BULGARIA
+  Ciudades: 
+     SOFIA
+FINLANDIA
+  Ciudades: 
+     TAMPERE
+     TURKU
+     HELSINSKI
+SUECIA
+  Ciudades: 
+     ESTOCOLMO
+ALEMANIA
+  Ciudades: 
+     LICHTENSTEIN
+     MUNICH
+     HANNOVER
+     STTUGART
+     FRANKFORT
+     BREMEN
+     BERLIN
+     NUREMBERG
+COSTARICA
+  Ciudades: 
+     SANJOSE
+     CARTAGO
