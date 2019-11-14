@@ -1,5 +1,6 @@
 #include "window_select_hall.h"
 #include "ui_window_select_hall.h"
+#include "window_insert_product.h"
 #include <QMessageBox>
 #include <QPushButton>
 
@@ -36,7 +37,8 @@ void window_select_hall::addButtons(QJsonArray a){
         QPushButton* button;
         button = new QPushButton(a[i].toString(), this);
 
-        connect(button,SIGNAL(clicked()),this, SLOT(commonSlot()));
+
+        connect(button,SIGNAL(clicked()),this, SLOT(commonSlot(button->text())));
         returnHall(button->text());
         // set size and location of the button
         //locationof the button
@@ -56,9 +58,12 @@ void window_select_hall::addButtons(QJsonArray a){
     }
 }
 
-void window_select_hall::commonSlot(){
-    QMessageBox* q = new QMessageBox();
-    q->show();
+void window_select_hall::commonSlot(QString s){
+    QString QstrLinea = s;
+    QStringList lista = QstrLinea.split('-');
 
+    window_insert_product *w = new window_insert_product();
+    w->setSelectHall(lista.first().toInt());
+    w->show();
 
 }

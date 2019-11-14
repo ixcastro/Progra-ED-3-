@@ -12,3 +12,4 @@ window_select_product::~window_select_product()
 {
     delete ui;
 }
+

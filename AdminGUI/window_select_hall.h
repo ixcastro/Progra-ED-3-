@@ -22,7 +22,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-    void commonSlot();
+    void commonSlot(QString s);
 
 private:
     Ui::window_select_hall *ui;
