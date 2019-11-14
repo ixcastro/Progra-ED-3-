@@ -595,45 +595,72 @@ void MyThread::readyRead()
     //-------------SI-EL-JSON-ES-UNA-COMPRA---------------//
     if(json_map.firstKey() == "Comprar"){
 
-        ABBNode * hallCL = EST.getEST()->getNode(secretHall);
-        RNNode * product = hallCL->getProducts()->getProduct(secretProd)->getRN()->getRoot();
+        EST.getEST()->print(EST.getEST()->getRoot());
+
         QJsonObject x = json_map["Comprar"].toJsonObject();
-        int pId = x.take("Cedula").toInt();
-        int CantidadCompra = x.take("CantidadCompra").toInt();
+        int pId = x.take("Cedula").toString().toInt();
+        int CantidadCompra = x.take("CantidadCompra").toString().toInt();
+        int pPasillo = x.take("Pasillo").toString().toInt();
+        int pProducto = x.take("Producto").toString().toInt();
+        int pMarca = x.take("Marca").toString().toInt();
+
+        cout<<"Id "<<pId<<endl;
+        cout<<"Cant "<<CantidadCompra<<endl;
+        cout<<"Pasillo "<<pPasillo<<endl;
+        cout<<"Producto "<<pProducto<<endl;
+        cout<<"Marca "<<pMarca<<endl;
+
+        ABBNode * hallCL = EST.getEST()->getNode(pPasillo);
+        RNNode * product = hallCL->getProducts()->getProduct(pProducto)->getRN()->getRoot();
 
 
+        cout<<hallCL->getProducts()->getProduct(pProducto)->getRN()->validateCant(product,CantidadCompra)<<endl;
         //si la cantidad es valida
-        if(hallCL->getProducts()->getProduct(secretProd)->getRN()->validateCant(product,CantidadCompra)){
+        if(hallCL->getProducts()->getProduct(pProducto)->getRN()->validateCant(product,CantidadCompra)){
 
             Client *c = EST.getClients()->searchClient(pId,EST.getClients()->getRoot());
             if(EST.getCola()->exists(c) && EST.getCola()->getFondo()->getClient()->getId() != c->getId()){ //El cliente está en la cola y no es el fondo
-                socket->write("No puede realizar compras.");
+                QJsonObject o;
+                o.insert("Respuesta","No puede realizar compras.");
+                QJsonDocument r(o);
+                cout<<"No compras"<<endl;
+                socket->write(r.toJson());
             }else{
                 if(EST.getCola()->isEmpty() || EST.getCola()->getFondo()->getClient()->getId() != c->getId()){
                     EST.getCola()->encolar(c);
                 }
-                EST.getCola()->getFondo()->buy(secretHall,secretProd,secretBrand, CantidadCompra);
+                EST.getCola()->getFondo()->buy(pPasillo,pProducto,pMarca,CantidadCompra);
 
-                int dataNew = EST.getEST()->getNode(secretHall)->getProducts()->getProduct(secretProd)->getRN()->getBrand(secretBrand)->getBrand()->getQuantity();
+                int dataNew = EST.getEST()->getNode(pPasillo)->getProducts()->getProduct(pProducto)->getRN()->getBrand(pMarca)->getBrand()->getQuantity();
 
-                EST.getEST()->getNode(secretHall)->getProducts()->getProduct(secretProd)->getRN()->getBrand(secretBrand)->getBrand()->setCount(dataNew-CantidadCompra);
+                EST.getEST()->getNode(pPasillo)->getProducts()->getProduct(pProducto)->getRN()->getBrand(pMarca)->getBrand()->setCount(dataNew-CantidadCompra);
 
-                hallCL->getProducts()->getProduct( secretProd)->getRN()
-                        ->getBrandBuyCL(hallCL->getProducts()->getProduct(secretProd)->getRN()->getRoot());
+                hallCL->getProducts()->getProduct(pProducto)->getRN()
+                        ->getBrandBuyCL(hallCL->getProducts()->getProduct(pProducto)->getRN()->getRoot());
 
                 while(hallProdBrandList.count()){
                     hallProdBrandList.pop_back();
                 }
-                socket->write("En el carrito");
+                QJsonObject o;
+                o.insert("Respuesta","Producto en el carrito.");
+                cout<<"Carrito"<<endl;
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }
 
         }else{
+            int data = hallCL->getProducts()->getProduct(pProducto)->getRN()->getMaxCant(product,pMarca);
+            QJsonObject o;
+            o.insert("Respuesta",QJsonValue::fromVariant(data));
+            cout<<"Data "<<data<<endl;
+            QJsonDocument r(o);
+            socket->write(r.toJson());
 
-            int data = hallCL->getProducts()->getProduct(secretProd)->getRN()->getMaxCant(product,secretBrand);
-            socket->write( ml.int2str(data).c_str());
         }
 
+        cout<<"-----------------------------------------------------------------------------------"<<endl<<endl<<endl;
 
+        EST.getEST()->print(EST.getEST()->getRoot());
     }
 
     if(json_map.firstKey() == "Reporte"){
@@ -1089,7 +1116,10 @@ void MyThread::readyRead()
 
     if(json_map.firstKey() == "VerificarInventario"){
         if(EST.getVendidosInventario()->isEmpty()){
-            socket->write("No");
+            QJsonObject o;
+            o.insert("Respuesta","No se han vendido productos.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
             StackClientNode *aux = EST.getVendidosInventario()->getFirst();
             while(aux){
@@ -1116,7 +1146,10 @@ void MyThread::readyRead()
                 }
                 aux = aux->getNext();
             }
-            socket->write("Inventario verificado");
+            QJsonObject o;
+            o.insert("Respuesta","Inventario verificado.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
             EST.setVendidosInventario(); //Vaciar esta lista de inventario de ventas
             //EST.getInventory()->print(EST.getInventory()->getRoot());
         }
@@ -1125,8 +1158,10 @@ void MyThread::readyRead()
     if(json_map.firstKey() == "EliminarCliente"){
         if(EST.getClients()->searchClient(json_map["ËliminarCliente"].toInt(),EST.getClients()->getRoot())){
             EST.getClients()->del(json_map["EliminarCliente"].toInt());
-            string aux = "T";
-            socket->write(aux.c_str());
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
             QJsonObject o;
             o.insert("Respuesta","F");
