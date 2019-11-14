@@ -19,8 +19,9 @@ W_PASILLOS::~W_PASILLOS()
 {
     delete ui;
 }
-void  W_PASILLOS::shareButton(QJsonArray pData){
+void  W_PASILLOS::shareButton(QJsonArray pData,int pNum){
 
+    NUM = pNum;
     int contador = 0;
     int posX = 100;
     int posY = 100;
@@ -82,7 +83,7 @@ void W_PASILLOS::commonSlot(){
 //    cout<<"aja"<<endl;
 
     W_Productos *a = new  W_Productos();
-    a->shareButton(ob);
+    a->shareButton(ob,NUM);
     a->show();
 
 

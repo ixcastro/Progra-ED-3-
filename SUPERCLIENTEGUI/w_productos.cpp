@@ -19,8 +19,9 @@ W_Productos::~W_Productos()
     delete ui;
 }
 
-void  W_Productos::shareButton(QJsonArray pData){
+void  W_Productos::shareButton(QJsonArray pData,int pNum){
 
+    NUM =pNum;
     int contador = 0;
     int posX = 100;
     int posY = 100;
@@ -62,6 +63,10 @@ void  W_Productos::shareButton(QJsonArray pData){
 
 void W_Productos::commonSlot(){
 
+    cout<<"NUM : "<<NUM<<endl;
+
+
+
     QPushButton *b = (QPushButton*)sender();
     QString name = b->text();
     QStringList lista = name.split("-");
@@ -72,16 +77,31 @@ void W_Productos::commonSlot(){
     QJsonDocument D = SocketClient::getInstance()->request(docIN);
     QJsonArray ob = D.array();
 
-//    QString s = "";
-//    for(int i=0; i< ob.size(); i++){
+    //CONSULTAR UN PRECIO
+    if(NUM==1){
+        W_MARCA *a = new  W_MARCA();
+        a->shareButton(ob);
+        a->show();
 
-//        s +=  ob[i].toString();
-//    }
-//    cout<<s.toStdString()<<endl;
-//    cout<<"aja"<<endl;
-    W_MARCA *a = new  W_MARCA();
-    a->shareButton(ob);
-    a->show();
+    }
+
+    // CANASTA BASICA
+    if(NUM==2){
+
+    }
+
+    //IMPUESTO
+    if(NUM==3){
+
+    }
+
+    //COMPRA
+    if(NUM==4){
+
+    }
+
+
+
 }
 
 

@@ -16,13 +16,14 @@ class W_PASILLOS : public QMainWindow
 public:
     explicit W_PASILLOS(QWidget *parent = nullptr);
     ~W_PASILLOS();
-    void shareButton(QJsonArray pData);
+    void shareButton(QJsonArray pData,int pNum);
 
 public slots:
     void commonSlot();
 
 private:
     Ui::W_PASILLOS *ui;
+    int NUM;
 };
 
 #endif // W_PASILLOS_H

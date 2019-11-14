@@ -28,7 +28,7 @@ void W_MENU::on_pushButton_clicked()
     QJsonArray ob = D.array();
 
     W_PASILLOS *a = new  W_PASILLOS();
-    a->shareButton(ob);
+    a->shareButton(ob,1);
     a->show();
 
 
@@ -46,7 +46,7 @@ void W_MENU::on_pushButton_2_clicked()
     QJsonArray ob = D.array();
 
     W_PASILLOS *a = new  W_PASILLOS();
-    a->shareButton(ob);
+    a->shareButton(ob,2);
     a->show();
 
 }
@@ -63,7 +63,7 @@ void W_MENU::on_pushButton_3_clicked()
     QJsonArray ob = D.array();
 
     W_PASILLOS *a = new  W_PASILLOS();
-    a->shareButton(ob);
+    a->shareButton(ob,3);
     a->show();
 
 }
@@ -80,7 +80,7 @@ void W_MENU::on_pushButton_4_clicked()
     QJsonArray ob = D.array();
 
     W_PASILLOS *a = new  W_PASILLOS();
-    a->shareButton(ob);
+    a->shareButton(ob,4);
     a->show();
 
 
