@@ -1,3 +1,0 @@
-Reporte de numero  de asientos: 
-***************************************
-Numero de asientos disponibles: 963

@@ -1,9 +1,0 @@
-Factura: 233
-*************
-Tipo de tren reservado: 01
-Tren reservado: 1345
-Numero de ruta reservada: 90
-Encargado de la reserva: 4410
-Número de asientos reservados: 1
-
- El monto a pagar seria de: 1505
