@@ -3,6 +3,7 @@
 #include "window_insert_product.h"
 #include <QMessageBox>
 #include <QPushButton>
+#include "library.h"
 
 
 
@@ -34,15 +35,15 @@ void window_select_hall::addButtons(QJsonArray a){
     int posX = 100;
     int posY = 100;
     for (int i = 0; i < a.size(); i++) {
-        QPushButton* button;
-        button = new QPushButton(a[i].toString(), this);
+        QPushButton* button2;
+        button2 = new QPushButton(a[i].toString(), this);
 
-
-        connect(button,SIGNAL(clicked()),this, SLOT(commonSlot(button->text())));
-        returnHall(button->text());
+        QString name = a[i].toString();
+        QObject::connect(button2,SIGNAL(clicked()),this,SLOT(commonSlot()));
+        returnHall(button2->text());
         // set size and location of the button
         //locationof the button
-        button->setGeometry(QRect(QPoint(posX, posY),
+        button2->setGeometry(QRect(QPoint(posX, posY),
         //size of the button
         QSize(100, 50)));
 
@@ -58,12 +59,31 @@ void window_select_hall::addButtons(QJsonArray a){
     }
 }
 
-void window_select_hall::commonSlot(QString s){
-    QString QstrLinea = s;
-    QStringList lista = QstrLinea.split('-');
+void window_select_hall::commonSlot(string s){
+    QString QstrLinea = QString::fromStdString(s);
+    QStringList lista = QstrLinea.split("-");
+    cout<<"holaaa"<<endl;
+    window_insert_product *w = new window_insert_product();
+    w->setSelectHall(lista.first().toInt());
+    w->show();
+
+    QMessageBox *a = new QMessageBox();
+    a->setText("picha");
+    a->show();
+
+}
+
+void window_select_hall::commonSlot(){
+    QPushButton *b = (QPushButton*)sender();
+    QString name = b->text();
+    QStringList lista = name.split("-");
 
     window_insert_product *w = new window_insert_product();
     w->setSelectHall(lista.first().toInt());
     w->show();
+}
+
+void window_select_hall::on_pushButton_clicked()
+{
 
 }

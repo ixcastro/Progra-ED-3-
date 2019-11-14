@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QJsonArray>
+#include "string"
+using namespace std;
 
 namespace Ui {
 class window_select_hall;
@@ -16,13 +18,13 @@ public:
     explicit window_select_hall(QWidget *parent = nullptr);
     ~window_select_hall();
 
-    int selectedHall;
     void addButtons(QJsonArray);
 
 
-private slots:
+public slots:
     void on_pushButton_clicked();
-    void commonSlot(QString s);
+    void commonSlot(string);
+    void commonSlot();
 
 private:
     Ui::window_select_hall *ui;
