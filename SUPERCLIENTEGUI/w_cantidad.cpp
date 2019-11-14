@@ -3,6 +3,7 @@
 #include "socketclient.h"
 #include "library.h"
 #include <QMessageBox>
+#include "QJsonValue"
 
 W_CANTIDAD::W_CANTIDAD(QWidget *parent) :
     QMainWindow(parent),
@@ -22,7 +23,7 @@ void W_CANTIDAD::PATH(string Path){
 }
 
 void W_CANTIDAD::ced(string ced){
-     CED = ced;
+    CED = ced;
 }
 
 
@@ -47,7 +48,21 @@ void W_CANTIDAD::on_pushButton_clicked()
     QJsonDocument D = SocketClient::getInstance()->request(docIN);
     QJsonObject ob = D.object();
 
+    //    QJsonValue a;
+    //    QJsonValue QJsonObject::value(const QString &key) const
 
+
+    string g ;
+    QJsonArray npcArray = ob["Respuesta"].toArray();
+
+
+    QString s = "";
+    for(int i=0; i< npcArray.size(); i++){
+
+        s +=   npcArray[i].toString();
+    }
+
+    cout<<"ESTA ES LA RESPUESTA : "<<s.toStdString()<<endl;
 
     if(ob.take("Respuesta") == "A"
             ){

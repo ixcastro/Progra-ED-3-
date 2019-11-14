@@ -66,6 +66,7 @@ void  W_MARCA::shareButton(QJsonArray pData, string path){
 
 void W_MARCA::commonSlot(){
 
+    cout<<"----------------------"<<endl;
     QPushButton *b = (QPushButton*)sender();
     QString name = b->text();
     QStringList lista = name.split(" ");

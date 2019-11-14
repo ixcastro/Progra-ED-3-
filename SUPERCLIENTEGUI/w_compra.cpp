@@ -68,16 +68,11 @@ void W_COMPRA::commonSlot(){
 
     QPushButton *b = (QPushButton*)sender();
     QString name = b->text();
-    QStringList lista = name.split(" ");
-
-    for(int i =0; i<lista.size();i++){
-       // if(lista[i]==":"){
-            cout<<lista[i].toStdString()<<endl;
-        //}
-    }
+    QStringList lista = name.split("-");
 
 
-    PATH =  PATH +"-"+lista[2].toStdString();
+    // cout<<"->"<<lista[1].toStdString()<<endl;
+     PATH =  PATH +"-"+lista.first().toStdString();
     W_CANTIDAD *a = new   W_CANTIDAD();
     cout<<"   "<<lista.first().toStdString()<<endl;
     a->ced(CED);

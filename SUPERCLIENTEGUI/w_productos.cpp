@@ -79,8 +79,22 @@ void W_Productos::commonSlot(){
     QStringList lista = name.split("-");
 
     QJsonObject recordObject;
-    recordObject.insert("Marca",lista.first().toInt());
-    QJsonDocument docIN(recordObject);
+
+    //- int pas - int prod
+
+    cout<<"path "<<PATH<<endl;
+    stringstream PASILLO(PATH);
+
+    // The object has the value 12345 and stream
+    // it to the integer x
+    int x = 0;
+    PASILLO >> x;
+
+    recordObject.insert("Pasillo",x);
+    recordObject.insert("Producto",lista.first().toInt());
+    QJsonObject recordObjectOtro;
+    recordObjectOtro.insert("Marca",recordObject);
+    QJsonDocument docIN(recordObjectOtro);
     QJsonDocument D = SocketClient::getInstance()->request(docIN);
     QJsonArray ob = D.array();
 
