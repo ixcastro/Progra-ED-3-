@@ -29,13 +29,13 @@ public:
     {
         if (W_PORCENTAJE->objectName().isEmpty())
             W_PORCENTAJE->setObjectName(QString::fromUtf8("W_PORCENTAJE"));
-        W_PORCENTAJE->resize(249, 303);
+        W_PORCENTAJE->resize(474, 373);
         centralwidget = new QWidget(W_PORCENTAJE);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         W_PORCENTAJE->setCentralWidget(centralwidget);
         menubar = new QMenuBar(W_PORCENTAJE);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 249, 21));
+        menubar->setGeometry(QRect(0, 0, 474, 21));
         W_PORCENTAJE->setMenuBar(menubar);
         statusbar = new QStatusBar(W_PORCENTAJE);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

@@ -2,6 +2,7 @@ debug/library.o
 debug/main.o
 debug/socketclient.o
 debug/w_canasta.o
+debug/w_cantidad.o
 debug/w_compra.o
 debug/w_login.o
 debug/w_marca.o
@@ -10,6 +11,7 @@ debug/w_pasillos.o
 debug/w_porcentaje.o
 debug/w_productos.o
 debug/moc_w_canasta.o
+debug/moc_w_cantidad.o
 debug/moc_w_compra.o
 debug/moc_w_login.o
 debug/moc_w_marca.o

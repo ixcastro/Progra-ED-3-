@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     socketclient.cpp \
     w_canasta.cpp \
+    w_cantidad.cpp \
     w_compra.cpp \
     w_login.cpp \
     w_marca.cpp \
@@ -33,6 +34,7 @@ HEADERS += \
     library.h \
     socketclient.h \
     w_canasta.h \
+    w_cantidad.h \
     w_compra.h \
     w_login.h \
     w_marca.h \
@@ -43,6 +45,7 @@ HEADERS += \
 
 FORMS += \
     w_canasta.ui \
+    w_cantidad.ui \
     w_compra.ui \
     w_login.ui \
     w_marca.ui \

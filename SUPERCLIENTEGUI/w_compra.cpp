@@ -7,6 +7,7 @@
 #include "QVBoxLayout"
 #include "QScrollArea"
 #include "socketclient.h"
+#include "w_cantidad.h"
 
 W_COMPRA::W_COMPRA(QWidget *parent) :
     QMainWindow(parent),
@@ -73,6 +74,10 @@ void W_COMPRA::commonSlot(){
 
 
     PATH =  PATH +"-"+lista[2].toStdString();
+    W_CANTIDAD *a = new   W_CANTIDAD();
+    cout<<"   "<<lista.first().toStdString()<<endl;
+    a->PATH(PATH);
+    a->show();
 
     cout<<"->"<<PATH<<endl;
 }

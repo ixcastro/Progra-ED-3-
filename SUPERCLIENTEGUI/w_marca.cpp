@@ -7,6 +7,7 @@
 #include "QVBoxLayout"
 #include "QScrollArea"
 #include "socketclient.h"
+#include "w_cantidad.h"
 
 
 W_MARCA::W_MARCA(QWidget *parent) :
@@ -77,6 +78,7 @@ void W_MARCA::commonSlot(){
 
 
     PATH =  PATH +"-"+lista[2].toStdString();
+
 
     cout<<"->"<<PATH<<endl;
 }
