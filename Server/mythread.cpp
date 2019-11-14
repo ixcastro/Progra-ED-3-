@@ -352,7 +352,13 @@ void MyThread::readyRead()
         QString pPhone = ob.take("Phone").toString();
         QString pMail = ob.take("Correo").toString();
 
-        if(EST.getClients()->searchClient(pId,EST.getClients()->getRoot()) || EST.getCities()->exists(pCityCode)){
+        cout<<"Ced "<<pId<<endl;
+
+        if(EST.getClients()->searchClient(pId,EST.getClients()->getRoot())==nullptr){
+            cout<<"Null"<<endl;
+        }
+
+        if(EST.getClients()->searchClient(pId,EST.getClients()->getRoot())!=nullptr || !EST.getCities()->exists(pCityCode)){
             QJsonObject o;
             o.insert("Respuesta","F");
             QJsonDocument r(o);
@@ -634,7 +640,10 @@ void MyThread::readyRead()
         QString type = json_map["Reporte"].toString();
         if(type == "PasilloMasVisitado"){
             if(EST.getReportePasillo()->noReport()){
-                socket->write("No se puede realizar el reporte, no se han visitado productos. ");
+                QJsonObject o;
+                o.insert("Respuesta","No se han visitado pasillos. ");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }else{
                 ofstream write ("PasilloMasVisitado.txt");
                 write<<"Pasillos mas visitados: \n\n";
@@ -646,11 +655,17 @@ void MyThread::readyRead()
                     aux = aux->getNext();
                 }
                 write.close();
-                socket->write("Archivo creado. ");
+                QJsonObject o;
+                o.insert("Respuesta","Archivo creado.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }
         }else if(type == "PasilloMenosVisitado"){
             if(EST.getReportePasillo()->noReport()){
-                socket->write("No se puede realizar el reporte, no se han visitado productos. ");
+                QJsonObject o;
+                o.insert("Respuesta","No se han visitado pasillos.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }else{
                 ofstream write ("PasilloMenosVisitado.txt");
                 write<<"Pasillos menos visitados: \n\n";
@@ -662,11 +677,17 @@ void MyThread::readyRead()
                     aux = aux->getNext();
                 }
                 write.close();
-                socket->write("Archivo creado. ");
+                QJsonObject o;
+                o.insert("Respuesta","Archivo creado.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }
         }else if(type == "MarcaMasVendida"){
             if(EST.getVendidos()->isEmpty()){
-                socket->write("No se han vendido productos, no se puede generar el reporte");
+                QJsonObject o;
+                o.insert("Respuesta","No se han vendido productos.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }else{
                 string datos = "";
                 SalesList *masVendidos = EST.getVendidos()->major();
@@ -685,13 +706,17 @@ void MyThread::readyRead()
                 write<<"Marca/s mas vendida: \n\n";
                 write<<datos;
                 write.close();
-                socket->write("Archivo creado.");
+                QJsonObject o;
+                o.insert("Respuesta","Archivo creado.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }
         }else if(type == "ProductoMasVendidoPasillo"){ //Necesito un int
             if(EST.getVendidos()->isEmpty()){
-                string s = "No se han vendido productos. No se puede generar el reporte";
-                socket->write(s.c_str());
-                cout<<s;
+                QJsonObject o;
+                o.insert("Respuesta","No se han vendido productos.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }else{
                 int p = json_map["xPasillo"].toInt();
                 SalesList *ventasPasillo = EST.getVendidos()->masVendidosPasillo(p);
@@ -711,11 +736,17 @@ void MyThread::readyRead()
                 write<<"Productos mas vendidos en un pasillo: \n\n";
                 write<<datos;
                 write.close();
-                socket->write("Archivo creado. ");
+                QJsonObject o;
+                o.insert("Respuesta","Archivo creado.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }
         }else if(type == "ClienteMasCompro"){
             if(EST.getFacturasClientes()->noReport()){
-                socket->write("No se ha facturado, no se puede crear el reporte.");
+                QJsonObject o;
+                o.insert("Respuesta","No se ha facturado");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }else{
                 string datos = "";
                 ReportListInt *facturaCliente = EST.getReporteCliente()->major();
@@ -729,11 +760,17 @@ void MyThread::readyRead()
                 write<<"Cliente/s que mas compro: \n\n";
                 write<<datos;
                 write.close();
-                socket->write("Archivo creado.");
+                QJsonObject o;
+                o.insert("Respuesta","Archivo creado.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }
         }else if(type == "ClienteMenosCompro"){
             if(EST.getFacturasClientes()->noReport()){
-                socket->write("No se ha facturado, no se puede crear el reporte.");
+                QJsonObject o;
+                o.insert("Respuesta","No se ha facturado");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }else{
                 string datos = "";
                 ReportListInt *facturaCliente = EST.getReporteCliente()->minor();
@@ -747,11 +784,17 @@ void MyThread::readyRead()
                 write<<"Cliente/s que menos compro: \n\n";
                 write<<datos;
                 write.close();
-                socket->write("Archivo creado.");
+                QJsonObject o;
+                o.insert("Respuesta","Archivo creado.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }
         }else if(type == "ProductoMasCargoGondola"){
             if(EST.getMayorGondola()->isEmpty()){
-                socket->write("No se ha cargado en gondola.");
+                QJsonObject o;
+                o.insert("Respuesta","No se ha cargado en gondola");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }else{
                 string datos = "";
                 StackClientNode *aux  = EST.getMayorGondola()->getFirst();
@@ -763,11 +806,17 @@ void MyThread::readyRead()
                 write<<"Producto/s mas cargado en gondola: \n\n";
                 write<<datos;
                 write.close();
-                socket->write("Archivo creado");
+                QJsonObject o;
+                o.insert("Respuesta","Archivo creado.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }
         }else if(type == "ClienteMasFacturo"){
             if(EST.getReporteCliente()->noReport()){
-                socket->write("Ningun cliente ha facturado aun.");
+                QJsonObject o;
+                o.insert("Respuesta","No se ha facturado.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }else{
                 string datos = "";
                 ReportListFloat *facturas = EST.getFacturasClientes()->major();
@@ -781,7 +830,10 @@ void MyThread::readyRead()
                 write<<"Cliente/s que mas facturo: \n\n";
                 write<<datos;
                 write.close();
-                socket->write("Archivo creado");
+                QJsonObject o;
+                o.insert("Respuesta","Archivo creado.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }
         }else if(type == "MarcasProducto"){ //Necesito dos ints
 
@@ -805,11 +857,17 @@ void MyThread::readyRead()
             write<<"Marca/s de un producto: \n\n";
             write<<s.toStdString();
             write.close();
-            socket->write("Archivo creado. ");
+            QJsonObject o;
+            o.insert("Respuesta","Archivo creado.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
 
         }else if(type == "FacturaMayorMonto"){
             if(EST.getReporteCliente()->noReport()){
-                socket->write("Ningun cliente ha facturado aun.");
+                QJsonObject o;
+                o.insert("Respuesta","No se ha facturado");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }else{
                 string datos = "";
                 ReportListFloat *facturas = EST.getFacturasClientes()->major();
@@ -823,7 +881,10 @@ void MyThread::readyRead()
                 write<<"Factura/s con mayor monto: \n\n";
                 write<<datos;
                 write.close();
-                socket->write("Archivo creado");
+                QJsonObject o;
+                o.insert("Respuesta","Archivo creado.");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
             }
         }else if(type == "ProductosPasillo"){ //Necesito un int
             int pas = json_map["xProductos"].toInt();
@@ -842,7 +903,11 @@ void MyThread::readyRead()
 
             write<<s.toStdString();
             write.close();
-            socket->write("Archivo creado");
+            QJsonObject o;
+            o.insert("Respuesta","Archivo creado.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+
         }else if(type == "ClientesSuper"){
             ofstream write ("ClientesSuper.txt");
             write<<"Lista de clientes del supermercado: \n\n";
@@ -860,7 +925,11 @@ void MyThread::readyRead()
 
             write<<s.toStdString();
             write.close();
-            socket->write("Archivo creado");
+            QJsonObject o;
+            o.insert("Respuesta","Archivo creado.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+
         }else if(type == "PasillosSuper"){
             ofstream write ("PasillosSuper.txt");
             write<<"Lista de pasillo del supermercado: \n\n";
@@ -879,7 +948,11 @@ void MyThread::readyRead()
 
             write<<s.toStdString();
             write.close();
-            socket->write("Archivo creado");
+            QJsonObject o;
+            o.insert("Respuesta","Archivo creado.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+
         }else if(type == "InventarioSuper"){//Inventario
             ofstream write ("InventarioSuper.txt");
             write<<"Lista del inventario del supermercado: \n\n";
@@ -899,15 +972,24 @@ void MyThread::readyRead()
 
             write<<s.toStdString();
             write.close();
-            socket->write("Archivo creado");
+            QJsonObject o;
+            o.insert("Respuesta","Archivo creado.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
-            socket->write("Ocurrio un problema... Intentelo mas tarde");
+            QJsonObject o;
+            o.insert("Respuesta","Ocurrio un problema... Intentelo mas tarde");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
 
     if(json_map.firstKey() == "Facturar"){
         if(EST.getCola()->isEmpty()){
-            socket->write("No se han realizado compras. No se puede facturar");
+            QJsonObject o;
+            o.insert("Respuesta","No se han realizado compras.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
             QueueNode *aux = EST.getCola()->desencolar();
             string filename = to_string(aux->getClient()->getId())+".txt";
@@ -980,19 +1062,28 @@ void MyThread::readyRead()
             EST.getFacturasClientes()->print();
 
             consecutivo ++;
-            socket->write("Factura generada.");
+            QJsonObject o;
+            o.insert("Respuesta","Factura generada.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
 
     if(json_map.firstKey() == "RegistrarCliente"){
         if(EST.getRegistrar()->isEmpty()){
-            socket->write("No hauy solicitudes para registrar. ");
+            QJsonObject o;
+            o.insert("Respuesta","No hay solicitudes de registro.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
             while(!EST.getRegistrar()->isEmpty()){
                 Client *aux = EST.getRegistrar()->desencolar()->getClient();
                 EST.getClients()->insert(aux);
             }
-            socket->write("Se registraron las solicitudes. ");
+            QJsonObject o;
+            o.insert("Respuesta","Se han registrado las solicitudes.");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
 
