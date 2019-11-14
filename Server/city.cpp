@@ -1,5 +1,7 @@
 #include "city.h"
 
+QJsonArray cities;
+
 City::City() {
     code = 0;
     cityName = "";
@@ -181,4 +183,15 @@ int CityList::numVertex(int code){
     }
 }
 
+void CityList::getCities(){
+    if(!this->isEmpty()){
+        CityNode *aux = first;
+        while(aux){
+            string str = aux->getCity()->toString();
+            QJsonValue qStr = QString::fromStdString(str);
+            cities.append(qStr);
+            aux = aux->getNext();
+        }
+    }
+}
 

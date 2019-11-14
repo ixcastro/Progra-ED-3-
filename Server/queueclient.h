@@ -2,6 +2,8 @@
 #define QUEUECLIENT_H
 #include "queuenode.h"
 
+extern QJsonArray clientsQueue;
+
 class QueueClient{
     QueueNode *frente;
     QueueNode *fondo;
@@ -12,6 +14,7 @@ public:
     bool isEmpty();
     bool exists(Client*);
     QueueNode* getFondo();
+    void getClientsQueue();
 };
 
 #endif // QUEUECLIENT_H

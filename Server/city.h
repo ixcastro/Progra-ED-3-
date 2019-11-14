@@ -5,8 +5,9 @@
 #include <QString>
 #include <QStringList>
 #include <fstream>
+#include "library.h"
 
-//#include "libery.h"
+extern QJsonArray cities;
 
 using namespace std;
 
@@ -65,6 +66,7 @@ public:
     void print();
     bool exists(int);
     int numVertex(int);
+    void getCities();
 };
 
 

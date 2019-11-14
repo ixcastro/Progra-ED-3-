@@ -72,48 +72,67 @@ void MyThread::readyRead()
         }
     }
 
-    //-------------SI-EL-JSON-ES-UNA-ID-ADMIN---------------//
+    //-------------T si un pasllo existe, F sino---------------//
     if(json_map.firstKey() == "PasilloInsert"){
         //VALIDA-LA-CEDULA----//
         string aux;
         cout<<"pasillo"<<json_map["PasilloInsert"].toInt()<<endl;
         if( EST.getEST()->exists(json_map["PasilloInsert"].toInt())){
-            aux = "T";
-            socket->write(aux.c_str());
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
-            aux = "F";
-            socket->write(aux.c_str());
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
 
-    //-------------SI-EL-JSON-ES-UNA-ID-ADMIN---------------//
+    //-------------T si un producto exsite, F sino---------------//
     if(json_map.firstKey() == "ProdInser"){
         QJsonObject x = json_map["ProdInser"].toJsonObject();
         int pId = x.take("CodPas").toInt();
         int pidprod = x.take("CodProd").toInt();
 
         if(EST.getEST()->getNode(pId)->getProducts()->exists(pidprod)){
-            socket->write("T");
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
-            socket->write("F");
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
 
-    //-------------SI-EL-JSON-ES-UNA-ID-ADMIN---------------//
-    if(json_map.firstKey() == "ProdInserProd"){
+    //-------------T si registra el producto, F sino---------------//
+    if(json_map.firstKey() == "RegistrarProducto"){
 
-        QJsonObject x = json_map["ProdInserProd"].toJsonObject();
+        QJsonObject x = json_map["RegistrarProducto"].toJsonObject();
         int pId = x.take("Ihall").toInt();
         int pidprod = x.take("Iprod").toInt();
         QString namepro = x.take("nameProd").toString();
 
-        Product* aux = new Product(pidprod,namepro.toStdString());
-        EST.getEST()->getNode(pId)->insertProduct(aux);
-        socket->write("Producto insertado");
-
+        if(EST.getEST()->getNode(pId)->getProducts()->exists(pidprod)){
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+        }else{
+            Product* aux = new Product(pidprod,namepro.toStdString());
+            EST.getEST()->getNode(pId)->insertProduct(aux);
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+        }
     }
 
-    //-------------SI-EL-JSON-ES-UNA-ID-ADMIN---------------//
+    //-------------T si registra el pasillo, F sino---------------//
     if(json_map.firstKey() == "RegistrarPasillo"){
         QJsonObject x = json_map["RegistrarPasillo"].toJsonObject();
         int pId = x.take("CodPas").toInt();
@@ -121,33 +140,43 @@ void MyThread::readyRead()
 
         string a;
         if(EST.getEST()->exists(pId)){
-            a = "F";
-            socket->write(a.c_str());
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
             Hall * aux = new Hall(pId, QString::fromStdString(pName.toStdString()));
             EST.getEST()->insert(aux);
-            string p = "T";
-            socket->write(p.c_str());
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
 
-    //-------------SI-EL-JSON-ES-UNA-ID-ADMIN---------------//
+    //-------------T si existe la marca, F sino---------------//
     if(json_map.firstKey() == "inCodBrand"){
         QJsonObject x = json_map["inCodBrand"].toJsonObject();
         int pIdB = x.take("IcodBran").toInt();
         int pId = x.take("Ihall").toInt();
         int pidprod = x.take("Iprod").toInt();
         if(EST.getEST()->getNode(pId)->getProducts()->getProduct(pidprod)->getRN()->exists(pIdB)){
-            socket->write("T");
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
-            socket->write("F");
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
 
     }
 
-    //-------------SI-EL-JSON-ES-UNA-ID-ADMIN---------------//
-    if(json_map.firstKey() == "inCreateBrad"){
-        QJsonObject x = json_map["inCreateBrad"].toJsonObject();
+    //-------------T si registra la marca, F sino---------------//
+    if(json_map.firstKey() == "RegistrarMarcaGondola"){
+        QJsonObject x = json_map["RegistrarMarcaGondola"].toJsonObject();
         int pIdB = x.take("IcodBran").toInt();
         int pId = x.take("Ihall").toInt();
         int pidprod = x.take("Iprod").toInt();
@@ -155,15 +184,38 @@ void MyThread::readyRead()
         int pcant = x.take("Icantidad").toInt();
         QString pName = x.take("Nombre").toString();
 
-        EST.getEST()->getNode(pId)->getProducts()->getProduct(pidprod)
-                ->getRN()->insert(new Brand(pIdB,pName,pcant,pPrecio));
-        socket->write("Marca anadida");
-
+        if(EST.getEST()->exists(pId)){
+            if(EST.getEST()->getNode(pId)->getProducts()->exists(pidprod)){
+                if(!EST.getEST()->getNode(pId)->getProducts()->getProduct(pidprod)->getRN()->exists(pIdB)){
+                    EST.getEST()->getNode(pId)->getProducts()->getProduct(pidprod)
+                            ->getRN()->insert(new Brand(pIdB,pName,pcant,pPrecio));
+                    QJsonObject o;
+                    o.insert("Respuesta","T");
+                    QJsonDocument r(o);
+                    socket->write(r.toJson());
+                }else{
+                    QJsonObject o;
+                    o.insert("Respuesta","F");
+                    QJsonDocument r(o);
+                    socket->write(r.toJson());
+                }
+            }else{
+                QJsonObject o;
+                o.insert("Respuesta","F");
+                QJsonDocument r(o);
+                socket->write(r.toJson());
+            }
+        }else{
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+        }
     }
 
-    //-------------SI-EL-JSON-ES-UNA-ID-ADMIN---------------//
-    if(json_map.firstKey() == "inCreateBradInv"){
-        QJsonObject x = json_map["inCreateBradInv"].toJsonObject();
+    //-------------T si se inserta en el inventario, F sino---------------//
+    if(json_map.firstKey() == "RegistrarMarcaInventario"){
+        QJsonObject x = json_map["RegistrarMarcaInventario"].toJsonObject();
         int pIdB = x.take("IcodBran").toInt();
         int pId = x.take("Ihall").toInt();
         int pidprod = x.take("Iprod").toInt();
@@ -177,10 +229,19 @@ void MyThread::readyRead()
             aux = false;
         }
 
-        Inventory *newInventory = new Inventory(pId,pidprod, pIdB, pName, pcant, aux);
-        EST.getInventory()->insert(newInventory);
-        socket->write("Marca anadidaa inventario");
-
+        if(EST.getInventory()->searchNode(pId,pidprod,pIdB, EST.getInventory()->getRoot())){
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+        }else {
+            Inventory *newInventory = new Inventory(pId,pidprod, pIdB, pName, pcant, aux);
+            EST.getInventory()->insert(newInventory);
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+        }
     }
 
     //---------------------------------------------------//
@@ -188,9 +249,15 @@ void MyThread::readyRead()
     //---------------------------------------------------//
     if(json_map.firstKey() == "StopClient"){
         if(EST.getEST()->getFlagProcess() == "T"){
-            socket->write("T");
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
-            socket->write("F");
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
     //---------------------------------------------------//
@@ -223,13 +290,22 @@ void MyThread::readyRead()
         int AUX =json_map["Proceso"].toInt();
         if(AUX == 1 && EST.getEST()->getFlagStop() == "F" ){
             EST.getEST()->setFlagProcess("T");
-            socket->write("F");
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
         else if (AUX == 2 && EST.getEST()->getFlagStop()== "F" ){
             EST.getEST()->setFlagProcess("F");
-            socket->write("F");
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
-            socket->write("T");
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
     //---------------------------------------------------//
@@ -239,7 +315,7 @@ void MyThread::readyRead()
     //-----------------CLIENTE--------------------------//
     //---------------------------------------------------//
 
-    //-------------SI-EL-JSON-ES-UNA-CED---------------//
+    //-------------Valida la cedula---------------//
     if(json_map.firstKey() == "Cedula"){
         //VALIDA-LA-CEDULA----//
         Client * AUX = this->EST.getClients()->searchClient(json_map["Cedula"].toInt(),EST.getClients()->getRoot());
@@ -265,6 +341,24 @@ void MyThread::readyRead()
         socket->write(pasillos.toJson());
         while(hallList.count()){
             hallList.pop_back();
+        }
+    }
+
+    if(json_map.firstKey() == "ClientesCola"){
+        EST.getCola()->getClientsQueue();
+        QJsonDocument clientesCola(clientsQueue);
+        socket->write(clientesCola.toJson());
+        while(clientsQueue.count()){
+            clientsQueue.pop_back();
+        }
+    }
+
+    if(json_map.firstKey() == "Ciudades"){
+        EST.getCities()->getCities();
+        QJsonDocument city(cities);
+        socket->write(city.toJson());
+        while(cities.count()){
+            cities.pop_back();
         }
     }
 
@@ -456,9 +550,15 @@ void MyThread::readyRead()
         RNNode * product = hallCL->getProducts()->getProduct(secretProd)->getRN()->getRoot();
         //si la marca es valida
         if(hallCL->getProducts()->getProduct(secretProd)->getRN()->validateBand(product,json_map["MarcaAComprar"].toInt())){
-            socket->write("T");
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }else{
-            socket->write("F");
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
         secretBrand = json_map["MarcaAComprar"].toInt();
     }
@@ -914,8 +1014,10 @@ void MyThread::readyRead()
             string aux = "T";
             socket->write(aux.c_str());
         }else{
-            string aux = "F";
-            socket->write(aux.c_str());
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
         }
     }
 }

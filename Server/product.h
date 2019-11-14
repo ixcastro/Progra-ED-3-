@@ -18,7 +18,7 @@ public:
     }
 
     string toString(){
-        return "Codigo: " + to_string(code) + "\tNombre: " + name + "\n";
+        return to_string(code) + "-" + name + "\n";
     }
 
     int getCode(){

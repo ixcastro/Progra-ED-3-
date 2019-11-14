@@ -20,7 +20,7 @@ public:
     }
 
     string toString(){
-        return "Codigo: " + to_string(code) + "\tNombre: " + name.toStdString() + "\n";
+        return to_string(code) + "-" + name.toStdString() + "\n";
     }
 
     int getCode(){

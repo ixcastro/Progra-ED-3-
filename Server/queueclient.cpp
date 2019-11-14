@@ -1,5 +1,7 @@
 #include "queueclient.h"
 
+QJsonArray clientsQueue;
+
 QueueClient::QueueClient(){
     frente = fondo = nullptr;
 }
