@@ -429,7 +429,6 @@ void MyThread::readyRead()
             while(hallProdBrandList.count()){
                 hallProdBrandList.pop_back();
             }
-
         }
     }
 
@@ -441,10 +440,28 @@ void MyThread::readyRead()
         int pidprod = x.take("Icodprod").toInt();
         int pcant = x.take("Iprecio").toInt();
 
+        QJsonObject ob;
         ABBNode * hallCL = EST.getEST()->getNode(pId);
-        hallCL->getProducts()->getProduct(pidprod)->getRN()->getBrand(pIdB)->getBrand()->setPrice(pcant);
 
-        socket->write("Precio Cambiado");
+        if(hallCL){
+            AVLNode *prodCL = hallCL->getProducts()->getProduct(pidprod);
+            if(prodCL){
+                RNNode *brandCL = prodCL->getRN()->getBrand(pIdB);
+                if(brandCL){
+                    brandCL->getBrand()->setPrice(pcant);
+                    ob.insert("Respuesta","T");
+                }else{
+                    ob.insert("Respuesta","F");
+                }
+            }else{
+                ob.insert("Respuesta","F");
+            }
+        }else{
+            ob.insert("Respuesta","F");
+        }
+
+        QJsonDocument doc(ob);
+        socket->write(doc.toJson());
     }
 
     //-------------SI-EL-JSON-ES-UN-PRECIO---------------//
@@ -461,8 +478,17 @@ void MyThread::readyRead()
             aux = false;
         }
 
-        EST.getInventory()->searchNode(pId, pidprod, pIdB, EST.getInventory()->getRoot())->getInventory()->setIsBasket(aux);
-        socket->write("Canasta Cambiada");
+        QJsonObject ob;
+
+        if(EST.getInventory()->searchNode(pId, pidprod, pIdB, EST.getInventory()->getRoot())){
+            EST.getInventory()->searchNode(pId, pidprod, pIdB, EST.getInventory()->getRoot())->getInventory()->setIsBasket(aux);
+            ob.insert("Respuesta","T");
+        }else{
+            ob.insert("Respuesta","F");
+        }
+
+        QJsonDocument doc(ob);
+        socket->write(doc.toJson());
     }
 
     //-------------SI-EL-JSON-ES-UN-PRECIO---------------//
