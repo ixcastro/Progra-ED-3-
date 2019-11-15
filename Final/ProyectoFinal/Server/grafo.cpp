@@ -1,5 +1,6 @@
 #include "grafo.h"
 #include <QDebug>
+
 //---------------------//
 #include <iostream>
 #include <fstream>
@@ -359,6 +360,7 @@ QVector<QVector<int>> Grafo::getConnections(){
 
 void Grafo::dijkstra(string pDataS, string pDataF){
 
+   // cout<<"hola"<<endl;
     //---------------------//
     myfile.open ("Dijkstra.txt");
     //---------------------//
@@ -375,7 +377,7 @@ void Grafo::dijkstra(string pDataS, string pDataF){
     Path.push_back(cities[pFinal]->getName().toStdString());// SET DEL PRIMER DATO DEL PATH
 
     while(checkAll()){// MIENTRAS QUE AUN EXISTAN NODOS SIN VISITAR
-        myfile << "--------------------------------------"<<endl;
+        myfile<< "--------------------------------------"<<endl;
         myfile<<"ANALIZANDO: "<<cities[getPost()]->getName().toStdString()<<endl;
 
         getAdyacente();//BUSQUEDA DE NODOS ADYACENTES
@@ -385,23 +387,23 @@ void Grafo::dijkstra(string pDataS, string pDataF){
     }
 
     showFinalTable();// MUESTRA LA TABLA FINAL
-    myfile << "--------------------------------------"<<endl;
-    myfile << " EL PESO DEL CAMINO MAS CORTO ES : " << getFinal()[pFinal]<<endl;
-    myfile << "--------------------------------------"<<endl;
+    myfile<< "--------------------------------------"<<endl;
+    myfile<< " EL PESO DEL CAMINO MAS CORTO ES : " << getFinal()[pFinal]<<endl;
+    myfile<< "--------------------------------------"<<endl;
 
 
     while(getPostInv()!=pStart){// MIENTRAS NO SE LLEGUE AL PRIMER NODO (START)
         getAdyacenteInverso();// BUSQUEDA DE ADYACENTES INVERSOS
     }
 
-    myfile << "--------------------------------------"<<endl;
-    myfile << "EL RECORRDIO DE VERTICES ES :"<<endl;
+    myfile<< "--------------------------------------"<<endl;
+    myfile<< "EL RECORRDIO DE VERTICES ES :"<<endl;
     showPath();// MUESTRA EL PATH
-    myfile << "--------------------------------------"<<endl;
+    cout << "--------------------------------------"<<endl;
 
 
 
-      myfile.close();
+     myfile.close();
 
 }
 
@@ -419,11 +421,11 @@ void Grafo::getAdyacente(){
     // vector de adyacentes
     vector<int> pTemp = getTemp();
 
-    myfile << "--------------------------------------"<<endl;
+    myfile<< "--------------------------------------"<<endl;
     myfile<<"LOS ADYACENTES DE "<<cities[pPos]->getName().toStdString()<<" SON: "<<endl;
-    myfile << "--------------------------------------"<<endl;
-    myfile << " CIUDAD |  DATO  | DATO MAS ACUMULADO "<<endl;
-    myfile << "--------------------------------------"<<endl;
+    myfile<< "--------------------------------------"<<endl;
+    myfile<< " CIUDAD |  DATO  | DATO MAS ACUMULADO "<<endl;
+    myfile<< "--------------------------------------"<<endl;
 
     // recorre la matriz
     for(int j=0; j < pTemp.size(); j++){
@@ -452,7 +454,7 @@ void Grafo::getAdyacente(){
                     myfile<<"    "<<cities[j]->getName().toStdString()<<"   |    "<<
                             getConnections()[pPos][j]<< "   |    "<<
                             getConnections()[pPos][j] <<"   +   "<< getPost()<<"  =  "<<  getConnections()[pPos][j] + getAcumulado()<<endl;
-                    myfile << "--------------------------------------"<<endl;
+                    myfile<< "--------------------------------------"<<endl;
                 }
             }
 
@@ -466,10 +468,10 @@ void Grafo::getAdyacente(){
     // set al tem
     setTemp(pTemp);
     myfile<<endl;
-    myfile <<"--------------------------------------"<<endl;
+    myfile<<"--------------------------------------"<<endl;
     myfile<<"            VECTOR ANALIZADO           "<<endl;
-    myfile <<"--------------------------------------"<<endl;
-    myfile <<"   "<<vtS <<endl;
+    myfile<<"--------------------------------------"<<endl;
+    myfile<<"   "<<vtS <<endl;
     myfile<<"--------------------------------------"<<endl;
 }
 
@@ -491,9 +493,9 @@ void Grafo::getMin(){
 
     myfile<<endl;
     myfile<<endl;
-    myfile << "--------------------------------------"<<endl;
-    myfile << "   BUSCANDO EL CAMINO MAS CORTO        "<<endl;
-    myfile << "--------------------------------------"<<endl;
+    myfile<< "--------------------------------------"<<endl;
+    myfile<< "   BUSCANDO EL CAMINO MAS CORTO        "<<endl;
+    myfile<< "--------------------------------------"<<endl;
     myfile<<endl;
     myfile<<endl;
 
@@ -509,15 +511,15 @@ void Grafo::getMin(){
         }
     }
 
-    myfile << "--------------------------------------"<<endl;
-    myfile << "EL CAMINO MAS CORTO ES  : "<<cities[save]->getName().toStdString()<<endl;
-    myfile << "--------------------------------------"<<endl;
-    myfile << "EL VALOR DEL ACUMULADO ES: "<<min<<endl;
-    myfile << "--------------------------------------"<<endl;
-    myfile << "SELECCIONAMOS EL VERTICE : "<< cities[save]->getName().toStdString()<<endl;
-    myfile << "--------------------------------------"<<endl;
-    myfile << "COMO NUEVA ETIQUETA FINAL EN LA TABLA"<<endl;
-    myfile << "--------------------------------------"<<endl;
+    myfile<< "--------------------------------------"<<endl;
+    myfile<< "EL CAMINO MAS CORTO ES  : "<<cities[save]->getName().toStdString()<<endl;
+    myfile<< "--------------------------------------"<<endl;
+    myfile<< "EL VALOR DEL ACUMULADO ES: "<<min<<endl;
+    myfile<< "--------------------------------------"<<endl;
+    myfile<< "SELECCIONAMOS EL VERTICE : "<< cities[save]->getName().toStdString()<<endl;
+    myfile<< "--------------------------------------"<<endl;
+    myfile<< "COMO NUEVA ETIQUETA FINAL EN LA TABLA"<<endl;
+    myfile<< "--------------------------------------"<<endl;
 
     setPost(save);
     setAcumulado(min);
@@ -561,7 +563,7 @@ void Grafo::showTable(){
     myfile<<endl;
     myfile<<endl;
     myfile<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
-    myfile << "--------------------------------------"<<endl;
+    myfile<< "--------------------------------------"<<endl;
     myfile<<"   CIUDAD  |  FINAL   |   TEMP     "<<endl;
     myfile<< "--------------------------------------"<<endl;
 

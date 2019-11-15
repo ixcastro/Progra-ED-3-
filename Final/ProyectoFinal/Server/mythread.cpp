@@ -78,8 +78,16 @@ void MyThread::readyRead()
         cout<<"Solicitud"<<endl;
         QJsonDocument doc = EST.getGrafo()->kruskalToJson();
         socket->write(doc.toJson());
-
         cout<<"Respuesta"<<endl;
+    }
+
+    if(json_map.firstKey() == "DJ"){
+        cout<<"Solicitud"<<endl;
+        EST.getGrafo()->dijkstra("Bodega","Supermercado");
+        QJsonObject o;
+        o.insert("Respuesta","T");
+        QJsonDocument r(o);
+        socket->write(r.toJson());
     }
 
     //-------------T si un pasllo existe, F sino---------------//
