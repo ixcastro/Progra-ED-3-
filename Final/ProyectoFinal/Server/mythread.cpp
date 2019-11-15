@@ -75,10 +75,13 @@ void MyThread::readyRead()
     }
 
     if(json_map.firstKey() == "Kruskal"){
-        cout<<"Solicitud"<<endl;
         QJsonDocument doc = EST.getGrafo()->kruskalToJson();
         socket->write(doc.toJson());
-        cout<<"Respuesta"<<endl;
+    }
+
+    if(json_map.firstKey() == "Prim"){
+        QJsonDocument doc = EST.getGrafo()->primToJson();
+        socket->write(doc.toJson());
     }
 
     if(json_map.firstKey() == "DJ"){

@@ -117,6 +117,7 @@ public:
     int getCityCode(int number);
     QVector<Connection *> kruskal();
     QVector<Connection *> prim();
+    QJsonDocument primToJson();
 private:
     int PostInv;
     int Post;

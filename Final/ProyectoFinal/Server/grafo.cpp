@@ -253,6 +253,44 @@ void Grafo::readFileConnections(string fileName){
     }
 }
 
+QJsonDocument Grafo::primToJson(){
+    QJsonArray ar;
+
+    QVector<Connection*> pri = prim();
+
+    int peso = 0;
+
+
+    cout << pri.size() << endl;
+    for(int i=0; i<pri.size(); i++){
+        int a = pri[i]->cityA->getNumMatrix();
+        int b = pri[i]->cityB->getNumMatrix();
+        int p = pri[i]->distance;
+        QJsonObject c; //Inserta a connections
+        c.insert("A",a);
+        c.insert("B",b);
+        c.insert("P",p);
+        peso += p;
+        cout<<"A "<<a<<"  B "<<b<<"  P "<<p<<endl;
+        ar.append(c);
+    }
+
+    QJsonObject connect;
+    connect.insert("Connections",ar);
+    connect.insert("NumCities",numCities);
+    connect.insert("Peso",peso);
+
+    QJsonArray ciudades;
+    for(int i=0; i<numCities; i++){
+        ciudades.append(cities[i]->getCode());
+    }
+
+    connect.insert("Codigos",ciudades);
+    qDebug()<<connect;
+    QJsonDocument informacionCiudades(connect);
+    return informacionCiudades;
+}
+
 QJsonDocument Grafo::kruskalToJson(){ //Me devuelve Json para enviar
     QJsonArray ar;
 
@@ -270,6 +308,7 @@ QJsonDocument Grafo::kruskalToJson(){ //Me devuelve Json para enviar
         c.insert("A",a);
         c.insert("B",b);
         c.insert("P",p);
+        peso += p;
         cout<<"A "<<a<<"  B "<<b<<"  P "<<p<<endl;
         ar.append(c);
     }
