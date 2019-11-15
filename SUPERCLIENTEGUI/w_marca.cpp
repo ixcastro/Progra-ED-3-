@@ -66,21 +66,11 @@ void  W_MARCA::shareButton(QJsonArray pData, string path){
 
 void W_MARCA::commonSlot(){
 
-    cout<<"----------------------"<<endl;
+
     QPushButton *b = (QPushButton*)sender();
     QString name = b->text();
-    QStringList lista = name.split(" ");
-
-    for(int i =0; i<lista.size();i++){
-       // if(lista[i]==":"){
-            cout<<lista[i].toStdString()<<endl;
-        //}
-    }
-
-
-    PATH =  PATH +"-"+lista[2].toStdString();
-
-
+    QStringList lista = name.split("-");
+    PATH =  PATH +"-"+lista.first().toStdString();
     cout<<"->"<<PATH<<endl;
 }
 
