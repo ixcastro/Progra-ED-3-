@@ -2,6 +2,8 @@
 #include "ui_w_registro.h"
 #include "library.h"
 #include "socketclient.h"
+#include "QMessageBox"
+#include "w_login.h"
 
 W_REGISTRO::W_REGISTRO(QWidget *parent) :
     QMainWindow(parent),
@@ -24,26 +26,56 @@ void W_REGISTRO::on_pushButton_clicked()
     int CIUDAD = ui->lineEdit_6->text().toInt();//INT
 
     QJsonObject recordObjects;
-    recordObjects.insert("Nombre",QJsonValue::fromVariant(NOMBRE.c_str()));
+
     recordObjects.insert("Cedula",QJsonValue::fromVariant(CED));
-    recordObjects.insert("Telefono",QJsonValue::fromVariant(TEL.c_str()));
+    recordObjects.insert("Nombre",QJsonValue::fromVariant(NOMBRE.c_str()));
+    recordObjects.insert("CodigoCiudad",QJsonValue::fromVariant(CIUDAD));
+    recordObjects.insert("Phone",QJsonValue::fromVariant(TEL.c_str()));
     recordObjects.insert("Correo",QJsonValue::fromVariant(CORREO.c_str()));
-    recordObjects.insert("Ciudad",QJsonValue::fromVariant(CIUDAD));
 
 
     QJsonObject record;
-    record.insert("Registro",recordObjects);
+    record.insert("EncolarCliente",recordObjects);
     QJsonDocument docIN(record);
     QJsonDocument D = SocketClient::getInstance()->request(docIN);
     QJsonObject ob = D.object();
-
-
-
-
-
-
+    if(ob.take("Respuesta")=="T"){
+        QMessageBox* q = new QMessageBox();
+        q->setText("Se ha tomado los datos del cliente");
+        q->show();
+        //cout<<"emcolado"<<endl;
+    }else{
+        QMessageBox* q = new QMessageBox();
+        q->setText("Error");
+        q->show();
+    }
 
 
 
 
 }
+
+void W_REGISTRO::on_pushButton_2_clicked()
+{
+
+
+
+    W_LOGIN *a = new W_LOGIN();
+    a->show();
+    this->close();
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

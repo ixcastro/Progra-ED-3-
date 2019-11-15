@@ -4,6 +4,7 @@ debug/socketclient.o
 debug/w_canasta.o
 debug/w_cantidad.o
 debug/w_compra.o
+debug/w_consulta.o
 debug/w_login.o
 debug/w_marca.o
 debug/w_menu.o
@@ -15,6 +16,7 @@ debug/w_select.o
 debug/moc_w_canasta.o
 debug/moc_w_cantidad.o
 debug/moc_w_compra.o
+debug/moc_w_consulta.o
 debug/moc_w_login.o
 debug/moc_w_marca.o
 debug/moc_w_menu.o

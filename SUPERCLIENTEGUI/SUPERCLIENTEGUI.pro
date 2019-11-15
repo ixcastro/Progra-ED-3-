@@ -23,6 +23,7 @@ SOURCES += \
     w_canasta.cpp \
     w_cantidad.cpp \
     w_compra.cpp \
+    w_consulta.cpp \
     w_login.cpp \
     w_marca.cpp \
     w_menu.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     w_canasta.h \
     w_cantidad.h \
     w_compra.h \
+    w_consulta.h \
     w_login.h \
     w_marca.h \
     w_menu.h \
@@ -51,6 +53,7 @@ FORMS += \
     w_canasta.ui \
     w_cantidad.ui \
     w_compra.ui \
+    w_consulta.ui \
     w_login.ui \
     w_marca.ui \
     w_menu.ui \

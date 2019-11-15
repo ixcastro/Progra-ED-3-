@@ -27,6 +27,7 @@ public:
     QLabel *label;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -34,7 +35,7 @@ public:
     {
         if (W_SELECT->objectName().isEmpty())
             W_SELECT->setObjectName(QString::fromUtf8("W_SELECT"));
-        W_SELECT->resize(316, 190);
+        W_SELECT->resize(321, 242);
         centralwidget = new QWidget(W_SELECT);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
@@ -46,10 +47,13 @@ public:
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         pushButton_2->setGeometry(QRect(160, 80, 141, 31));
+        pushButton_3 = new QPushButton(centralwidget);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+        pushButton_3->setGeometry(QRect(70, 130, 171, 31));
         W_SELECT->setCentralWidget(centralwidget);
         menubar = new QMenuBar(W_SELECT);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 316, 21));
+        menubar->setGeometry(QRect(0, 0, 321, 21));
         W_SELECT->setMenuBar(menubar);
         statusbar = new QStatusBar(W_SELECT);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -66,6 +70,7 @@ public:
         label->setText(QApplication::translate("W_SELECT", "LA CED NO ES CORRECTA SELECCIONE UNA OPCION ", nullptr));
         pushButton->setText(QApplication::translate("W_SELECT", "INTENTAR DE NUEVO", nullptr));
         pushButton_2->setText(QApplication::translate("W_SELECT", "REGISTRARSE", nullptr));
+        pushButton_3->setText(QApplication::translate("W_SELECT", "CONSULTAR", nullptr));
     } // retranslateUi
 
 };

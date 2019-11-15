@@ -37,6 +37,7 @@ public:
     QLineEdit *lineEdit_5;
     QLineEdit *lineEdit_6;
     QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -44,7 +45,7 @@ public:
     {
         if (W_REGISTRO->objectName().isEmpty())
             W_REGISTRO->setObjectName(QString::fromUtf8("W_REGISTRO"));
-        W_REGISTRO->resize(233, 308);
+        W_REGISTRO->resize(234, 358);
         centralwidget = new QWidget(W_REGISTRO);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
@@ -83,10 +84,13 @@ public:
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(30, 210, 161, 41));
+        pushButton_2 = new QPushButton(centralwidget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(30, 260, 161, 41));
         W_REGISTRO->setCentralWidget(centralwidget);
         menubar = new QMenuBar(W_REGISTRO);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 233, 21));
+        menubar->setGeometry(QRect(0, 0, 234, 21));
         W_REGISTRO->setMenuBar(menubar);
         statusbar = new QStatusBar(W_REGISTRO);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -107,6 +111,7 @@ public:
         label_5->setText(QApplication::translate("W_REGISTRO", "CORREO:", nullptr));
         label_6->setText(QApplication::translate("W_REGISTRO", "CIUDAD:", nullptr));
         pushButton->setText(QApplication::translate("W_REGISTRO", "REGISTRAR", nullptr));
+        pushButton_2->setText(QApplication::translate("W_REGISTRO", "VOLVER", nullptr));
     } // retranslateUi
 
 };

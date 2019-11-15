@@ -4,6 +4,7 @@ release/socketclient.o
 release/w_canasta.o
 release/w_cantidad.o
 release/w_compra.o
+release/w_consulta.o
 release/w_login.o
 release/w_marca.o
 release/w_menu.o
@@ -15,6 +16,7 @@ release/w_select.o
 release/moc_w_canasta.o
 release/moc_w_cantidad.o
 release/moc_w_compra.o
+release/moc_w_consulta.o
 release/moc_w_login.o
 release/moc_w_marca.o
 release/moc_w_menu.o
