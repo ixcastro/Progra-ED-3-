@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
@@ -22,6 +23,7 @@ class Ui_W_Canasta
 {
 public:
     QWidget *centralwidget;
+    QLineEdit *lineEdit;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -29,13 +31,16 @@ public:
     {
         if (W_Canasta->objectName().isEmpty())
             W_Canasta->setObjectName(QString::fromUtf8("W_Canasta"));
-        W_Canasta->resize(374, 407);
+        W_Canasta->resize(376, 464);
         centralwidget = new QWidget(W_Canasta);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        lineEdit = new QLineEdit(centralwidget);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit->setGeometry(QRect(10, 380, 351, 31));
         W_Canasta->setCentralWidget(centralwidget);
         menubar = new QMenuBar(W_Canasta);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 374, 21));
+        menubar->setGeometry(QRect(0, 0, 376, 21));
         W_Canasta->setMenuBar(menubar);
         statusbar = new QStatusBar(W_Canasta);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

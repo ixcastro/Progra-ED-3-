@@ -66,11 +66,29 @@ void  W_MARCA::shareButton(QJsonArray pData, string path){
 
 void W_MARCA::commonSlot(){
 
+
     QPushButton *b = (QPushButton*)sender();
     QString name = b->text();
     QStringList lista = name.split("-");
     PATH =  PATH +"-"+lista.first().toStdString();
-    cout<<"->"<<PATH<<endl;
+
+    QString str = QString::fromUtf8(PATH.c_str());
+    QStringList listaData = str.split("-");
+
+
+    QJsonObject recordObjects;
+    recordObjects.insert("Pasillo",QJsonValue::fromVariant(listaData[0].toInt()));
+    recordObjects.insert("Producto",QJsonValue::fromVariant(listaData[1].toInt()));
+    recordObjects.insert("Marca",QJsonValue::fromVariant(listaData[2].toInt()));
+
+    QJsonObject record;
+    record.insert("Precio",recordObjects);
+    QJsonDocument docIN(record);
+    QJsonDocument D = SocketClient::getInstance()->request(docIN);
+    QJsonObject ob = D.object();
+
+    ui->lineEdit->setText(QJsonValue::fromVariant(ob.take("Precio")).toString());
+
 }
 
 

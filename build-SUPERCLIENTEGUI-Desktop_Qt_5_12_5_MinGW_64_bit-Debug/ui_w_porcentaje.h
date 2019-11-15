@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
@@ -22,6 +23,7 @@ class Ui_W_PORCENTAJE
 {
 public:
     QWidget *centralwidget;
+    QLineEdit *lineEdit;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -29,13 +31,16 @@ public:
     {
         if (W_PORCENTAJE->objectName().isEmpty())
             W_PORCENTAJE->setObjectName(QString::fromUtf8("W_PORCENTAJE"));
-        W_PORCENTAJE->resize(474, 373);
+        W_PORCENTAJE->resize(359, 465);
         centralwidget = new QWidget(W_PORCENTAJE);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        lineEdit = new QLineEdit(centralwidget);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit->setGeometry(QRect(10, 380, 331, 41));
         W_PORCENTAJE->setCentralWidget(centralwidget);
         menubar = new QMenuBar(W_PORCENTAJE);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 474, 21));
+        menubar->setGeometry(QRect(0, 0, 359, 21));
         W_PORCENTAJE->setMenuBar(menubar);
         statusbar = new QStatusBar(W_PORCENTAJE);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

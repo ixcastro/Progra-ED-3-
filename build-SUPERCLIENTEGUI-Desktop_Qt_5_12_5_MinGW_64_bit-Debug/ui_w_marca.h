@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
@@ -22,6 +23,7 @@ class Ui_W_MARCA
 {
 public:
     QWidget *centralwidget;
+    QLineEdit *lineEdit;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -29,13 +31,16 @@ public:
     {
         if (W_MARCA->objectName().isEmpty())
             W_MARCA->setObjectName(QString::fromUtf8("W_MARCA"));
-        W_MARCA->resize(345, 411);
+        W_MARCA->resize(367, 463);
         centralwidget = new QWidget(W_MARCA);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        lineEdit = new QLineEdit(centralwidget);
+        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit->setGeometry(QRect(10, 380, 341, 31));
         W_MARCA->setCentralWidget(centralwidget);
         menubar = new QMenuBar(W_MARCA);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 345, 21));
+        menubar->setGeometry(QRect(0, 0, 367, 21));
         W_MARCA->setMenuBar(menubar);
         statusbar = new QStatusBar(W_MARCA);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
