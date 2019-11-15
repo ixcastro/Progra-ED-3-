@@ -52,31 +52,24 @@ void W_CANTIDAD::on_pushButton_clicked()
     //    QJsonValue QJsonObject::value(const QString &key) const
 
 
-    string g ;
-    QJsonArray npcArray = ob["Respuesta"].toArray();
+    QString g = ob.take("Respuesta").toString();
+    g.toStdString();
 
+    cout<<"ESTA ES LA RESPUESTA : "<<g.toStdString()<<endl;
 
-    QString s = "";
-    for(int i=0; i< npcArray.size(); i++){
-
-        s +=   npcArray[i].toString();
-    }
-
-    cout<<"ESTA ES LA RESPUESTA : "<<s.toStdString()<<endl;
-
-    if(ob.take("Respuesta") == "A"
+    if(g.toStdString() == "A"
             ){
         QMessageBox* q = new QMessageBox();
-        q->setText("A");
+        q->setText("No se puede comprar");
         q->show();
 
-    }else if(ob.take("Respuesta") =="B"){
+    }else if(g.toStdString() =="B"){
         QMessageBox* q = new QMessageBox();
         q->setText("Producto en el carrito");
         q->show();
     }else{
         QMessageBox* q = new QMessageBox();
-        q->setText("X");
+        q->setText(g);
         q->show();
 
     }
