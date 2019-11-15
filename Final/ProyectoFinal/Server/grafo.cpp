@@ -1,16 +1,17 @@
 #include "grafo.h"
 
 Grafo::Grafo(){
+    numCities = 0;
 }
 
-Grafo::Grafo(int numCities, vector<City*> nCities, vector<Connection*> nConnectionsList){
+Grafo::Grafo(int numCities, QVector<City*> nCities, QVector<Connection*> nConnectionsList){
     cities = nCities;
-    connections = vector<vector<int>>(cities.size());
+    connections = QVector<QVector<int>>(cities.size());
     this->numCities = numCities;
     connectionsList = nConnectionsList;
 
     for (int i = 0; i < numCities; i++)
-        connections[i] = vector<int>(cities.size(), 0); //Le asigna un valor muy grande a cada espacio de la matriz
+        connections[i] = QVector<int>(cities.size(), 0); //Le asigna un valor muy grande a cada espacio de la matriz
 
     for(int j=0; j<connectionsList.size(); j++){
         int a = connectionsList[j]->cityA->getNumMatrix();
@@ -37,18 +38,27 @@ Grafo::Grafo(int numCities, vector<City*> nCities, vector<Connection*> nConnecti
 
 }
 
-vector<vector<int>> Grafo::kruskal(){
-    vector<vector<int>> ady = this->connections;
-    vector<vector<int>> arbol(cities.size());
-    vector<int> pertenece(cities.size()); //Indica a que arbol pertenece el nodo
+int Grafo::getCityCode(int number){
+    for(City *c : cities){
+        if(c->getNumMatrix() == number){
+            return c->getCode();
+        }
+    }
+    return -1;
+}
+
+QVector<QVector<int>> Grafo::kruskal(){
+    QVector<QVector<int>> ady = this->connections;
+    QVector<QVector<int>> arbol(cities.size());
+    QVector<int> pertenece(cities.size()); //Indica a que arbol pertenece el nodo
 
     for(int i=0; i<numCities; i++){
-        arbol[i] = vector<int>(cities.size(),0);
+        arbol[i] = QVector<int>(cities.size(),0);
         pertenece[i] = i;
     }
 
-    int nodoA;
-    int nodoB;
+    int nodoA = 0;
+    int nodoB = 0;
     int arcos = 1;
     while(arcos < numCities){
         //Encontrar el arco mínimo que no forma cíclo y guardar los nodos y la distancia
@@ -81,26 +91,18 @@ vector<vector<int>> Grafo::kruskal(){
     return arbol;
 }
 
-void Grafo::printKruskal(vector<vector<int>> arbol){
-    cout<<"Kruskal..."<<endl;
-    for(int i=0; i<arbol.size(); i++){
-        for(int j=0; j<arbol.size(); j++){
-            cout<<arbol[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-}
+
 
 int Grafo::primAlgorithm(){
-    vector<vector<int>> matrix = this->connections;
+    QVector<QVector<int>> matrix = this->connections;
     //vector<vector<int>> arbol(cities.size());
 
     int minDistance;
     int minor;
     int z;
-    vector<int> cost(cities.size()); //Indica a que arbol pertenece el nodo
-    vector<int> closest(cities.size()); //Indica a que arbol pertenece el nodo
-    vector<bool> W(cities.size()); //Indica a que arbol pertenece el nodo
+    QVector<int> cost(cities.size()); //Indica a que arbol pertenece el nodo
+    QVector<int> closest(cities.size()); //Indica a que arbol pertenece el nodo
+    QVector<bool> W(cities.size()); //Indica a que arbol pertenece el nodo
 
     for (int i = 0; i < cities.size(); i++) {
         W[i] = false;
@@ -225,7 +227,7 @@ int Grafo::prims(){
 
 int Grafo::prim(){
     int cost[cities.size()][cities.size()];
-    vector<vector<int>> Gg = this->connections;
+    QVector<QVector<int>> Gg = this->connections;
     //int Gg[cities.size()][cities.size()];
     int span[cities.size()][cities.size()];
     int u,v,min_distance,distance[cities.size()],from[cities.size()];
@@ -318,18 +320,101 @@ void Grafo::readFile(string fileName){ //Primero leo las ciudades
         exit(1);
     }
 
-    int pNumCities = 0;
-    vector<City*> pCities;
-    vector<Connection*> pConnectionsList;
+    int i = 0;
+    while(!file.eof()){
+        getline(file,t);
+        text = QString::fromStdString(t);
+        QStringList list = text.split(";");
+        City *c = new City(list[0].toInt(),i,list[1]);
+        if(!cities.contains(c)){
+            cities.append(c);
+            i++;
+        }
+    }
+
+    numCities = i+1;
+
+    for(City *c : cities){
+        cout<<c->toString()<<endl;
+    }
+}
+
+void Grafo::readFileConnections(string fileName){
+    ifstream file;
+    file.open(fileName,ios::in);
+
+    string t;
+    QString text;
+
+    if(file.fail()){
+        cout<<"No se pudo abrir el archivo de conexiones"<<endl;
+        exit(1);
+    }
 
     while(!file.eof()){
         getline(file,t);
         text = QString::fromStdString(t);
+        QStringList list = text.split(";");
+        bool check = false;
+        bool check2 = false;
 
+        for(City *c : cities){
+            if(c->getCode() == list[0].toInt()){
+                check = true;
+            }
+            if(c->getCode() == list[1].toInt()){
+                check2 = true;
+            }
+        }
+
+        if(check && check2){
+            City *a = getCity(list[0].toInt());
+            City *b = getCity(list[1].toInt());
+            connectionsList.append(new Connection(a,b,list[2].toInt()));
+        }
     }
-
 }
 
+QJsonDocument Grafo::kruskalToJson(){ //Me devuelve Json para enviar
+    QJsonArray ar;
+    QVector<QVector<int>> krus = kruskal();
+
+    int peso = 0;
+
+    for(int i=0; i<krus.size(); i++){
+        for(int j=0; j<krus.size(); i++){
+            if(krus[i][j] != 0){
+                krus[j][i] = 0;
+                peso += krus[i][j];
+                int a = getCityCode(i);
+                int b = getCityCode(j);
+                int p = krus[i][j];
+                QJsonObject c; //Inserta a connections
+                c.insert("A",a);
+                c.insert("B",b);
+                c.insert("P",p);
+                ar.append(c);
+            }
+        }
+    }
+
+    QJsonObject connect;
+    connect.insert("Connections",ar);
+    connect.insert("NumCities",numCities);
+    connect.insert("Peso",peso);
+
+    QJsonDocument informacionCiudades(connect);
+    return informacionCiudades;
+}
+
+City* Grafo::getCity(int code){
+    for(City *c : cities){
+        if(c->getCode() == code){
+            return c;
+        }
+    }
+    return nullptr;
+}
 
 
 //------------------------JM----------------------------//
@@ -383,7 +468,7 @@ void Grafo::setFinal(vector<int> pV){
 
 //--------------------GETCONNECTION--------------------//
 
-vector<vector<int>> Grafo::getConnections(){
+QVector<QVector<int>> Grafo::getConnections(){
     return  connections;
 }
 

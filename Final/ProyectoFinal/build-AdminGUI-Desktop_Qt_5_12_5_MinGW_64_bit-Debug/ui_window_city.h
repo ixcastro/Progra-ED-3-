@@ -11,8 +11,8 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -31,7 +31,7 @@ public:
     QPushButton *back;
     QPushButton *insertarPas_3;
     QPushButton *insertarPas;
-    QListWidget *listWidget;
+    QGraphicsView *graphicsView;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -39,7 +39,7 @@ public:
     {
         if (window_city->objectName().isEmpty())
             window_city->setObjectName(QString::fromUtf8("window_city"));
-        window_city->resize(939, 480);
+        window_city->resize(1072, 571);
         centralwidget = new QWidget(window_city);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         insertarPas_2 = new QPushButton(centralwidget);
@@ -60,13 +60,13 @@ public:
         insertarPas = new QPushButton(centralwidget);
         insertarPas->setObjectName(QString::fromUtf8("insertarPas"));
         insertarPas->setGeometry(QRect(20, 30, 441, 71));
-        listWidget = new QListWidget(centralwidget);
-        listWidget->setObjectName(QString::fromUtf8("listWidget"));
-        listWidget->setGeometry(QRect(500, 71, 401, 301));
+        graphicsView = new QGraphicsView(centralwidget);
+        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setGeometry(QRect(500, 50, 561, 451));
         window_city->setCentralWidget(centralwidget);
         menubar = new QMenuBar(window_city);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 939, 17));
+        menubar->setGeometry(QRect(0, 0, 1072, 20));
         window_city->setMenuBar(menubar);
         statusbar = new QStatusBar(window_city);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

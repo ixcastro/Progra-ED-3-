@@ -40,6 +40,8 @@ void MyThread::run()
     exec();
 }
 
+
+
 ///-SET-MSG-SERVER-CLIENT-//
 void MyThread::readyRead()
 {
@@ -70,6 +72,11 @@ void MyThread::readyRead()
             QJsonDocument r(o);
             socket->write(r.toJson());
         }
+    }
+
+    if(json_map.firstKey() == "Kruskal"){
+        QJsonDocument doc = EST.getGrafo()->kruskalToJson();
+        socket->write(doc.toJson());
     }
 
     //-------------T si un pasllo existe, F sino---------------//

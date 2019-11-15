@@ -10,6 +10,7 @@
 #include "saleslist.h"
 #include "reportlistfloat.h"
 #include "reportlistint.h"
+#include "grafo.h"
 
 class managerEST{
 
@@ -43,6 +44,9 @@ public:
 
     //-----------------------------------------//
 
+    Grafo *getGrafo();
+    void readGrafo(string,string);
+
 private:
     string FlagProcess ="F";
     string FlagStop = "F";
@@ -65,5 +69,7 @@ private:
     ReportListInt *reporteCliente = new ReportListInt();
 
     ReportListFloat *facturasClientes = new ReportListFloat();
+
+    Grafo *grafo = new Grafo();
 };
 #endif // MANAGEREST_H

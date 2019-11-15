@@ -2,6 +2,9 @@
 #define GRAFO_H
 #include "city.h"
 #include <vector>
+#include <QVector>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 class Connection{
     int distance;
@@ -26,24 +29,25 @@ public:
 
 class Grafo{
     const int INF = numeric_limits<int>::max();
-    vector<City*> cities; //Lista de ciudades
+    QVector<City*> cities; //Lista de ciudades
     int numCities;
-    vector<vector<int>> connections; //Matriz adyacencia con pesos
-    vector<Connection*> connectionsList; //Lista de conexiones
+    QVector<QVector<int>> connections; //Matriz adyacencia con pesos
+    QVector<Connection*> connectionsList; //Lista de conexiones
 
 public:
     Grafo();
-    Grafo(int numCities, vector<City*> nCities, vector<Connection*> nConnectionsList);
+    Grafo(int numCities, QVector<City*> nCities, QVector<Connection*> nConnectionsList);
 
-    vector<vector<int>> kruskal();
+    QVector<QVector<int>> kruskal();
     int findCityConnection(int,int); //Le devuelve el peso de una conexion
-    void printKruskal(vector<vector<int>>);
+    void printKruskal(QVector<QVector<int>>);
 
     int primAlgorithm();
     int prims();
     int prim();
 
     void readFile(string);
+    QJsonDocument kruskalToJson();
 
 
 
@@ -62,7 +66,7 @@ public:
     //---------------GET---------------//
 
     // VECTOR DE LA MATRX
-    vector<vector<int>>getConnections();
+    QVector<QVector<int>>getConnections();
 
     // POSICION DE LA TABLA
     int getPost();
@@ -111,6 +115,9 @@ public:
     // OBTIENE EL NUMERO DE NODO SEGUN SU LETRA
     int getPosLetra(string pData);
 
+    void readFileConnections(string fileName);
+    City *getCity(int c);
+    int getCityCode(int number);
 private:
     int PostInv;
     int Post;
@@ -122,6 +129,7 @@ private:
     vector<int> vFinal;
 
 
+    friend class managerEST;
 };
 
 #endif // GRAFO_H

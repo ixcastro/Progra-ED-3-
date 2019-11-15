@@ -24,6 +24,8 @@ void managerEST::loadFiles(){
     this->reporteClientes(clients->getRoot());
     this->reporteFacturas(clients->getRoot());
     this->reportePasillos(EST->getRoot());
+
+    this->readGrafo(path.toStdString()+"/Ciudades.txt",path.toStdString()+"/Conexiones.txt");
 }
 
 ABBTree * managerEST::getEST(){
@@ -52,6 +54,81 @@ QueueClient* managerEST::getCola(){
 
 
 //--------------------------------------------CAMBIOS-------------------------------------------------
+
+void managerEST::readGrafo(string fileName, string fileN){
+    QVector<City*> cities;
+    int numCities = 0;
+    ifstream file;
+    file.open(fileName,ios::in);
+
+    string t;
+    QString text;
+
+    if(file.fail()){
+        cout<<"No se pudo abrir el archivo"<<endl;
+        exit(1);
+    }
+
+    int i = 0;
+    while(!file.eof()){
+        getline(file,t);
+        text = QString::fromStdString(t);
+        QStringList list = text.split(";");
+        City *c = new City(list[0].toInt(),i,list[1]);
+        if(!cities.contains(c)){
+            cities.append(c);
+            i++;
+        }
+    }
+
+    numCities = i+1;
+
+
+    ifstream fileCon;
+    fileCon.open(fileN,ios::in);
+    QVector<Connection*> connectionsList;
+
+    string t2;
+    QString text2;
+
+    if(fileCon.fail()){
+        cout<<"No se pudo abrir el archivo de conexiones"<<endl;
+        exit(1);
+    }
+
+    while(!fileCon.eof()){
+        getline(fileCon,t2);
+        text2 = QString::fromStdString(t2);
+        QStringList list = text2.split(";");
+        bool check = false;
+        bool check2 = false;
+
+        for(City *c : cities){
+            if(c->getCode() == list[0].toInt()){
+                check = true;
+            }
+            if(c->getCode() == list[1].toInt()){
+                check2 = true;
+            }
+        }
+
+        if(check && check2){
+            City *a;
+            City *b;
+            for(City *city : cities){
+                if(city->getCode() == list[0].toInt()){
+                    a = city;
+                }
+                if(city->getCode() == list[1].toInt()){
+                    b = city;
+                }
+            }
+            connectionsList.append(new Connection(a,b,list[2].toInt()));
+        }
+    }
+
+    grafo = new Grafo(numCities,cities,connectionsList);
+}
 
 void managerEST::readClients(string fileName){
     ifstream file;
@@ -176,4 +253,8 @@ QueueClient* managerEST::getRegistrar(){
 
 void managerEST::setVendidosInventario(){
     vendidosInventario = new SalesList();
+}
+
+Grafo *managerEST::getGrafo(){
+    return grafo;
 }

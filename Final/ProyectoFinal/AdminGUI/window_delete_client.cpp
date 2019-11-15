@@ -21,7 +21,7 @@ void window_delete_client::on_pushButton_clicked()
         q->show();
     }else{
         QJsonObject ob;
-        ob.insert("EliminarCliente",QJsonValue::fromVariant(ui->pushButton->text().toInt()));
+        ob.insert("EliminarCliente",QJsonValue::fromVariant(ui->lineEdit->text().toInt()));
         QJsonDocument doc(ob);
 
         QJsonDocument answer = socketAdmin::getInstance()->request(doc);
@@ -35,4 +35,9 @@ void window_delete_client::on_pushButton_clicked()
         }
         q->show();
     }
+}
+
+void window_delete_client::on_pushButton_2_clicked()
+{
+    hide();
 }

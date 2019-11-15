@@ -16,7 +16,8 @@ City::City(int pCode,int pNum, QString pName){
 
 string City::toString(){
     return "Codigo: " + to_string(code) +
-        "\tNombre: " + cityName.toStdString();
+        "\tNombre: " + cityName.toStdString() +
+            "\tNum: " + to_string(this->numMatrix);
 }
 
 int City::getCode(){
