@@ -4,6 +4,7 @@
 #include "socketclient.h"
 #include "qmessagebox.h"
 #include "w_menu.h"
+#include "w_select.h"
 
 W_LOGIN::W_LOGIN(QWidget *parent)
     : QMainWindow(parent)
@@ -38,8 +39,8 @@ void W_LOGIN::on_pushButton_clicked()
         a->show();
         this->close();
     }else{
-        QMessageBox* q = new QMessageBox();
-        q->setText("Incorrecto");
-        q->show();
+        W_SELECT *a = new W_SELECT();
+        a->show();
+        this->close();
     }
 }

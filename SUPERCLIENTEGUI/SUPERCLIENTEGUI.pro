@@ -28,7 +28,9 @@ SOURCES += \
     w_menu.cpp \
     w_pasillos.cpp \
     w_porcentaje.cpp \
-    w_productos.cpp
+    w_productos.cpp \
+    w_registro.cpp \
+    w_select.cpp
 
 HEADERS += \
     library.h \
@@ -41,7 +43,9 @@ HEADERS += \
     w_menu.h \
     w_pasillos.h \
     w_porcentaje.h \
-    w_productos.h
+    w_productos.h \
+    w_registro.h \
+    w_select.h
 
 FORMS += \
     w_canasta.ui \
@@ -52,7 +56,9 @@ FORMS += \
     w_menu.ui \
     w_pasillos.ui \
     w_porcentaje.ui \
-    w_productos.ui
+    w_productos.ui \
+    w_registro.ui \
+    w_select.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
