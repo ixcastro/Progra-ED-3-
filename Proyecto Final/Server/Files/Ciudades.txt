@@ -1,0 +1,9 @@
+11;SanJose
+22;Cartago
+33;Heredia
+44;Supermercado
+55;Liberia
+114;P4
+11;Pvalidacion
+66;Andres
+99;Isaac
