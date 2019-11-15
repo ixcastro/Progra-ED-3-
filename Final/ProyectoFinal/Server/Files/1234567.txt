@@ -1,9 +1,0 @@
-Consecutivo: 1
-Cedula del cliente: 1234567
-Nombre: Juan Perez
-Telefono: 23658974
-Cantidad Codigo producto Nombre 	Precio 	Impuesto 	Total 
-1		38	 CintaAzul	1850.000000	1.000000	1850.000000
-
-Total a pagar: 1850
-

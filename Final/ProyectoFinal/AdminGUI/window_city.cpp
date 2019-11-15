@@ -109,3 +109,32 @@ void window_city::drawMST(int cities, std::vector<window_city::connection> conne
 
 
 
+
+void window_city::on_insertarPas_clicked()
+{
+    QJsonObject ob;
+    ob.insert("Kruskal",0);
+
+    QJsonDocument d(ob);
+    QJsonDocument doc = socketAdmin::getInstance()->request(d);
+
+    QJsonObject docObj = doc.object();
+
+    int peso = docObj.take("Peso").toInt();
+    int numCities = docObj.take("NumCities").toInt();
+
+    QJsonArray arr = docObj.take("Connections").toArray();
+
+    QJsonArray city = docObj.take("Codigos").toArray();
+
+    std::vector<window_city::connection> connections;
+    for(int i = 0; i < arr.size(); i++){
+        QJsonObject obj = arr[i].toObject();
+        int a = obj.take("A").toInt();
+        int b = obj.take("B").toInt();
+        int p = obj.take("P").toInt();
+        cout<<"A "<<a<<"  B "<<b<<"  P "<<p<<endl;
+        connections.push_back(connection(p,a,b));
+    }
+    drawMST(numCities,connections,city);
+}

@@ -704,7 +704,6 @@ void MyThread::readyRead()
                 QJsonObject ol;
                 ol.insert("Respuesta","A");
                 QJsonDocument l(ol);
-                cout<<"No compras"<<endl;
                 socket->write(l.toJson());
             }else{
                 if(EST.getCola()->isEmpty() || EST.getCola()->getFondo()->getClient()->getId() != c->getId()){
@@ -731,8 +730,10 @@ void MyThread::readyRead()
 
         }else{
             int data = hallCL->getProducts()->getProduct(pProducto)->getRN()->getMaxCant(product,pMarca);
+            string s = to_string(data);
+            QString dato = QString::fromStdString(s);
             QJsonObject ro;
-            ro.insert("Respuesta",QJsonValue::fromVariant(data));
+            ro.insert("Respuesta",dato);
             cout<<"Data "<<data<<endl;
             QJsonDocument r(ro);
             socket->write(r.toJson());
