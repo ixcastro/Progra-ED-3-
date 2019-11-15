@@ -607,7 +607,7 @@ void MyThread::readyRead()
         if(xIsBasket){
             pr.insert("IsBasket","El producto pertenece a canasta basica. ");
         }else{
-            pr.insert("IsBasket","El producto pertenece a canasta basica. ");
+            pr.insert("IsBasket","El producto no pertenece a canasta basica. ");
         }
 
         QJsonDocument doc(pr);
@@ -1250,6 +1250,37 @@ void MyThread::readyRead()
             socket->write(r.toJson());
         }
     }
+
+    //En proceso...  de la suicidacion
+    if(json_map.firstKey() == "EliminarProducto"){
+
+        QJsonObject x = json_map["EliminarProducto"].toJsonObject();
+        int pPasillo = x.take("Pasillo").toInt();
+        int pProducto = x.take("Producto").toInt();
+
+        EST.getEST()->getNode(pPasillo)->getProducts()->deleteAVLData(pProducto);
+
+        QJsonObject o;
+        o.insert("Respuesta","T");
+        QJsonDocument r(o);
+        socket->write(r.toJson());
+    }
+
+    if(json_map.firstKey() == "EliminarMarca"){
+
+        QJsonObject x = json_map["EliminarMarca"].toJsonObject();
+        int pPasillo = x.take("Pasillo").toInt();
+        int pProducto = x.take("Producto").toInt();
+        int pMarca = x.take("Marca").toInt();
+
+        EST.getEST()->getNode(pPasillo)->getProducts()->getProduct(pProducto)->getRN()->deleteRNData(pMarca);
+        QJsonObject o;
+        o.insert("Respuesta","T");
+        QJsonDocument r(o);
+        socket->write(r.toJson());
+    }
+
+
 }
 
 void MyThread::disconnected()
