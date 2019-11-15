@@ -383,6 +383,37 @@ void MyThread::readyRead()
         }
     }
 
+    if(json_map.firstKey() == "EncolarCliente"){
+        QJsonObject ob = json_map["EncolarCliente"].toJsonObject();
+        int pId = ob.take("Cedula").toInt();
+        QString pName = ob.take("Nombre").toString();
+        int pCityCode = ob.take("CodigoCiudad").toInt();
+        QString pPhone = ob.take("Phone").toString();
+        QString pMail = ob.take("Correo").toString();
+
+        cout<<"Ced "<<pId<<endl;
+
+        if(EST.getClients()->searchClient(pId,EST.getClients()->getRoot())==nullptr){
+            cout<<"Null"<<endl;
+        }
+
+        if(EST.getClients()->searchClient(pId,EST.getClients()->getRoot())!=nullptr || !EST.getCities()->exists(pCityCode)){
+            QJsonObject o;
+            o.insert("Respuesta","F");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+        }else{
+            Client *c = new Client(pId,pName,pCityCode,pPhone,pMail);
+            EST.getRegistrar()->encolar(c);
+            QJsonObject o;
+            o.insert("Respuesta","T");
+            QJsonDocument r(o);
+            socket->write(r.toJson());
+        }
+    }
+
+
+
     if(json_map.firstKey() == "ClientesCola"){
         EST.getCola()->getClientsQueue();
         QJsonDocument clientesCola(clientsQueue);
@@ -1259,8 +1290,17 @@ void MyThread::readyRead()
         int pPasillo = x.take("Pasillo").toInt();
         int pProducto = x.take("Producto").toInt();
 
+        cout<< pPasillo <<endl;
+        cout<< pProducto <<endl;
+
+        cout<< "PAILLO "<<EST.getEST()->getNode(pPasillo)->getHall()->getName().toStdString()<<endl;
+        cout<< "PRODUCTO "<<EST.getEST()->getNode(pPasillo)->getProducts()->getProduct(pProducto)->getProduct()->getName()<<endl;
+
+        EST.getEST()->getNode(pPasillo)->getProducts()->setRoot(
+                    EST.getEST()->getNode(pPasillo)->getProducts()->getRoot());
         EST.getEST()->getNode(pPasillo)->getProducts()->deleteAVLData(pProducto);
 
+        cout<<"ELIMINADO "<<endl;
         QJsonObject o;
         o.insert("Respuesta","T");
         QJsonDocument r(o);

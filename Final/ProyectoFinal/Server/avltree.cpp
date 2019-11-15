@@ -678,7 +678,7 @@ void AVLTree::deleteAVLData(int pData){
             setRoot(aux);
             aux->setOrientation(0);
         }
-       showGoback(aux);
+      // showGoback(aux);
     }
     else{
         cout<<"El dato "<<pData<<" no existe"<<endl;

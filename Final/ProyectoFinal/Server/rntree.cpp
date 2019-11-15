@@ -304,7 +304,7 @@ void RNTree::goback(RNNode* pSon) {
                 //rotacion doble der
             }
         }
-        goback(auxF);
+        //goback(auxF);
     }//else principal
 }
 
