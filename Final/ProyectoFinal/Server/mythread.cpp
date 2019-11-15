@@ -676,7 +676,7 @@ void MyThread::readyRead()
     //-------------SI-EL-JSON-ES-UNA-COMPRA---------------//
     if(json_map.firstKey() == "Comprar"){
 
-        EST.getEST()->print(EST.getEST()->getRoot());
+        //EST.getEST()->print(EST.getEST()->getRoot());
 
         QJsonObject x = json_map["Comprar"].toJsonObject();
         int pId = x.take("Cedula").toString().toInt();
@@ -739,9 +739,9 @@ void MyThread::readyRead()
 
         }
 
-        cout<<"-----------------------------------------------------------------------------------"<<endl<<endl<<endl;
+        //cout<<"-----------------------------------------------------------------------------------"<<endl<<endl<<endl;
 
-        EST.getEST()->print(EST.getEST()->getRoot());
+        //EST.getEST()->print(EST.getEST()->getRoot());
     }
 
     if(json_map.firstKey() == "Reporte"){

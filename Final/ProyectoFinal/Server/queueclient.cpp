@@ -50,13 +50,13 @@ QueueNode* QueueClient::getFondo(){
 }
 
 void QueueClient::getClientsQueue(){
+    QueueNode *aux = frente;
     if(this->frente != nullptr){
-        QueueNode *aux = this->desencolar();
         while(aux){
             string str = aux->getClient()->toString();
             QJsonValue qStr = QString::fromStdString(str);
             clientsQueue.append(qStr);
-            aux = desencolar();
+            aux = aux->getNext();
         }
     }
 }
