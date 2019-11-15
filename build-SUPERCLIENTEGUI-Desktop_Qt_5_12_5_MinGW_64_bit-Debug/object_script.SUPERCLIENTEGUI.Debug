@@ -10,6 +10,7 @@ debug/w_menu.o
 debug/w_pasillos.o
 debug/w_porcentaje.o
 debug/w_productos.o
+debug/w_registro.o
 debug/w_select.o
 debug/moc_w_canasta.o
 debug/moc_w_cantidad.o
@@ -20,4 +21,5 @@ debug/moc_w_menu.o
 debug/moc_w_pasillos.o
 debug/moc_w_porcentaje.o
 debug/moc_w_productos.o
+debug/moc_w_registro.o
 debug/moc_w_select.o

@@ -78,6 +78,7 @@ void W_COMPRA::commonSlot(){
     a->ced(CED);
     a->PATH(PATH);
     a->show();
+    this->close();
 
     cout<<"->"<<PATH<<endl;
 }

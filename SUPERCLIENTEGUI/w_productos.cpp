@@ -136,7 +136,7 @@ void W_Productos::commonSlot(){
 
     }
 
-
+    this->close();
 
 }
 

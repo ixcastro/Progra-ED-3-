@@ -15,6 +15,9 @@ public:
     explicit W_REGISTRO(QWidget *parent = nullptr);
     ~W_REGISTRO();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::W_REGISTRO *ui;
 };

@@ -10,6 +10,7 @@ release/w_menu.o
 release/w_pasillos.o
 release/w_porcentaje.o
 release/w_productos.o
+release/w_registro.o
 release/w_select.o
 release/moc_w_canasta.o
 release/moc_w_cantidad.o
@@ -20,4 +21,5 @@ release/moc_w_menu.o
 release/moc_w_pasillos.o
 release/moc_w_porcentaje.o
 release/moc_w_productos.o
+release/moc_w_registro.o
 release/moc_w_select.o

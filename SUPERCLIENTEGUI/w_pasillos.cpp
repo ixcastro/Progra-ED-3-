@@ -92,6 +92,7 @@ void W_PASILLOS::commonSlot(){
     a->shareButton(ob,NUM,lista.first().toStdString());
     a->ced(CED);
     a->show();
+    this->close();
 
 
 }

@@ -12,3 +12,8 @@ W_REGISTRO::~W_REGISTRO()
 {
     delete ui;
 }
+
+void W_REGISTRO::on_pushButton_clicked()
+{
+
+}

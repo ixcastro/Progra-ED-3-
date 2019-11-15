@@ -3,6 +3,7 @@
 #include  "library.h"
 #include "socketclient.h"
 #include "w_pasillos.h"
+#include "w_login.h"
 
 W_MENU::W_MENU(QWidget *parent) :
     QMainWindow(parent),
@@ -85,7 +86,6 @@ void W_MENU::on_pushButton_4_clicked()
     QJsonArray ob = D.array();
 
     W_PASILLOS *a = new  W_PASILLOS();
-
     a->ced(CED);
     a->shareButton(ob,4);
     a->show();
@@ -95,5 +95,8 @@ void W_MENU::on_pushButton_4_clicked()
 
 void W_MENU::on_pushButton_5_clicked()
 {
+    W_LOGIN *a = new W_LOGIN();
+    a->show();
+    this->close();
     this->close();
 }
