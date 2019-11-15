@@ -7,10 +7,11 @@
 #include <QJsonDocument>
 
 class Connection{
+
+public:
     int distance;
     City *cityA,*cityB;
 
-public:
     Connection(){
     }
 
@@ -38,13 +39,9 @@ public:
     Grafo();
     Grafo(int numCities, QVector<City*> nCities, QVector<Connection*> nConnectionsList);
 
-    QVector<QVector<int>> kruskal();
+    //QVector<QVector<int>> kruskal();
     int findCityConnection(int,int); //Le devuelve el peso de una conexion
     void printKruskal(QVector<QVector<int>>);
-
-    int primAlgorithm();
-    int prims();
-    int prim();
 
     void readFile(string);
     QJsonDocument kruskalToJson();
@@ -118,6 +115,8 @@ public:
     void readFileConnections(string fileName);
     City *getCity(int c);
     int getCityCode(int number);
+    QVector<Connection *> kruskal();
+    QVector<Connection *> prim();
 private:
     int PostInv;
     int Post;

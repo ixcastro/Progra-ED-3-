@@ -99,7 +99,7 @@ void window_city::drawMST(int cities, std::vector<window_city::connection> conne
         int s = city[i].toInt();
         std::string str = std::to_string(s);
         io->setPlainText(str.c_str());
-        io->setDefaultTextColor(Qt::white);
+        io->setDefaultTextColor(Qt::red);
         mapa->addItem(io);
     }
 

@@ -79,7 +79,7 @@ void managerEST::readGrafo(string fileName, string fileN){
         bool check = true;
 
         for(int j=0; j<cities.size(); j++){
-            if(cities[j]->getCode() == list[0]){
+            if(cities[j]->getCode() == list[0].toInt()){
                 check = false;
             }
         }

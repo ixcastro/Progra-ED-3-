@@ -36,6 +36,8 @@ class City{
         void setNum(int);
 
         string toString();
+
+        friend class Grafo;
 };
 
 class CityNode{

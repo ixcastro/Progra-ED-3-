@@ -1,5 +1,11 @@
 #include "grafo.h"
 #include <QDebug>
+//---------------------//
+#include <iostream>
+#include <fstream>
+using namespace std;
+ofstream myfile;
+//---------------------//
 
 Grafo::Grafo(){
     numCities = 0;
@@ -48,265 +54,135 @@ int Grafo::getCityCode(int number){
     return -1;
 }
 
-QVector<QVector<int>> Grafo::kruskal(){
-    QVector<QVector<int>> ady = this->connections;
-    QVector<QVector<int>> arbol(cities.size());
-    QVector<int> pertenece(cities.size()); //Indica a que arbol pertenece el nodo
+//QVector<QVector<int>> Grafo::kruskal(){
+//    QVector<QVector<int>> ady = this->connections;
 
-    for(int i=0; i<numCities; i++){
-        arbol[i] = QVector<int>(cities.size(),0);
-        pertenece[i] = i;
-    }
 
-    int nodoA;
-    int nodoB;
-    int arcos = 1;
-    while(arcos < numCities){
-        //Encontrar el arco mínimo que no forma cíclo y guardar los nodos y la distancia
-        int min = INF;
-        for(int i = 0; i<numCities; i++){
-            for(int j=0; j<numCities; j++){
-                if(min > ady[i][j] && ady[i][j] != 0 && pertenece[i] != pertenece[j]){
-                    min = ady[i][j];
-                    nodoA = i;
-                    nodoB = j;
-                }
-            }
-        }
-        //Si los nodos no pertenecen al mismo arbol, agrego el arco al arbol minimo
-        if(pertenece[nodoA] != pertenece[nodoB]){
-            arbol[nodoA][nodoB] = min;
-            arbol[nodoB][nodoA] = min;
 
-            //Todos los nodos del arbol del nodoB ahora pertenecen al arbol del nodoA
-            int tmp = pertenece[nodoB];
-            pertenece[nodoB] = pertenece[nodoA];
-            for(int k=0; k<numCities; k++){
-                if(pertenece[k] == tmp){
-                    pertenece[k] = pertenece[nodoA];
-                }
-            }
-        }
-        arcos++;
-    }
-    return arbol;
+//    QVector<QVector<int>> arbol(cities.size());
+//    QVector<int> pertenece(cities.size()); //Indica a que arbol pertenece el nodo
+
+//    for(int i=0; i<numCities; i++){
+//        arbol[i] = QVector<int>(cities.size(),0);
+//        pertenece[i] = i;
+//    }
+
+//    int nodoA;
+//    int nodoB;
+//    int arcos = 1;
+//    while(arcos < numCities){
+//        //Encontrar el arco mínimo que no forma cíclo y guardar los nodos y la distancia
+//        int min = INF;
+//        for(int i = 0; i<numCities; i++){
+//            for(int j=0; j<numCities; j++){
+//                if(min > ady[i][j] && ady[i][j] != 0 && pertenece[i] != pertenece[j]){
+//                    min = ady[i][j];
+//                    nodoA = i;
+//                    nodoB = j;
+//                }
+//            }
+//        }
+//        //Si los nodos no pertenecen al mismo arbol, agrego el arco al arbol minimo
+//        if(pertenece[nodoA] != pertenece[nodoB]){
+//            arbol[nodoA][nodoB] = min;
+//            arbol[nodoB][nodoA] = min;
+
+//            //Todos los nodos del arbol del nodoB ahora pertenecen al arbol del nodoA
+//            int tmp = pertenece[nodoB];
+//            pertenece[nodoB] = pertenece[nodoA];
+//            for(int k=0; k<numCities; k++){
+//                if(pertenece[k] == tmp){
+//                    pertenece[k] = pertenece[nodoA];
+//                }
+//            }
+//        }
+//        arcos++;
+//    }
+//    return arbol;
+//}
+
+bool mayor(Connection *a, Connection *b){
+    return a->distance < b->distance;
 }
 
+QVector<int> findSet(int id, QVector<Connection*> graph){
+    QVector<int> set;
+    set.append(id);
 
+    bool added;
 
-int Grafo::primAlgorithm(){
-    QVector<QVector<int>> matrix = this->connections;
-    //vector<vector<int>> arbol(cities.size());
-
-    int minDistance;
-    int minor;
-    int z;
-    QVector<int> cost(cities.size()); //Indica a que arbol pertenece el nodo
-    QVector<int> closest(cities.size()); //Indica a que arbol pertenece el nodo
-    QVector<bool> W(cities.size()); //Indica a que arbol pertenece el nodo
-
-    for (int i = 0; i < cities.size(); i++) {
-        W[i] = false;
-    }
-
-    minDistance = 0;
-    W[0] = true;
-
-    //For every arc starting in [0][1]
-    for (int i = 1; i < cities.size(); i++) {
-        cost[i] = matrix[0][i];
-        closest[i] = 0;
-    }
-    for (int i = 1; i < cities.size(); i++) {
-        //searches for the acr with less weigth from
-        // Z to W
-        //minor = cost[1];
-        for (int k = 1; k < cities.size(); k++) {
-            if (cost[k] > 0){
-                minor = cost[k];
-                z = k;
+    do {
+        added = false;
+        for (Connection *connection : graph){
+            if (set.contains(connection->cityA->getNumMatrix()) &&
+                    !set.contains(connection->cityB->getNumMatrix())){
+                set.append(connection->cityB->getNumMatrix());
+                added = true;
+                continue;
+            }
+            if (set.contains(connection->cityB->getNumMatrix()) &&
+                    !set.contains(connection->cityA->getNumMatrix())){
+                set.append(connection->cityA->getNumMatrix());
+                added = true;
+                continue;
             }
         }
-        z = 1;
-        for (int j = 2; j < cities.size(); j++) {
-            if (cost[j] > 0){
-                if (cost[j] < minor){
-                    minor = cost[j];
-                    z = j;
+    } while (added);
+
+    return set;
+}
+
+QVector<Connection*> Grafo::kruskal(){
+    QVector<Connection*> kGraph;
+    QVector<Connection*> connections = connectionsList;
+
+    sort(connections.begin(),connections.end(),mayor);
+    for(Connection *connection : connections){
+        if(!findSet(connection->cityA->getNumMatrix(), kGraph).contains(connection->cityB->getNumMatrix())){
+            kGraph.append(connection);
+        }
+    }
+
+    return kGraph;
+}
+
+QVector<Connection*> Grafo::prim(){
+    QVector<Connection*> mst(connectionsList.size(), nullptr);
+    QVector<Connection*>  fr(connectionsList.size(), nullptr);
+    QVector<int>          wt(connectionsList.size(), std::numeric_limits<int>::max());
+
+
+    int min = -1;
+    for(int v = 0; min != 0; v = min){
+        min = 0;
+        for(int w = 1;w < numCities; w++){
+            Connection* connection = nullptr;
+            for (Connection *findingConnection : connectionsList){
+                if((findingConnection->cityA->getNumMatrix() == v && findingConnection->cityB->getNumMatrix() == w) ||
+                        (findingConnection->cityA->getNumMatrix() == w && findingConnection->cityB->getNumMatrix() == v)){
+                    connection = findingConnection;
+                    break;
                 }
             }
-        }
-        minDistance += minor;
-        cout << "Pasada: Vertice " <<
-                cities[closest[z]]->getName().toStdString() <<
-                " -> Vertice " << cities[z]->getName().toStdString() << " Peso: " <<
-                cost[z] << endl;
-        W[z] = true;
-        cost[z] = 0;
-
-        //Cost starts in 0 again
-        for (int j = 1; j < cities.size() ; j++) {
-            if ((matrix[z][j] < cost[j]) && !W[j]){
-                cost[j] = matrix[z][j];
-                closest[j] = z;
+            if(!mst[w]){
+                if(connection)
+                    if(connection->distance < wt[w]){
+                        wt[w] = connection->distance;
+                        fr[w] = connection;
+                    }
+                if(wt[w] < wt[min])
+                    min = w;
             }
         }
+        if(min)
+            mst[min] = fr[min];
     }
-    cout << "La distancia minima recorrida es de: " << minDistance <<endl;
-    cout << "printinf infite: "<< INF <<endl;
-    return minDistance;
-}
-
-#define infinity 9999
-#define MAX 20
-
-int G[MAX][MAX],spanning[MAX][MAX],n;
-
-int Grafo::prims(){
-    int cost[MAX][MAX];
-    int u,v,min_distance,distance[MAX],from[MAX];
-    int visited[MAX],no_of_edges,i,min_cost,j;
-
-    //create cost[][] matrix,spanning[][]
-    for(i=0;i<n;i++)
-        for(j=0;j<n;j++)
-        {
-            if(G[i][j]==0)
-                cost[i][j]=infinity;
-            else
-                cost[i][j]=G[i][j];
-            spanning[i][j]=0;
-        }
-
-    //initialise visited[],distance[] and from[]
-    distance[0]=0;
-    visited[0]=1;
-
-    for(i=1;i<n;i++)
-    {
-        distance[i]=cost[0][i];
-        from[i]=0;
-        visited[i]=0;
-    }
-
-    min_cost=0;		//cost of spanning tree
-    no_of_edges=n-1;		//no. of edges to be added
-
-    while(no_of_edges>0)
-    {
-        //find the vertex at minimum distance from the tree
-        min_distance=infinity;
-        for(i=1;i<n;i++)
-            if(visited[i]==0&&distance[i]<min_distance)
-            {
-                v=i;
-                min_distance=distance[i];
-            }
-
-        u=from[v];
-
-        //insert the edge in spanning tree
-        spanning[u][v]=distance[v];
-        spanning[v][u]=distance[v];
-        no_of_edges--;
-        visited[v]=1;
-
-        //updated the distance[] array
-        for(i=1;i<n;i++)
-            if(visited[i]==0&&cost[i][v]<distance[i])
-            {
-                distance[i]=cost[i][v];
-                from[i]=v;
-            }
-
-        min_cost=min_cost+cost[u][v];
-    }
-
-    return(min_cost);
-
-}
-
-int Grafo::prim(){
-    int cost[cities.size()][cities.size()];
-    QVector<QVector<int>> Gg = this->connections;
-    //int Gg[cities.size()][cities.size()];
-    int span[cities.size()][cities.size()];
-    int u,v,min_distance,distance[cities.size()],from[cities.size()];
-    int visited[cities.size()],no_of_edges,i,min_cost,j;
-
-    //fill the spanning with 0s
-    for(int i = 0; i < cities.size(); i++){
-        for(int j = 0; j < cities.size(); j++){
-            span[i][j] = 0;
+    for (int i = 0; i < mst.size(); i++){
+        if (!mst[i]){
+            mst.remove(i);
         }
     }
-
-    //create cost[][] matrix,spanning[][]
-    for( i = 0; i < cities.size(); i++) {
-        for( j = 0; j < cities.size(); j++)
-        {
-            if(Gg[i][j] == 0) {
-                cost[i][j] = 9999;
-                //change for INF
-            } else {
-                cost[i][j] = Gg[i][j];
-                span[i][j] = 0;
-            }
-        }
-    }
-    //
-
-    //initialise visited[],distance[] and from[]
-    distance[0] = 0;
-    visited[0] = 1;
-
-    for(i = 1; i < cities.size(); i++) {
-        distance[i] = cost[0][i];
-        from[i] = 0;
-        visited[i] = 0;
-    }
-
-    min_cost = 0;		//cost of spanning tree
-    no_of_edges = cities.size()-1;		//no. of edges to be added
-
-    while(no_of_edges > 0) {
-        //find the vertex at minimum distance from the tree
-        min_distance = 9999;
-        for(i = 1; i < cities.size(); i++) {
-            if(visited[i] == 0  &&  distance[i] < min_distance) {
-                v = i;
-                min_distance = distance[i];
-            }
-        }
-        u = from[v];
-
-        //insert the edge in spanning tree
-        span[u][v] = distance[v];
-        span[v][u] = distance[v];
-        no_of_edges--;
-        visited[v] = 1;
-
-        //updated the distance[] array
-        for( i = 1; i < cities.size(); i++) {
-            if(visited[i] == 0  &&  cost[i][v] < distance[i])
-            {
-                distance[i] = cost[i][v];
-                from[i] = v;
-            }
-        }
-        min_cost = min_cost + cost[u][v];
-    }
-    cout<<"Prim..."<<endl;
-    for(int i=0; i < cities.size(); i++){
-        for(int j=0; j < cities.size(); j++){
-            cout<<span[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-
-    cout << "Minium cost is: "<<min_cost<<endl;
-    return(min_cost);
-
+    return mst;
 }
 
 void Grafo::readFile(string fileName){ //Primero leo las ciudades
@@ -379,28 +255,22 @@ void Grafo::readFileConnections(string fileName){
 QJsonDocument Grafo::kruskalToJson(){ //Me devuelve Json para enviar
     QJsonArray ar;
 
-    QVector<QVector<int>> krus = kruskal();
+    QVector<Connection*> krus = kruskal();
 
     int peso = 0;
 
 
     cout << krus.size() << endl;
     for(int i=0; i<krus.size(); i++){
-        for(int j=0; j<krus.size(); j++){
-            if(krus[i][j] != 0){
-                krus[j][i] = 0;
-                peso += krus[i][j];
-                int a = getCityCode(i);
-                int b = getCityCode(j);
-                int p = krus[i][j];
-                QJsonObject c; //Inserta a connections
-                c.insert("A",a);
-                c.insert("B",b);
-                c.insert("P",p);
-                cout<<"A "<<a<<"  B "<<b<<"  P "<<p<<endl;
-                ar.append(c);
-            }
-        }
+        int a = krus[i]->cityA->getNumMatrix();
+        int b = krus[i]->cityB->getNumMatrix();
+        int p = krus[i]->distance;
+        QJsonObject c; //Inserta a connections
+        c.insert("A",a);
+        c.insert("B",b);
+        c.insert("P",p);
+        cout<<"A "<<a<<"  B "<<b<<"  P "<<p<<endl;
+        ar.append(c);
     }
 
     QJsonObject connect;
@@ -489,7 +359,9 @@ QVector<QVector<int>> Grafo::getConnections(){
 
 void Grafo::dijkstra(string pDataS, string pDataF){
 
-
+    //---------------------//
+    myfile.open ("Dijkstra.txt");
+    //---------------------//
     int pStart = getPosLetra(pDataS);
     int pFinal =  getPosLetra (pDataF);
     setAcumulado(0);//ACUMULADO EN 0
@@ -503,8 +375,8 @@ void Grafo::dijkstra(string pDataS, string pDataF){
     Path.push_back(cities[pFinal]->getName().toStdString());// SET DEL PRIMER DATO DEL PATH
 
     while(checkAll()){// MIENTRAS QUE AUN EXISTAN NODOS SIN VISITAR
-        cout << "--------------------------------------"<<endl;
-        cout<<"ANALIZANDO: "<<cities[getPost()]->getName().toStdString()<<endl;
+        myfile << "--------------------------------------"<<endl;
+        myfile<<"ANALIZANDO: "<<cities[getPost()]->getName().toStdString()<<endl;
 
         getAdyacente();//BUSQUEDA DE NODOS ADYACENTES
         showTable();// MUESTRA LA TABLA DE RESULTADOS
@@ -513,19 +385,23 @@ void Grafo::dijkstra(string pDataS, string pDataF){
     }
 
     showFinalTable();// MUESTRA LA TABLA FINAL
-    cout << "--------------------------------------"<<endl;
-    cout << " EL PESO DEL CAMINO MAS CORTO ES : " << getFinal()[pFinal]<<endl;
-    cout << "--------------------------------------"<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile << " EL PESO DEL CAMINO MAS CORTO ES : " << getFinal()[pFinal]<<endl;
+    myfile << "--------------------------------------"<<endl;
 
 
     while(getPostInv()!=pStart){// MIENTRAS NO SE LLEGUE AL PRIMER NODO (START)
         getAdyacenteInverso();// BUSQUEDA DE ADYACENTES INVERSOS
     }
 
-    cout << "--------------------------------------"<<endl;
-    cout << "EL RECORRDIO DE VERTICES ES :"<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile << "EL RECORRDIO DE VERTICES ES :"<<endl;
     showPath();// MUESTRA EL PATH
-    cout << "--------------------------------------"<<endl;
+    myfile << "--------------------------------------"<<endl;
+
+
+
+      myfile.close();
 
 }
 
@@ -543,11 +419,11 @@ void Grafo::getAdyacente(){
     // vector de adyacentes
     vector<int> pTemp = getTemp();
 
-    cout << "--------------------------------------"<<endl;
-    cout<<"LOS ADYACENTES DE "<<cities[pPos]->getName().toStdString()<<" SON: "<<endl;
-    cout << "--------------------------------------"<<endl;
-    cout << " CIUDAD |  DATO  | DATO MAS ACUMULADO "<<endl;
-    cout << "--------------------------------------"<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile<<"LOS ADYACENTES DE "<<cities[pPos]->getName().toStdString()<<" SON: "<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile << " CIUDAD |  DATO  | DATO MAS ACUMULADO "<<endl;
+    myfile << "--------------------------------------"<<endl;
 
     // recorre la matriz
     for(int j=0; j < pTemp.size(); j++){
@@ -562,10 +438,10 @@ void Grafo::getAdyacente(){
 
                 pTemp[j] = getConnections()[pPos][j] + getAcumulado();
 
-                cout<<"    "<<cities[j]->getName().toStdString()<<"   |    "<<
-                      getConnections()[pPos][j]<< "   |    "<<
-                      getConnections()[pPos][j] <<"   +   "<< getPost()<<"  =  "<<  getConnections()[pPos][j] + getAcumulado()<<endl;
-                cout << "--------------------------------------"<<endl;
+                myfile<<"    "<<cities[j]->getName().toStdString()<<"   |    "<<
+                        getConnections()[pPos][j]<< "   |    "<<
+                        getConnections()[pPos][j] <<"   +   "<< getPost()<<"  =  "<<  getConnections()[pPos][j] + getAcumulado()<<endl;
+                myfile<< "--------------------------------------"<<endl;
 
             }else{
                 // si temp es menor al nuevo numero lo sobre escribe y le suma el acumulado
@@ -573,10 +449,10 @@ void Grafo::getAdyacente(){
 
                     pTemp[j] = getConnections()[pPos][j] + getAcumulado();
 
-                    cout<<"    "<<cities[j]->getName().toStdString()<<"   |    "<<
-                          getConnections()[pPos][j]<< "   |    "<<
-                          getConnections()[pPos][j] <<"   +   "<< getPost()<<"  =  "<<  getConnections()[pPos][j] + getAcumulado()<<endl;
-                    cout << "--------------------------------------"<<endl;
+                    myfile<<"    "<<cities[j]->getName().toStdString()<<"   |    "<<
+                            getConnections()[pPos][j]<< "   |    "<<
+                            getConnections()[pPos][j] <<"   +   "<< getPost()<<"  =  "<<  getConnections()[pPos][j] + getAcumulado()<<endl;
+                    myfile << "--------------------------------------"<<endl;
                 }
             }
 
@@ -589,12 +465,12 @@ void Grafo::getAdyacente(){
     }
     // set al tem
     setTemp(pTemp);
-    cout<<endl;
-    cout <<"--------------------------------------"<<endl;
-    cout<<"            VECTOR ANALIZADO           "<<endl;
-    cout <<"--------------------------------------"<<endl;
-    cout <<"   "<<vtS <<endl;
-    cout <<"--------------------------------------"<<endl;
+    myfile<<endl;
+    myfile <<"--------------------------------------"<<endl;
+    myfile<<"            VECTOR ANALIZADO           "<<endl;
+    myfile <<"--------------------------------------"<<endl;
+    myfile <<"   "<<vtS <<endl;
+    myfile<<"--------------------------------------"<<endl;
 }
 
 
@@ -613,13 +489,13 @@ void Grafo::getMin(){
     int min = 500;
     int save =0;
 
-    cout<<endl;
-    cout<<endl;
-    cout << "--------------------------------------"<<endl;
-    cout << "   BUSCANDO EL CAMINO MAS CORTO        "<<endl;
-    cout << "--------------------------------------"<<endl;
-    cout<<endl;
-    cout<<endl;
+    myfile<<endl;
+    myfile<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile << "   BUSCANDO EL CAMINO MAS CORTO        "<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile<<endl;
+    myfile<<endl;
 
     // recorre el vector de temp buscando el menor
     for(int i=0; i < pTemp.size(); i++){
@@ -633,15 +509,15 @@ void Grafo::getMin(){
         }
     }
 
-    cout << "--------------------------------------"<<endl;
-    cout << "EL CAMINO MAS CORTO ES  : "<<cities[save]->getName().toStdString()<<endl;
-    cout << "--------------------------------------"<<endl;
-    cout << "EL VALOR DEL ACUMULADO ES: "<<min<<endl;
-    cout << "--------------------------------------"<<endl;
-    cout << "SELECCIONAMOS EL VERTICE : "<< cities[save]->getName().toStdString()<<endl;
-    cout << "--------------------------------------"<<endl;
-    cout << "COMO NUEVA ETIQUETA FINAL EN LA TABLA"<<endl;
-    cout << "--------------------------------------"<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile << "EL CAMINO MAS CORTO ES  : "<<cities[save]->getName().toStdString()<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile << "EL VALOR DEL ACUMULADO ES: "<<min<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile << "SELECCIONAMOS EL VERTICE : "<< cities[save]->getName().toStdString()<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile << "COMO NUEVA ETIQUETA FINAL EN LA TABLA"<<endl;
+    myfile << "--------------------------------------"<<endl;
 
     setPost(save);
     setAcumulado(min);
@@ -682,22 +558,22 @@ void Grafo::showTable(){
     vector<int> pTemp  = getTemp();
     vector<int> pFinal = getFinal();
 
-    cout<<endl;
-    cout<<endl;
-    cout<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
-    cout << "--------------------------------------"<<endl;
-    cout<<"   CIUDAD  |  FINAL   |   TEMP     "<<endl;
-    cout << "--------------------------------------"<<endl;
+    myfile<<endl;
+    myfile<<endl;
+    myfile<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
+    myfile << "--------------------------------------"<<endl;
+    myfile<<"   CIUDAD  |  FINAL   |   TEMP     "<<endl;
+    myfile<< "--------------------------------------"<<endl;
 
     for(int i=0; i < pFinal.size(); i++){
-        cout<<"     "<< cities[i]->getName().toStdString()
-           <<"     |     "<<pFinal[i]<<"    |    "<<pTemp[i]<<"    "<<endl;
-        cout << "--------------------------------------"<<endl;
+        myfile<<"     "<< cities[i]->getName().toStdString()
+             <<"     |     "<<pFinal[i]<<"    |    "<<pTemp[i]<<"    "<<endl;
+        myfile<< "--------------------------------------"<<endl;
     }
 
-    cout<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
-    cout<<endl;
-    cout<<endl;
+    myfile<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
+    myfile<<endl;
+    myfile<<endl;
 
 }
 
@@ -709,14 +585,14 @@ void Grafo::showFinalTable(){
     vector<int> pTemp  = getTemp();
     vector<int> pFinal = getFinal();
 
-    cout<<endl;
-    cout<<endl;
-    cout<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
-    cout<<"            TABLA FINAL              "<<endl;
-    cout<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
-    cout << "--------------------------------------"<<endl;
-    cout<<"   CIUDAD  |  FINAL   |   TEMP     "<<endl;
-    cout << "--------------------------------------"<<endl;
+    myfile<<endl;
+    myfile<<endl;
+    myfile<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
+    myfile<<"            TABLA FINAL              "<<endl;
+    myfile<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
+    myfile<< "--------------------------------------"<<endl;
+    myfile<<"   CIUDAD  |  FINAL   |   TEMP     "<<endl;
+    myfile<< "--------------------------------------"<<endl;
 
     for(int i=0; i < pFinal.size(); i++){
         if(pFinal[i] == 0 && pTemp[i] == -1 ){
@@ -726,14 +602,14 @@ void Grafo::showFinalTable(){
             pTemp[i] =  pTemp[i]*-1;
 
         }
-        cout<<"     "<< cities[i]->getName().toStdString()
-           <<"     |     "<<pFinal[i]<<"    |    "<<pTemp[i]<<"    "<<endl;
-        cout << "--------------------------------------"<<endl;
+        myfile<<"     "<< cities[i]->getName().toStdString()
+             <<"     |     "<<pFinal[i]<<"    |    "<<pTemp[i]<<"    "<<endl;
+        myfile<< "--------------------------------------"<<endl;
     }
 
-    cout<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
-    cout<<endl;
-    cout<<endl;
+    myfile<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"<<endl;
+    myfile<<endl;
+    myfile<<endl;
     setTemp(pTemp);
     setFinal(pFinal);
 
@@ -744,14 +620,14 @@ void Grafo::showFinalTable(){
 
 void Grafo::showPath(){
     for(int j=Path.size()-1; j !=-1; j--){
-        cout<< Path[j] << "-";
+          myfile<< Path[j] << "-";
     }
-    cout<<endl;
+    myfile<<endl;
 }
 
 
 
- // OBTIENE LOS ADYACENTES PARA LA RESPUESTA
+// OBTIENE LOS ADYACENTES PARA LA RESPUESTA
 
 void Grafo::getAdyacenteInverso(){
 
@@ -789,9 +665,3 @@ int Grafo::getPosLetra(string pData){
         }
     }
 }
-
-
-
-
-
-
