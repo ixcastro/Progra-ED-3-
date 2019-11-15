@@ -47,6 +47,7 @@ public:
     Grafo *getGrafo();
     void readGrafo(string,string);
 
+    bool validPoint(QVector<Connection *> connections, int codCiudad);
 private:
     string FlagProcess ="F";
     string FlagStop = "F";

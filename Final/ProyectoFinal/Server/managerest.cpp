@@ -55,6 +55,15 @@ QueueClient* managerEST::getCola(){
 
 //--------------------------------------------CAMBIOS-------------------------------------------------
 
+bool managerEST::validPoint(QVector<Connection*> connections, int codCiudad){
+    for(Connection *connection : connections){
+        if(connection->cityA->getCode() == codCiudad || connection->cityB->getCode() == codCiudad){
+            return true;
+        }
+    }
+    return false;
+}
+
 void managerEST::readGrafo(string fileName, string fileN){
     QVector<City*> cities;
     int numCities = 0;
@@ -139,7 +148,17 @@ void managerEST::readGrafo(string fileName, string fileN){
         }
     }
 
-    grafo = new Grafo(numCities,cities,connectionsList);
+    //Validar que es conexo
+
+    QVector<City*> validCities;
+    for(int i=0; i<cities.size(); i++){
+        if(validPoint(connectionsList,cities[i]->getCode())){
+            validCities.append(cities[i]);
+        }
+    }
+
+    numCities = validCities.size();
+    grafo = new Grafo(numCities,validCities,connectionsList);
 }
 
 void managerEST::readClients(string fileName){
