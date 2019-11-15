@@ -75,13 +75,22 @@ void managerEST::readGrafo(string fileName, string fileN){
         text = QString::fromStdString(t);
         QStringList list = text.split(";");
         City *c = new City(list[0].toInt(),i,list[1]);
-        if(!cities.contains(c)){
+
+        bool check = true;
+
+        for(int j=0; j<cities.size(); j++){
+            if(cities[j]->getCode() == list[0]){
+                check = false;
+            }
+        }
+
+        if(check){
             cities.append(c);
             i++;
         }
     }
 
-    numCities = i+1;
+    numCities = i;
 
 
     ifstream fileCon;
@@ -103,27 +112,30 @@ void managerEST::readGrafo(string fileName, string fileN){
         bool check = false;
         bool check2 = false;
 
-        for(City *c : cities){
-            if(c->getCode() == list[0].toInt()){
+        for(int i=0; i<cities.size(); i++){
+            if(cities[i]->getCode() == list[0].toInt()){
                 check = true;
             }
-            if(c->getCode() == list[1].toInt()){
+            if(cities[i]->getCode() == list[1].toInt()){
                 check2 = true;
             }
         }
 
         if(check && check2){
-            City *a;
-            City *b;
-            for(City *city : cities){
-                if(city->getCode() == list[0].toInt()){
-                    a = city;
+            City *a = nullptr;
+            City *b = nullptr;
+            for(int i=0; i<cities.size(); i++){
+                if(cities[i]->getCode() == list[0].toInt()){
+                    a = cities[i];
                 }
-                if(city->getCode() == list[1].toInt()){
-                    b = city;
+                if(cities[i]->getCode() == list[1].toInt()){
+                    b = cities[i];
                 }
             }
-            connectionsList.append(new Connection(a,b,list[2].toInt()));
+
+            if(a!=nullptr && b!=nullptr){
+                connectionsList.append(new Connection(a,b,list[2].toInt()));
+            }
         }
     }
 

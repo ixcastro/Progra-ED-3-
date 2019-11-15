@@ -1,4 +1,5 @@
 #include "grafo.h"
+#include <QDebug>
 
 Grafo::Grafo(){
     numCities = 0;
@@ -57,8 +58,8 @@ QVector<QVector<int>> Grafo::kruskal(){
         pertenece[i] = i;
     }
 
-    int nodoA = 0;
-    int nodoB = 0;
+    int nodoA;
+    int nodoB;
     int arcos = 1;
     while(arcos < numCities){
         //Encontrar el arco mínimo que no forma cíclo y guardar los nodos y la distancia
@@ -85,8 +86,8 @@ QVector<QVector<int>> Grafo::kruskal(){
                     pertenece[k] = pertenece[nodoA];
                 }
             }
-            arcos++;
         }
+        arcos++;
     }
     return arbol;
 }
@@ -377,12 +378,15 @@ void Grafo::readFileConnections(string fileName){
 
 QJsonDocument Grafo::kruskalToJson(){ //Me devuelve Json para enviar
     QJsonArray ar;
+
     QVector<QVector<int>> krus = kruskal();
 
     int peso = 0;
 
+
+    cout << krus.size() << endl;
     for(int i=0; i<krus.size(); i++){
-        for(int j=0; j<krus.size(); i++){
+        for(int j=0; j<krus.size(); j++){
             if(krus[i][j] != 0){
                 krus[j][i] = 0;
                 peso += krus[i][j];
@@ -393,6 +397,7 @@ QJsonDocument Grafo::kruskalToJson(){ //Me devuelve Json para enviar
                 c.insert("A",a);
                 c.insert("B",b);
                 c.insert("P",p);
+                cout<<"A "<<a<<"  B "<<b<<"  P "<<p<<endl;
                 ar.append(c);
             }
         }
@@ -403,6 +408,13 @@ QJsonDocument Grafo::kruskalToJson(){ //Me devuelve Json para enviar
     connect.insert("NumCities",numCities);
     connect.insert("Peso",peso);
 
+    QJsonArray ciudades;
+    for(int i=0; i<numCities; i++){
+        ciudades.append(cities[i]->getCode());
+    }
+
+    connect.insert("Codigos",ciudades);
+    qDebug()<<connect;
     QJsonDocument informacionCiudades(connect);
     return informacionCiudades;
 }

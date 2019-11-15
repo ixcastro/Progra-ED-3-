@@ -28,7 +28,7 @@ public:
     explicit window_city(QWidget *parent = nullptr);
     ~window_city();
 
-    void drawMST(int cities, std::vector<window_city::connection> connections);
+    void drawMST(int cities, std::vector<window_city::connection> connections, QJsonArray city);
 private slots:
     void on_back_clicked();
 

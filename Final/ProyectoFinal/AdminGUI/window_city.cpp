@@ -39,6 +39,7 @@ void window_city::on_insertarPas_2_clicked(){
 
     QJsonArray arr = docObj.take("Connections").toArray();
 
+    QJsonArray city = docObj.take("Codigos").toArray();
 
     std::vector<window_city::connection> connections;
     for(int i = 0; i < arr.size(); i++){
@@ -46,15 +47,17 @@ void window_city::on_insertarPas_2_clicked(){
         int a = obj.take("A").toInt();
         int b = obj.take("B").toInt();
         int p = obj.take("P").toInt();
-
+        cout<<"A "<<a<<"  B "<<b<<"  P "<<p<<endl;
         connections.push_back(connection(p,a,b));
     }
-    drawMST(numCities,connections);
+    drawMST(numCities,connections,city);
+
+
 }
 
-void window_city::drawMST(int cities, std::vector<window_city::connection> connections){
+void window_city::drawMST(int cities, std::vector<window_city::connection> connections,QJsonArray city){
     double angle = 2 * 3.1415 / cities;
-    int radius = 3 * cities;
+    int radius = 6 * cities;
 
     for (connection connection : connections){
         int x1, y1, x2, y2;
@@ -68,7 +71,6 @@ void window_city::drawMST(int cities, std::vector<window_city::connection> conne
     }
 
     for (int i = 0; i < cities; i++){
-        QGraphicsTextItem * io = new QGraphicsTextItem;
 
         int x, y;
 
@@ -79,9 +81,23 @@ void window_city::drawMST(int cities, std::vector<window_city::connection> conne
         x = x - 8;
 
         mapa->addEllipse(x,y,16,16, QPen(Qt::blue),QBrush(Qt::blue));
+    }
+
+    int i = 0;
+    for (int i=0; i<city.size(); i++){
+
+        QGraphicsTextItem * io = new QGraphicsTextItem;
+        int x, y;
+
+        y = radius * sin(angle * i);
+        x = radius * cos(angle * i);
+
+        y = y - 8;
+        x = x - 8;
 
         io->setPos(x + 1,y - 2);
-        std::string str = std::to_string(i);
+        int s = city[i].toInt();
+        std::string str = std::to_string(s);
         io->setPlainText(str.c_str());
         io->setDefaultTextColor(Qt::white);
         mapa->addItem(io);

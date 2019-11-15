@@ -75,8 +75,11 @@ void MyThread::readyRead()
     }
 
     if(json_map.firstKey() == "Kruskal"){
+        cout<<"Solicitud"<<endl;
         QJsonDocument doc = EST.getGrafo()->kruskalToJson();
         socket->write(doc.toJson());
+
+        cout<<"Respuesta"<<endl;
     }
 
     //-------------T si un pasllo existe, F sino---------------//
