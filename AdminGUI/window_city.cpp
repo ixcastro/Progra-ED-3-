@@ -106,10 +106,6 @@ void window_city::drawMST(int cities, std::vector<window_city::connection> conne
     ui->graphicsView->update();
 }
 
-
-
-
-
 void window_city::on_insertarPas_clicked()
 {
     QJsonObject ob;
@@ -137,4 +133,19 @@ void window_city::on_insertarPas_clicked()
         connections.push_back(connection(p,a,b));
     }
     drawMST(numCities,connections,city);
+}
+
+void window_city::on_insertarPas_3_clicked()
+{
+    QJsonObject ob;
+    ob.insert("DJ",0);
+    QJsonDocument d(ob);
+    QJsonDocument doc = socketAdmin::getInstance()->request(d);
+    QJsonObject obj = doc.object();
+    if (obj.take("Respuesta")=="T"){
+        QMessageBox*q = new QMessageBox();
+        q->setText("Se ha creado el archivo");
+        q->show();
+    }
+
 }

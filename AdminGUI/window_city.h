@@ -36,6 +36,8 @@ private slots:
 
     void on_insertarPas_clicked();
 
+    void on_insertarPas_3_clicked();
+
 private:
     Ui::window_city *ui;
     QGraphicsScene *mapa;
