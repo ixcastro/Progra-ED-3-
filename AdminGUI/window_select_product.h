@@ -15,9 +15,17 @@ public:
 
     explicit window_select_product(QWidget *parent = nullptr);
     ~window_select_product();
+    void addButtonsProds(QJsonArray);
+    void setSelectedHall(int);
+
+public slots:
+    void commonSlot();
+    void commonSlotProds();
+
 
 private:
     Ui::window_select_product *ui;
+    int selectedHall = 0;
 
 };
 

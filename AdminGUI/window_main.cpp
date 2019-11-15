@@ -69,3 +69,40 @@ void window_main::on_close_clicked()
 {
     exit(0);
 }
+
+void window_main::on_refresh_clicked()
+{
+    ui->queueClient->clear();
+
+    QJsonObject ob;
+    ob.insert("ClientesCola","");
+    QJsonDocument doc(ob);
+    QJsonDocument doc2 = socketAdmin::getInstance()->request(doc);
+    QJsonArray arr = doc2.array();
+
+    for(int i=0; i<arr.size(); i++){
+        ui->queueClient->addItem(arr[i].toString());
+    }
+
+    QMessageBox *q = new QMessageBox();
+    if(arr.size() == 0){
+        q->setText("No hay clientes en la cola.");
+    }else{
+        q->setText("Cola actualizada.");
+    }
+    q->show();
+}
+
+void window_main::on_bill_clicked(){
+    QJsonObject ob;
+    ob.insert("Facturar","");
+    QJsonDocument doc(ob);
+    QJsonDocument doc2 = socketAdmin::getInstance()->request(doc);
+    QMessageBox *q = new QMessageBox();
+    QJsonObject objResp = doc2.object();
+    q->setText(objResp.take("Respuesta").toString());
+    q->show();
+
+}
+
+

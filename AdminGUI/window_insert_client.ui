@@ -32,7 +32,7 @@
      <string>Insertar cliente</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="tel">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -73,16 +73,6 @@
      <string>Atras</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>140</x>
-      <y>280</y>
-      <width>201</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
@@ -101,7 +91,7 @@
      <string>Cédula</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="name">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -160,7 +150,7 @@
      <string>Ciudad</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="ced">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -170,7 +160,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="correo">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -196,6 +186,16 @@
     </property>
     <property name="text">
      <string>Nombre</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="city">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>280</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
     </property>
    </widget>
   </widget>

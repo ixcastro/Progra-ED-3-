@@ -15,11 +15,18 @@ public:
     explicit window_insert_client(QWidget *parent = nullptr);
     ~window_insert_client();
 
+    void setCities(QJsonArray a);
+
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
+    void on_comboBox_activated(const QString &arg1);
+
 private:
     Ui::window_insert_client *ui;
+
 };
 
 #endif // WINDOW_INSERT_CLIENT_H

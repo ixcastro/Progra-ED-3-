@@ -19,12 +19,14 @@ public:
     ~window_select_hall();
 
     void addButtons(QJsonArray);
+    void addButtonsHalls(QJsonArray);
 
 
 public slots:
     void on_pushButton_clicked();
     void commonSlot(string);
     void commonSlot();
+    void commonSlotHalls();
 
 private:
     Ui::window_select_hall *ui;

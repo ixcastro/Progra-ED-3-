@@ -42,7 +42,21 @@ SOURCES += \
     socketadmin.cpp \
     window_select_hall.cpp \
     window_select_product.cpp \
-    window_insert_product.cpp
+    window_insert_product.cpp \
+    window_insert_brand.cpp \
+    window_query_price.cpp \
+    window_query_percentage.cpp \
+    window_query_basket.cpp \
+    window_login.cpp \
+    window_modify_price.cpp \
+    window_modify_percentage.cpp \
+    window_modify_basket.cpp \
+    window_delete_client.cpp \
+    window_delete_product.cpp \
+    window_delete_brand.cpp \
+    window_report_moresoldprod.cpp \
+    window_report_brandprod.cpp \
+    window_report_prodpas.cpp
 
 HEADERS += \
         window_main.h \
@@ -60,7 +74,21 @@ HEADERS += \
     socketadmin.h \
     window_select_hall.h \
     window_select_product.h \
-    window_insert_product.h
+    window_insert_product.h \
+    window_insert_brand.h \
+    window_query_price.h \
+    window_query_percentage.h \
+    window_query_basket.h \
+    window_login.h \
+    window_modify_price.h \
+    window_modify_percentage.h \
+    window_modify_basket.h \
+    window_delete_client.h \
+    window_delete_product.h \
+    window_delete_brand.h \
+    window_report_moresoldprod.h \
+    window_report_brandprod.h \
+    window_report_prodpas.h
 
 FORMS += \
         window_main.ui \
@@ -74,7 +102,21 @@ FORMS += \
     window_report.ui \
     window_select_hall.ui \
     window_select_product.ui \
-    window_insert_product.ui
+    window_insert_product.ui \
+    window_insert_brand.ui \
+    window_query_price.ui \
+    window_query_percentage.ui \
+    window_query_basket.ui \
+    window_login.ui \
+    window_modify_price.ui \
+    window_modify_percentage.ui \
+    window_modify_basket.ui \
+    window_delete_client.ui \
+    window_delete_product.ui \
+    window_delete_brand.ui \
+    window_report_moresoldprod.ui \
+    window_report_brandprod.ui \
+    window_report_prodpas.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -2,6 +2,8 @@
 #define WINDOW_REPORT_H
 
 #include <QMainWindow>
+#include "library.h"
+#include "socketadmin.h"
 
 namespace Ui {
 class window_report;
@@ -16,7 +18,37 @@ public:
     ~window_report();
 
 private slots:
-    void on_pushButton_26_clicked();
+
+
+    void on_back_clicked();
+
+    void on_pasilloMasVisitado_clicked();
+
+    void on_pasilloMenosVisitado_clicked();
+
+    void on_marcaMasVendida_clicked();
+
+    void on_ClienteMasCompro_clicked();
+
+    void on_ClienteMenosCompro_clicked();
+
+    void on_prodCargadoGond_clicked();
+
+    void on_clientMasFacturo_clicked();
+
+    void on_facturaMayorMonto_clicked();
+
+    void on_clientes_clicked();
+
+    void on_pasillo_clicked();
+
+    void on_invent_clicked();
+
+    void on_marcasProd_clicked();
+
+    void on_prods_clicked();
+
+    void on_prodMasVendido_clicked();
 
 private:
     Ui::window_report *ui;

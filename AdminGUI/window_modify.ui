@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="insertarMarca">
+   <widget class="QPushButton" name="canasta">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -27,7 +27,7 @@
      <string>Modificar canasta básica</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="insertarPas">
+   <widget class="QPushButton" name="precio">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -53,7 +53,7 @@
      <string>Atrás</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="insertarProd">
+   <widget class="QPushButton" name="porcentaje">
     <property name="geometry">
      <rect>
       <x>20</x>

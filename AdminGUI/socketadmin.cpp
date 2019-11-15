@@ -46,3 +46,10 @@ QJsonDocument socketAdmin::request(QJsonDocument doc){
     QByteArray data = socket->readAll();
     return QJsonDocument::fromJson(data);
 }
+
+QByteArray socketAdmin::requestByte(QJsonDocument doc){
+    this->socket->write(doc.toJson());
+    socket->waitForReadyRead();
+    QByteArray data = socket->readAll();
+    return data;
+}

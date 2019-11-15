@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>479</width>
-    <height>469</height>
+    <height>567</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>380</y>
+      <y>470</y>
       <width>171</width>
       <height>41</height>
      </rect>
@@ -77,6 +77,19 @@
     </property>
     <property name="text">
      <string>Insertar pasillo</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="solicitudes">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>380</y>
+      <width>441</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Aceptar solicitudes</string>
     </property>
    </widget>
   </widget>

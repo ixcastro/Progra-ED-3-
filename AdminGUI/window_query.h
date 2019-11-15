@@ -18,6 +18,12 @@ public:
 private slots:
     void on_back_clicked();
 
+    void on_insertarPas_clicked();
+
+    void on_insertarProd_clicked();
+
+    void on_insertarMarca_clicked();
+
 private:
     Ui::window_query *ui;
 };

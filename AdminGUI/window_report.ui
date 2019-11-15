@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton_16">
+   <widget class="QPushButton" name="prods">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -27,7 +27,7 @@
      <string>Productos de un pasillo</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_17">
+   <widget class="QPushButton" name="prodMasVendido">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -40,7 +40,7 @@
      <string>Productos por pasillo más vendidos</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_11">
+   <widget class="QPushButton" name="pasilloMenosVisitado">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -53,7 +53,7 @@
      <string>Pasillo menos visitado</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_18">
+   <widget class="QPushButton" name="clientMasFacturo">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -66,7 +66,7 @@
      <string>Cliente que más facturó</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_13">
+   <widget class="QPushButton" name="ClienteMenosCompro">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -79,7 +79,7 @@
      <string>Cliente que menos compró</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_14">
+   <widget class="QPushButton" name="pasilloMasVisitado">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -92,7 +92,7 @@
      <string>Pasillo más visitado</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_23">
+   <widget class="QPushButton" name="prodCargadoGond">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -105,7 +105,7 @@
      <string>Producto más cargado a góndolas</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_20">
+   <widget class="QPushButton" name="marcaMasVendida">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -118,7 +118,7 @@
      <string>Marcas más vendidas</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_12">
+   <widget class="QPushButton" name="clientes">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -131,7 +131,7 @@
      <string>Clientes del supermercado</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_22">
+   <widget class="QPushButton" name="invent">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -144,7 +144,7 @@
      <string>Inventario del supermercado</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_15">
+   <widget class="QPushButton" name="ClienteMasCompro">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -157,7 +157,7 @@
      <string>Cliente que más compró</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_24">
+   <widget class="QPushButton" name="facturaMayorMonto">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -188,7 +188,7 @@
      <string>Seleccione un reporte</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_19">
+   <widget class="QPushButton" name="pasillo">
     <property name="geometry">
      <rect>
       <x>580</x>
@@ -201,7 +201,7 @@
      <string>Pasillos del supermercado</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_26">
+   <widget class="QPushButton" name="back">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -214,7 +214,7 @@
      <string>Atrás</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_21">
+   <widget class="QPushButton" name="marcasProd">
     <property name="geometry">
      <rect>
       <x>300</x>
@@ -227,7 +227,7 @@
      <string>Marcas de un producto</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_25">
+   <widget class="QPushButton" name="pasillos">
     <property name="geometry">
      <rect>
       <x>580</x>

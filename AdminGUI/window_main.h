@@ -14,6 +14,7 @@ class window_main : public QMainWindow
 public:
     explicit window_main(QWidget *parent = nullptr);
     ~window_main();
+    void refresh();
 
 private slots:
     void on_insert_clicked();
@@ -33,6 +34,10 @@ private slots:
     void on_city_clicked();
 
     void on_close_clicked();
+
+    void on_refresh_clicked();
+
+    void on_bill_clicked();
 
 private:
     Ui::window_main *ui;

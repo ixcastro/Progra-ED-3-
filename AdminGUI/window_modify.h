@@ -18,6 +18,12 @@ public:
 private slots:
     void on_back_clicked();
 
+    void on_precio_clicked();
+
+    void on_porcentaje_clicked();
+
+    void on_canasta_clicked();
+
 private:
     Ui::window_modify *ui;
 };

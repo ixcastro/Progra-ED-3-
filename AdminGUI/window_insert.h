@@ -26,6 +26,8 @@ private slots:
 
     void on_back_clicked();
 
+    void on_solicitudes_clicked();
+
 private:
     Ui::window_insert *ui;
 };

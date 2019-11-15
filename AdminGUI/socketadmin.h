@@ -38,6 +38,8 @@ public:
     static socketAdmin* getInstance();
 
     QJsonDocument request(QJsonDocument doc);
+    QByteArray requestByte(QJsonDocument doc);
+
 };
 
 #endif // SOCKETADMIN_H
