@@ -236,17 +236,18 @@ void ABBTree::setFlagProcess(string Data){
 
 void ABBTree::deleteABBData(int pData){
     cout<<"ELIMINADO "<< pData<<endl;
-    AVLNode* aux;
-    AVLNode* auxF;
-    AVLNode* auxMaxR;
+    ABBNode* aux;
+    ABBNode* auxF;
+    ABBNode* auxMaxR;
     // verifica si el dato existe
+
     if(exists(pData)){
 
 
         cout<<"EL DATO EXISTE"<<endl;
-        aux = getProduct(pData);// obtenemos el nodo que queremos eliminar
+        aux = getNode(pData);// obtenemos el nodo que queremos eliminar
 
-        if(getfather(pData)->getProduct()->getCode() == pData){
+        if(getfather(pData)->getHall()->getCode() == pData){
 
             if (aux->getLeftSon()!=nullptr){
                  auxF = aux->getLeftSon();
@@ -255,8 +256,8 @@ void ABBTree::deleteABBData(int pData){
                  auxF = aux->getRightSon();
             }
 
-            aux->getProduct()->setCode(auxF->getProduct()->getCode());
-            aux->getProduct()->setName(auxF->getProduct()->getName());
+            aux->getHall()->setCode(auxF->getHall()->getCode());
+            aux->getHall()->setName(auxF->getHall()->getName());
             if(auxF->getOrientation()==1){
                 aux->setRightSon(nullptr);
             }else{// si es hijo izq
@@ -306,7 +307,7 @@ void ABBTree::deleteABBData(int pData){
 
         }
         // SI TENGO HIJOS Y NO SOY LA RAIZ
-        else if(aux->getLeftSon()!=nullptr &&aux->getRightSon()!=nullptr && aux->getProduct()->getCode()!=getRoot()->getProduct()->getCode()){
+        else if(aux->getLeftSon()!=nullptr &&aux->getRightSon()!=nullptr && aux->getHall()->getCode()!=getRoot()->getHall()->getCode()){
             cout<<"SI TENGO HIJOS Y NO SOY LA RAIZ"<<endl;
             int MaxR;
             // busco el max R
@@ -314,17 +315,17 @@ void ABBTree::deleteABBData(int pData){
             // guardo su orientacion
             MaxR = auxMaxR->getOrientation();
             // guardo al papa de max R
-            auxF = getfather(auxMaxR->getProduct()->getCode());// obtenemos el padre
+            auxF = getfather(auxMaxR->getHall()->getCode());// obtenemos el padre
 
             // cambio el nodo
-            aux->getProduct()->setCode(auxMaxR->getProduct()->getCode());
-            aux->getProduct()->setName(auxMaxR->getProduct()->getName());
+            aux->getHall()->setCode(auxMaxR->getHall()->getCode());
+            aux->getHall()->setName(auxMaxR->getHall()->getName());
 
 
             if(auxMaxR->getLeftSon()!=nullptr){
                 // cambio el nodo
-                auxMaxR->getProduct()->setCode(auxMaxR->getLeftSon()->getProduct()->getCode());
-                auxMaxR->getProduct()->setName(auxMaxR->getLeftSon()->getProduct()->getName());
+                auxMaxR->getHall()->setCode(auxMaxR->getLeftSon()->getHall()->getCode());
+                auxMaxR->getHall()->setName(auxMaxR->getLeftSon()->getHall()->getName());
                 auxMaxR->setLeftSon(nullptr);
             }
             else{
@@ -343,17 +344,17 @@ void ABBTree::deleteABBData(int pData){
             // guardo su orientacion
             MaxR = auxMaxR->getOrientation();
             // guardo al papa de max R
-            auxF = getfather(auxMaxR->getProduct()->getCode());// obtenemos el padre
+            auxF = getfather(auxMaxR->getHall()->getCode());// obtenemos el padre
 
             // cambio el nodo
-            aux->getProduct()->setCode(auxMaxR->getProduct()->getCode());
-            aux->getProduct()->setName(auxMaxR->getProduct()->getName());
+            aux->getHall()->setCode(auxMaxR->getHall()->getCode());
+            aux->getHall()->setName(auxMaxR->getHall()->getName());
 
 
             if(auxMaxR->getLeftSon()!=nullptr){
                 // cambio el nodo
-                auxMaxR->getProduct()->setCode(auxMaxR->getLeftSon()->getProduct()->getCode());
-                auxMaxR->getProduct()->setName(auxMaxR->getLeftSon()->getProduct()->getName());
+                auxMaxR->getHall()->setCode(auxMaxR->getLeftSon()->getHall()->getCode());
+                auxMaxR->getHall()->setName(auxMaxR->getLeftSon()->getHall()->getName());
                 auxMaxR->setLeftSon(nullptr);
             }
             else{
