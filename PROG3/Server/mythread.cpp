@@ -1310,7 +1310,7 @@ void MyThread::readyRead()
         }
     }
 
-    //En proceso...  de la suicidacion
+
     if(json_map.firstKey() == "EliminarProducto"){
 
         QJsonObject x = json_map["EliminarProducto"].toJsonObject();
@@ -1347,6 +1347,22 @@ void MyThread::readyRead()
         QJsonDocument r(o);
         socket->write(r.toJson());
     }
+
+    if(json_map.firstKey() == "EliminarPasillo"){
+
+        QJsonObject x = json_map["EliminarPasillo"].toJsonObject();
+        int pPasillo = x.take("Pasillo").toInt();
+
+        cout<<"NUMERO A ELIMINAR "<<pPasillo;
+
+        EST.getEST()->deleteABBData(pPasillo);
+        cout<<"ELIMINADO "<<endl;
+        QJsonObject o;
+        o.insert("Respuesta","T");
+        QJsonDocument r(o);
+        socket->write(r.toJson());
+    }
+
 
 
 }

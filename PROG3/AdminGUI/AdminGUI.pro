@@ -28,6 +28,7 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
     w_pathdj.cpp \
+    window_delete_hall.cpp \
         window_main.cpp \
     library.cpp \
     mysocket.cpp \
@@ -61,6 +62,7 @@ SOURCES += \
 
 HEADERS += \
     w_pathdj.h \
+    window_delete_hall.h \
         window_main.h \
     library.h \
     mysocket.h \
@@ -94,6 +96,7 @@ HEADERS += \
 
 FORMS += \
     w_pathdj.ui \
+    window_delete_hall.ui \
         window_main.ui \
     window_insert.ui \
     window_insert_hall.ui \

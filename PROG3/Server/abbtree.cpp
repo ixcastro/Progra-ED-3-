@@ -239,7 +239,7 @@ void ABBTree::setFlagProcess(string Data){
 void ABBTree::deleteABBData(int pData){
     cout<<"ELIMINADO "<< pData<<endl;
     ABBNode* aux;
-    ABBNode* auxF;
+    ABBNode* auxF=nullptr;
     ABBNode* auxMaxR;
     // verifica si el dato existe
 
@@ -254,17 +254,29 @@ void ABBTree::deleteABBData(int pData){
             if (aux->getLeftSon()!=nullptr){
                  auxF = aux->getLeftSon();
             }
-            else{
+            else if (aux->getRightSon()!=nullptr){
                  auxF = aux->getRightSon();
+            }else{
+                setRoot(nullptr);
             }
 
             aux->getHall()->setCode(auxF->getHall()->getCode());
             aux->getHall()->setName(auxF->getHall()->getName());
-            if(auxF->getOrientation()==1){
+
+            if(auxF->getOrientation()==1 && aux->getRightSon()==nullptr){
                 aux->setRightSon(nullptr);
-            }else{// si es hijo izq
+            }
+            else if(auxF->getOrientation()==1 && auxF->getRightSon()!=nullptr){// si es hijo izq
+                aux->setRightSon(auxF->getRightSon());
+            }
+
+            else if(auxF->getOrientation()==2 && aux->getLeftSon()==nullptr){
                 aux->setLeftSon(nullptr);
             }
+            else if(auxF->getOrientation()==2 && auxF->getLeftSon()!=nullptr){// si es hijo izq
+                aux->setLeftSon(auxF->getLeftSon());
+            }
+
 
 
 

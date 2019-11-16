@@ -77,23 +77,51 @@ void RNTree::deleteRNData(int pData){
         cout<<"EL DATO EXISTE"<<endl;
         aux = getBrand(pData);// obtenemos el nodo que queremos eliminar
 
+//        if(getfather(pData)->getBrand()->getCode() == pData){
+//             cout<<":O"<<endl;
+//            if (aux->getLeftSon()!=nullptr){
+//                 auxF = aux->getLeftSon();
+//            }
+//            else{
+//                 auxF = aux->getRightSon();
+//            }
+
+//            aux->getBrand()->setCode(auxF->getBrand()->getCode());
+//            aux->getBrand()->setName(auxF->getBrand()->getName());
+//            if(auxF->getOrientation()==1){
+//                aux->setRightSon(nullptr);
+//            }else{// si es hijo izq
+//                aux->setLeftSon(nullptr);
+//            }
+
+//        }
         if(getfather(pData)->getBrand()->getCode() == pData){
-             cout<<":O"<<endl;
+
             if (aux->getLeftSon()!=nullptr){
                  auxF = aux->getLeftSon();
             }
-            else{
+            else if (aux->getRightSon()!=nullptr){
                  auxF = aux->getRightSon();
+            }else{
+                setRoot(nullptr);
             }
 
             aux->getBrand()->setCode(auxF->getBrand()->getCode());
             aux->getBrand()->setName(auxF->getBrand()->getName());
-            if(auxF->getOrientation()==1){
+
+            if(auxF->getOrientation()==1 && aux->getRightSon()==nullptr){
                 aux->setRightSon(nullptr);
-            }else{// si es hijo izq
-                aux->setLeftSon(nullptr);
+            }
+            else if(auxF->getOrientation()==1 && auxF->getRightSon()!=nullptr){// si es hijo izq
+                aux->setRightSon(auxF->getRightSon());
             }
 
+            else if(auxF->getOrientation()==2 && aux->getLeftSon()==nullptr){
+                aux->setLeftSon(nullptr);
+            }
+            else if(auxF->getOrientation()==2 && auxF->getLeftSon()!=nullptr){// si es hijo izq
+                aux->setLeftSon(auxF->getLeftSon());
+            }
         }
         //si es una hoja
         else if(aux->getLeftSon()==nullptr && aux->getRightSon()==nullptr){

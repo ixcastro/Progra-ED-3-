@@ -3,6 +3,7 @@
 #include "window_delete_client.h"
 #include "window_delete_product.h"
 #include "window_delete_brand.h"
+#include "window_delete_hall.h"
 
 window_delete::window_delete(QWidget *parent) :
     QMainWindow(parent),
@@ -42,5 +43,7 @@ void window_delete::on_insertarMarca_clicked()
 
 void window_delete::on_insertarPas_clicked()
 {
+    window_delete_hall*w = new window_delete_hall();
+    w->show();
 
 }
