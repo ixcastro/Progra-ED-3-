@@ -10,6 +10,7 @@ public:
     ABBNode(Hall*);
     //------GETS---------//
 
+    int getOrientation();
     AVLTree* getProducts();
     ABBNode* getRightSon();
     ABBNode* getLeftSon();
@@ -24,6 +25,7 @@ public:
     void setAVL(AVLNode* pDataSonR);
     void setRightSon(ABBNode* pDataSonR);
     void setLeftSon(ABBNode* pDataSonL);
+    void setOrientation(int pData);
 
     //-----------EXTRA--------------------------//
     bool itsRepitedHall(ABBNode* pRoot,int pData);
@@ -36,6 +38,7 @@ private:
     ABBNode* LR;
     AVLTree* products;
     string type;
+    int Orientation;
 };
 
 #endif // NODABB_H

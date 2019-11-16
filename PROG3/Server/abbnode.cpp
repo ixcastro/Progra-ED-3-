@@ -22,6 +22,10 @@ Hall* ABBNode::getHall(){
     return hall;
 }
 
+int ABBNode::getOrientation(){
+   return = Orientation;
+}
+
  ABBNode*  ABBNode::getRightSon() {
     return RS;
 }
@@ -41,6 +45,10 @@ Hall* ABBNode::getHall(){
 
 void ABBNode::setRightSon(ABBNode* pDataSonR) {
     RS = pDataSonR;
+}
+
+void ABBNode::setOrientation(int pData){
+    Orientation = pData;
 }
 
 void ABBNode::setLeftSon(ABBNode* pDataSonL) {
