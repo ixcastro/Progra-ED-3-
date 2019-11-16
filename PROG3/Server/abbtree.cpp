@@ -263,15 +263,16 @@ void ABBTree::deleteABBData(int pData){
             aux->getHall()->setCode(auxF->getHall()->getCode());
             aux->getHall()->setName(auxF->getHall()->getName());
 
-            if(auxF->getOrientation()==1 && aux->getRightSon()==nullptr){
+
+
+            if(auxF->getOrientation()==1 && auxF->getRightSon()==nullptr){
                 aux->setRightSon(nullptr);
+            }
+            else if(auxF->getOrientation()==2 && auxF->getLeftSon()==nullptr){
+                aux->setLeftSon(nullptr);
             }
             else if(auxF->getOrientation()==1 && auxF->getRightSon()!=nullptr){// si es hijo izq
                 aux->setRightSon(auxF->getRightSon());
-            }
-
-            else if(auxF->getOrientation()==2 && aux->getLeftSon()==nullptr){
-                aux->setLeftSon(nullptr);
             }
             else if(auxF->getOrientation()==2 && auxF->getLeftSon()!=nullptr){// si es hijo izq
                 aux->setLeftSon(auxF->getLeftSon());

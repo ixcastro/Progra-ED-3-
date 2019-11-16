@@ -22,6 +22,7 @@ public:
     void setRightSon(AVLNode* pDataSonR);
     void setLeftSon(AVLNode*  pDataSonL);
     void setOrientation(int pDataBL);
+    void setRN(RNTree* pbrands);
 
     //-----------EXTRA--------------------------//
     bool itsRepitedProd(AVLNode* pRoot,int pData);

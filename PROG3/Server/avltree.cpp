@@ -640,25 +640,22 @@ void AVLTree::deleteAVLData(int pData){
 
             aux->getProduct()->setCode(auxF->getProduct()->getCode());
             aux->getProduct()->setName(auxF->getProduct()->getName());
+            aux->setRN(auxF->getRN());
 
 
 
-            if(auxF->getOrientation()==1 && aux->getRightSon()==nullptr){
+            if(auxF->getOrientation()==1 && auxF->getRightSon()==nullptr){
                 aux->setRightSon(nullptr);
+            }
+            else if(auxF->getOrientation()==2 && auxF->getLeftSon()==nullptr){
+                aux->setLeftSon(nullptr);
             }
             else if(auxF->getOrientation()==1 && auxF->getRightSon()!=nullptr){// si es hijo izq
                 aux->setRightSon(auxF->getRightSon());
             }
-
-            else if(auxF->getOrientation()==2 && aux->getLeftSon()==nullptr){
-                aux->setLeftSon(nullptr);
-            }
             else if(auxF->getOrientation()==2 && auxF->getLeftSon()!=nullptr){// si es hijo izq
                 aux->setLeftSon(auxF->getLeftSon());
             }
-
-
-
 
         }
 
@@ -715,6 +712,7 @@ void AVLTree::deleteAVLData(int pData){
             // cambio el nodo
             aux->getProduct()->setCode(auxMaxR->getProduct()->getCode());
             aux->getProduct()->setName(auxMaxR->getProduct()->getName());
+            aux->setRN(auxMaxR->getRN());
 
 
             if(auxMaxR->getLeftSon()!=nullptr){
@@ -744,7 +742,7 @@ void AVLTree::deleteAVLData(int pData){
             // cambio el nodo
             aux->getProduct()->setCode(auxMaxR->getProduct()->getCode());
             aux->getProduct()->setName(auxMaxR->getProduct()->getName());
-
+            aux->setRN(auxMaxR->getRN());
 
             if(auxMaxR->getLeftSon()!=nullptr){
                 // cambio el nodo

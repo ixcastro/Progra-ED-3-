@@ -25,6 +25,12 @@ RNTree* AVLNode::getRN(){
     return brands;
 }
 
+void AVLNode::setRN(RNTree *pbrands){
+    brands =pbrands ;
+}
+
+
+
 
 string AVLNode::getType(){
     return type;
