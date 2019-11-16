@@ -23,7 +23,7 @@ Hall* ABBNode::getHall(){
 }
 
 int ABBNode::getOrientation(){
-   return = Orientation;
+   return  Orientation;
 }
 
  ABBNode*  ABBNode::getRightSon() {

@@ -38,8 +38,10 @@ void ABBTree::insert(Hall *pHall){
         }
         if(auxRSon == 1){// si quedo en hijo derecho
             aux->setRightSon(newNode);
+          newNode->setOrientation(1);
         }else{
             aux->setLeftSon(newNode);
+             newNode->setOrientation(2);
         }
     }
 }
