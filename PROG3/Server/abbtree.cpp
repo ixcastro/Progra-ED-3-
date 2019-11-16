@@ -230,4 +230,187 @@ void ABBTree::setFlagProcess(string Data){
 
 
 
+//--------------------BORRADO----------------------------//
+
+
+
+void ABBTree::deleteABBData(int pData){
+    cout<<"ELIMINADO "<< pData<<endl;
+    AVLNode* aux;
+    AVLNode* auxF;
+    AVLNode* auxMaxR;
+    // verifica si el dato existe
+    if(exists(pData)){
+
+
+        cout<<"EL DATO EXISTE"<<endl;
+        aux = getProduct(pData);// obtenemos el nodo que queremos eliminar
+
+        if(getfather(pData)->getProduct()->getCode() == pData){
+
+            if (aux->getLeftSon()!=nullptr){
+                 auxF = aux->getLeftSon();
+            }
+            else{
+                 auxF = aux->getRightSon();
+            }
+
+            aux->getProduct()->setCode(auxF->getProduct()->getCode());
+            aux->getProduct()->setName(auxF->getProduct()->getName());
+            if(auxF->getOrientation()==1){
+                aux->setRightSon(nullptr);
+            }else{// si es hijo izq
+                aux->setLeftSon(nullptr);
+            }
+
+
+
+        }
+
+        //si es una hoja
+        else if(aux->getLeftSon()==nullptr && aux->getRightSon()==nullptr){
+            cout<<"EL DATO ES UNA HOJA"<<endl;
+
+            auxF = getfather(pData);// obtenemos el padre
+            // si es hijo derecho
+            if(aux->getOrientation()==1){
+                auxF->setRightSon(nullptr);
+            }else{// si es hijo izq
+                auxF->setLeftSon(nullptr);
+            }
+
+        }
+        // si tengo hijo izq pero no derecho
+        else if(aux->getLeftSon()!=nullptr && aux->getRightSon()==nullptr){
+             cout<<"si tengo hijo izq pero no derecho"<<endl;
+
+            auxF = getfather(pData);// obtenemos el padre
+            // si es hijo derecho
+            if(aux->getOrientation()==1){
+                auxF->setRightSon(aux->getLeftSon());
+            }else{// si es hijo izq
+                auxF->setLeftSon(aux->getLeftSon());
+            }
+
+        }
+        // si tengo hijo derecho pero no izq
+        else if(aux->getLeftSon()==nullptr &&aux->getRightSon()!=nullptr){
+             cout<<"si tengo hijo derecho pero no izq"<<endl;
+            auxF = getfather(pData);// obtenemos el padre
+            // si es hijo derecho
+            if(aux->getOrientation()==1){
+                auxF->setRightSon(aux->getRightSon());
+            }else{// si es hijo izq
+                auxF->setLeftSon(aux->getRightSon());
+            }
+
+        }
+        // SI TENGO HIJOS Y NO SOY LA RAIZ
+        else if(aux->getLeftSon()!=nullptr &&aux->getRightSon()!=nullptr && aux->getProduct()->getCode()!=getRoot()->getProduct()->getCode()){
+            cout<<"SI TENGO HIJOS Y NO SOY LA RAIZ"<<endl;
+            int MaxR;
+            // busco el max R
+            auxMaxR = getMaxR(aux->getLeftSon());
+            // guardo su orientacion
+            MaxR = auxMaxR->getOrientation();
+            // guardo al papa de max R
+            auxF = getfather(auxMaxR->getProduct()->getCode());// obtenemos el padre
+
+            // cambio el nodo
+            aux->getProduct()->setCode(auxMaxR->getProduct()->getCode());
+            aux->getProduct()->setName(auxMaxR->getProduct()->getName());
+
+
+            if(auxMaxR->getLeftSon()!=nullptr){
+                // cambio el nodo
+                auxMaxR->getProduct()->setCode(auxMaxR->getLeftSon()->getProduct()->getCode());
+                auxMaxR->getProduct()->setName(auxMaxR->getLeftSon()->getProduct()->getName());
+                auxMaxR->setLeftSon(nullptr);
+            }
+            else{
+                auxF->setLeftSon(nullptr);
+                auxF->setLeftSon(nullptr);
+            }
+
+            // goback(aux);
+        }
+        else{
+
+            cout<<"SI SOY LA RAIZ"<<endl;
+            int MaxR;
+            // busco el max R
+            auxMaxR = getMaxR(aux->getLeftSon());
+            // guardo su orientacion
+            MaxR = auxMaxR->getOrientation();
+            // guardo al papa de max R
+            auxF = getfather(auxMaxR->getProduct()->getCode());// obtenemos el padre
+
+            // cambio el nodo
+            aux->getProduct()->setCode(auxMaxR->getProduct()->getCode());
+            aux->getProduct()->setName(auxMaxR->getProduct()->getName());
+
+
+            if(auxMaxR->getLeftSon()!=nullptr){
+                // cambio el nodo
+                auxMaxR->getProduct()->setCode(auxMaxR->getLeftSon()->getProduct()->getCode());
+                auxMaxR->getProduct()->setName(auxMaxR->getLeftSon()->getProduct()->getName());
+                auxMaxR->setLeftSon(nullptr);
+            }
+            else{
+                auxF->setRightSon(nullptr);
+            }
+            setRoot(aux);
+            aux->setOrientation(0);
+        }
+        // showGoback(aux);
+    }
+    else{
+        cout<<"El dato "<<pData<<" no existe"<<endl;
+    }
+}
+
+
+ABBNode* ABBTree::getMaxR(ABBNode* pData){
+    ABBNode* aux = pData;
+    while(aux->getRightSon()!=nullptr){
+        aux= aux->getRightSon();
+    }
+    return aux;
+}
+
+
+//----------------------------[GET-FATHER-]------------------------------------//
+// OBTIENE EL PADRE DE UN NODO DADO//
+ABBNode* ABBTree::getfather(int pDataSon) {
+    ABBNode* auxR = getRoot();// VAR DE LA RAIZ
+    cout<<"Raiz del arbol "<< auxR->getHall()->getCode()<<endl;
+    cout<<"elemento buscado "<< pDataSon<<endl;
+    bool pBreak = true; //BOOL DEL CICLO
+    while (pBreak) {
+
+        if(auxR->getHall()->getCode() ==pDataSon){
+            break;
+        }
+        // SI YA LLEGO A UN EXTREMO O SI YA ENCONTRO EL DATOBUSCADOA
+        if (((auxR->getRightSon() != nullptr) && (auxR->getRightSon()->getHall()->getCode() == pDataSon)) |
+                ((auxR->getLeftSon() != nullptr) && (auxR->getLeftSon()->getHall()->getCode() == pDataSon))
+               //|(auxR->getRightSon() != nullptr)&&((auxR->getLeftSon() != nullptr) && (auxR->getLeftSon()->getProduct()->getCode() == pDataSon))
+                ) {
+            pBreak = false; // SALE DEL CICLO
+             cout<<"Break"<< endl;
+        } else if (auxR->getHall()->getCode() < pDataSon) {// SI EL DATO BUSCADOES MAYOR AL COMPARADO
+            auxR = auxR->getRightSon();// ME VOY A LA DER
+              cout<<"Derecha"<< endl;
+        } else if (auxR->getHall()->getCode() > pDataSon) {// SINO
+             cout<<"IZQ"<< endl;
+            auxR = auxR->getLeftSon();// A LA IZQ
+        }
+
+    }
+    return auxR;// AL TERMINAR RETORNA EL NODOD ENCOTRADO
+}
+
+
+
+
 

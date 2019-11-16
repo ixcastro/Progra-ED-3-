@@ -40,6 +40,13 @@ public:
     void showRN(RNNode *RN);
     //------------------------------------------------------------------------//
 
+    //-----------------DELETE------------------//
+    void deleteABBData(int pData);
+    ABBNode* getMaxR( ABBNode* pData);
+    ABBNode* getfather(int pDataSon);
+    //void showGoback(ABBNode* pData);
+    //getfather
+
 
 private:
     ABBNode* root;

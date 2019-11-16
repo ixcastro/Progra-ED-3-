@@ -45,7 +45,6 @@ public:
     bool exists(int);
     AVLNode* getProduct(int);
     void getProdCL(AVLNode *r);
-
     void print(AVLNode*);
 
 
