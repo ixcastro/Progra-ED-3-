@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>window_insert</class>
+ <widget class="QMainWindow" name="window_insert">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>479</width>
+    <height>567</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="back">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>470</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Atrás</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="insertarMarca">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>200</y>
+      <width>441</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Insertar marca</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="insertarProd">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>110</y>
+      <width>441</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Insertar producto</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="insertarCliente">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>290</y>
+      <width>441</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Insertar cliente</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="insertarPas">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>441</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Insertar pasillo</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="solicitudes">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>380</y>
+      <width>441</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Aceptar solicitudes</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>479</width>
+     <height>17</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
