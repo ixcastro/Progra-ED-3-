@@ -641,6 +641,8 @@ void AVLTree::deleteAVLData(int pData){
             aux->getProduct()->setCode(auxF->getProduct()->getCode());
             aux->getProduct()->setName(auxF->getProduct()->getName());
 
+
+
             if(auxF->getOrientation()==1 && aux->getRightSon()==nullptr){
                 aux->setRightSon(nullptr);
             }
