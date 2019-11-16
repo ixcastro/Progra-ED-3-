@@ -38,6 +38,8 @@ int ABBNode::getOrientation(){
     return products;
 }
 
+
+
  string ABBNode::getType(){
      return type;
  }
@@ -55,9 +57,17 @@ void ABBNode::setLeftSon(ABBNode* pDataSonL) {
     LR = pDataSonL;
 }
 
-/*void ABBNode::setAVL(AVLNode* pDataSonR){
-    products->add();
-}*/
+void ABBNode::setAVL(AVLTree* pDataSonR){
+    products = pDataSonR;
+}
+
+
+AVLTree* ABBNode::getAVL(){
+    return products ;
+}
+
+
+
 //------------------------------EXTRA--------------------------------//
 bool ABBNode::itsRepitedHall(ABBNode* pRoot,int pData) {
    ABBNode* aux = pRoot;

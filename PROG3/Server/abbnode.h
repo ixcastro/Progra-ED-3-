@@ -22,15 +22,17 @@ public:
     void setName(string pData);
     void setCodHall(int pDataHall);
 
-    void setAVL(AVLNode* pDataSonR);
+    void setAVL(AVLTree* pDataSonR);
+    AVLTree* getAVL();
     void setRightSon(ABBNode* pDataSonR);
     void setLeftSon(ABBNode* pDataSonL);
     void setOrientation(int pData);
 
+
     //-----------EXTRA--------------------------//
     bool itsRepitedHall(ABBNode* pRoot,int pData);
-    ABBNode* getNode(ABBNode* pRoot,int pData);
     void insertProduct(Product*);
+    ABBNode* getNode(ABBNode *pRoot, int pData);
 
 private:
     Hall *hall;

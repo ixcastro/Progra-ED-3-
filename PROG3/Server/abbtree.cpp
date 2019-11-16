@@ -262,6 +262,7 @@ void ABBTree::deleteABBData(int pData){
 
             aux->getHall()->setCode(auxF->getHall()->getCode());
             aux->getHall()->setName(auxF->getHall()->getName());
+            aux->setAVL(auxF->getAVL());
 
 
 
@@ -335,6 +336,7 @@ void ABBTree::deleteABBData(int pData){
             // cambio el nodo
             aux->getHall()->setCode(auxMaxR->getHall()->getCode());
             aux->getHall()->setName(auxMaxR->getHall()->getName());
+            aux->setAVL(auxMaxR->getAVL());
 
 
             if(auxMaxR->getLeftSon()!=nullptr){
@@ -364,7 +366,7 @@ void ABBTree::deleteABBData(int pData){
             // cambio el nodo
             aux->getHall()->setCode(auxMaxR->getHall()->getCode());
             aux->getHall()->setName(auxMaxR->getHall()->getName());
-
+            aux->setAVL(auxMaxR->getAVL());
 
             if(auxMaxR->getLeftSon()!=nullptr){
                 // cambio el nodo
